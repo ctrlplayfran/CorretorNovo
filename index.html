@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>Josué Afonso | Corretor de Imóveis</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --verde-escuro: #1a3528;
+  --verde-medio: #2b5a43;
+  --verde-claro: #3a7257;
+  --dourado: #c9a23d;
+  --dourado-claro: #e5c36b;
+  --dourado-escuro: #a77f2c;
+  --texto-claro: #f0f0e0;
+  --sombra: 0 10px 30px rgba(0,0,0,0.2);
+  --borda-raio: 16px;
+  --espacamento: clamp(1rem, 5vw, 2rem);
+  
+  /* Cores do WhatsApp */
+  --whatsapp: #25D366;
+  --whatsapp-dark: #128C7E;
+  --whatsapp-light: #DCF8C6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--verde-escuro);
+  color: var(--texto-claro);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Importação da fonte Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+
+/* ===== HEADER MODERNO ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(26, 53, 40, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.8rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 2px solid var(--dourado);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo i {
+  color: var(--dourado);
+  font-size: 1.8rem;
+}
+
+.logo span {
+  color: var(--dourado);
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+/* Navegação Desktop */
+nav {
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--texto-claro);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s;
+  position: relative;
+  padding: 0.3rem 0;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--dourado);
+  transition: width 0.3s;
+}
+
+nav a:hover {
+  color: var(--dourado-claro);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Menu Mobile */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0.5rem;
+}
+
+.menu-btn span {
+  width: 28px;
+  height: 2px;
+  background: var(--dourado);
+  transition: 0.3s;
+}
+
+.menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ===== HERO SECTION COM FUNDO ANIMADO ===== */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 6rem 5% 2rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(26, 53, 40, 0.85), rgba(43, 90, 67, 0.85));
+}
+
+/* Container da imagem de fundo */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-image: url('Assets/Imagens/logosn.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.6;
+  z-index: 0;
+  will-change: transform;
+  pointer-events: none;
+  transform: translateY(0);
+  animation: floatBackground 8s ease-in-out infinite;
+}
+
+/* Animação de flutuação */
+@keyframes floatBackground {
+  0% {
+    transform: translateY(-5%) scale(1.05);
+  }
+  50% {
+    transform: translateY(5%) scale(1.08);
+  }
+  100% {
+    transform: translateY(-5%) scale(1.05);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  color: var(--dourado);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.hero-content h1 span {
+  color: var(--texto-claro);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  display: block;
+  font-weight: 400;
+}
+
+.hero-badge {
+  background: rgba(201, 162, 61, 0.15);
+  border: 1px solid var(--dourado);
+  border-radius: 50px;
+  padding: 0.3rem 1rem;
+  display: inline-block;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dourado);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.hero-image {
+  position: relative;
+  z-index: 2;
+  justify-self: center;
+}
+
+.foto-container {
+  width: min(350px, 80vw);
+  height: min(350px, 80vw);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  overflow: hidden;
+  border: 4px solid var(--dourado);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+  100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+.foto-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== BOTÃO WHATSAPP (ÍCONE TRADICIONAL) ===== */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--whatsapp);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 14px 32px;
+  border-radius: 60px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-whatsapp i {
+  font-size: 1.6rem;
+  transition: transform 0.3s;
+}
+
+.btn-whatsapp span {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  z-index: 1;
+}
+
+.btn-whatsapp:hover {
+  background: var(--whatsapp-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:hover i {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.btn-whatsapp:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-whatsapp:active {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Botão WhatsApp versão outline (para lugares com fundo escuro) */
+.btn-whatsapp-outline {
+  background: transparent;
+  color: var(--whatsapp);
+  border: 2px solid var(--whatsapp);
+  box-shadow: none;
+}
+
+.btn-whatsapp-outline:hover {
+  background: var(--whatsapp);
+  color: white;
+  border-color: var(--whatsapp);
+}
+
+/* Botão WhatsApp versão pequena (para cards) */
+.btn-whatsapp-sm {
+  padding: 10px 24px;
+  font-size: 0.95rem;
+}
+
+.btn-whatsapp-sm i {
+  font-size: 1.3rem;
+}
+
+/* Botão WhatsApp flutuante (ícone apenas) */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--whatsapp);
+  color: white;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  z-index: 99;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulse-whatsapp 2s infinite;
+  text-decoration: none;
+  border: 3px solid white;
+}
+
+@keyframes pulse-whatsapp {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  }
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(5deg);
+  background: var(--whatsapp-dark);
+  animation: none;
+}
+
+/* ===== SEÇÕES ===== */
+section {
+  padding: 5rem 5%;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.section-header h2 {
+  color: var(--dourado);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--dourado);
+  border-radius: 2px;
+}
+
+.section-header p {
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+/* Cards de Destaque */
+.highlight-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201, 162, 61, 0.2);
+  border-radius: var(--borda-raio);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: var(--dourado);
+}
+
+.card i {
+  font-size: 3rem;
+  color: var(--dourado);
+  margin-bottom: 1.5rem;
+}
+
+.card h3 {
+  color: var(--dourado-claro);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.card p {
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+/* Galeria de Imóveis */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.imovel-card {
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--borda-raio);
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 61, 0.2);
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.imovel-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--dourado);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.imovel-img {
+  height: 220px;
+  overflow: hidden;
+}
+
+.imovel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.imovel-card:hover .imovel-img img {
+  transform: scale(1.1);
+}
+
+.imovel-info {
+  padding: 1.5rem;
+}
+
+.imovel-info h3 {
+  color: var(--dourado);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.imovel-preco {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dourado-claro);
+  margin: 1rem 0;
+}
+
+.imovel-detalhes {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.imovel-detalhes i {
+  color: var(--dourado);
+  margin-right: 0.3rem;
+}
+
+/* Botão nos cards */
+.btn-imovel {
+  background: var(--whatsapp);
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+  font-size: 0.95rem;
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-imovel i {
+  font-size: 1.3rem;
+}
+
+.btn-imovel:hover {
+  background: var(--whatsapp-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-imovel:active {
+  transform: translateY(-1px);
+}
+
+/* Contato Section */
+.contato-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--borda-raio);
+  padding: 3rem;
+  border: 1px solid rgba(201, 162, 61, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.contato-info h3 {
+  color: var(--dourado);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.contato-detalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.contato-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contato-item i {
+  width: 40px;
+  height: 40px;
+  background: rgba(201, 162, 61, 0.1);
+  border: 1px solid var(--dourado);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dourado);
+}
+
+.contato-item.whatsapp i {
+  background: rgba(37, 211, 102, 0.1);
+  border-color: var(--whatsapp);
+  color: var(--whatsapp);
+}
+
+.contato-item span {
+  font-size: 1.1rem;
+}
+
+.creci-badge {
+  background: rgba(201, 162, 61, 0.15);
+  border: 1px solid var(--dourado);
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  font-weight: 600;
+}
+
+/* Formulário Moderno */
+.contato-form {
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--borda-raio);
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201, 162, 61, 0.3);
+  border-radius: 12px;
+  color: var(--texto-claro);
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--dourado);
+  background: rgba(255,255,255,0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+/* Footer */
+footer {
+  background: rgba(0,0,0,0.3);
+  padding: 3rem 5% 1.5rem;
+  border-top: 1px solid rgba(201, 162, 61, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-col h4 {
+  color: var(--dourado);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-col ul li a {
+  color: var(--texto-claro);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.footer-col ul li a:hover {
+  opacity: 1;
+  color: var(--dourado-claro);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  background: rgba(201, 162, 61, 0.1);
+  border: 1px solid var(--dourado);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dourado);
+  transition: all 0.3s;
+}
+
+.social-links a:hover {
+  background: var(--dourado);
+  color: var(--verde-escuro);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 968px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 5rem;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-image {
+    grid-row: 1;
+  }
+
+  .foto-container {
+    width: min(300px, 60vw);
+    height: min(300px, 60vw);
+    margin: 0 auto;
+  }
+
+  .contato-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .btn-whatsapp {
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--verde-escuro);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s;
+    border-bottom: 2px solid var(--dourado);
+    z-index: 999;
+  }
+
+  nav.active {
+    max-height: 300px;
+    padding: 1rem 0;
+  }
+
+  nav a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(201, 162, 61, 0.1);
+  }
+
+  nav a::after {
+    display: none;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .highlight-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    font-size: 2rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .hero-background {
+    height: 150%;
+  }
+  
+  .btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.03);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(201, 162, 61, 0.2);
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .galeria-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contato-container {
+    padding: 1.5rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+  
+  .btn-whatsapp i {
+    font-size: 1.4rem;
+  }
+  
+  .btn-whatsapp {
+    padding: 10px 24px;
+  }
+}
+
+/* Animações */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- WhatsApp Flutuante (ícone apenas) -->
+<a href="#" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <i class="fas fa-tree"></i>
+    <span>JOSUÉ AFONSO</span>
+  </div>
+
+  <div class="menu-btn" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav id="mainNav">
+    <a href="#inicio">Início</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#imoveis">Imóveis</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<!-- Hero Section com Fundo Animado -->
+<section id="inicio" class="hero" id="heroSection">
+  <!-- Container da imagem de fundo animada -->
+  <div class="hero-background" id="heroBackground"></div>
+  
+  <div class="hero-content fade-up">
+    <h1>
+      Josué Afonso
+      <span>Corretor de Imóveis</span>
+    </h1>
+    
+    <div class="hero-badge">
+      <i class="fas fa-check-circle"></i> Especialista em Imóveis Rurais
+    </div>
+
+    <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+      Transformando sonhos em propriedades reais com segurança e expertise
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Imóveis Comercializados</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">12</span>
+        <span class="stat-label">Anos de Experiência</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">MT</span>
+        <span class="stat-label">CRECI 20998</span>
+      </div>
+    </div>
+
+    <!-- Botão WhatsApp com ícone tradicional -->
+    <a href="#contato" class="btn-whatsapp" id="heroWhatsAppBtn">
+      <i class="fab fa-whatsapp"></i>
+      <span>Falar no WhatsApp</span>
+    </a>
+  </div>
+
+  <div class="hero-image fade-up">
+    <div class="foto-container">
+      <img src="Assets/Imagens/FotoPerfil.png" alt="Josué Afonso - Corretor">
+    </div>
+  </div>
+</section>
+
+<!-- Destaques Section -->
+<section id="sobre" class="hidden">
+  <div class="section-header">
+    <h2>Por que escolher nosso trabalho?</h2>
+    <p>Experiência, transparência e os melhores negócios do mercado</p>
+  </div>
+
+  <div class="highlight-cards">
+    <div class="card">
+      <i class="fas fa-handshake"></i>
+      <h3>Negociação Estratégica</h3>
+      <p>Mais de uma década fechando negócios vantajosos para compradores e vendedores</p>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-file-signature"></i>
+      <h3>Segurança Jurídica</h3>
+      <p>Toda documentação analisada por especialistas para sua tranquilidade</p>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-map-marked-alt"></i>
+      <h3>Imóveis Rurais</h3>
+      <p>Especialista em fazendas, chácaras e propriedades agrícolas</p>
+    </div>
+  </div>
+</section>
+
+<!-- Imóveis Section -->
+<section id="imoveis" class="hidden">
+  <div class="section-header">
+    <h2>Imóveis em Destaque</h2>
+    <p>Selecionamos as melhores oportunidades para você</p>
+  </div>
+
+  <div class="galeria-grid">
+    <!-- Card 1 -->
+    <div class="imovel-card">
+      <div class="imovel-img">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Fazenda">
+      </div>
+      <div class="imovel-info">
+        <h3>Fazenda 1.200 Hectares</h3>
+        <div class="imovel-detalhes">
+          <span><i class="fas fa-tachometer-alt"></i> 1.200 ha</span>
+          <span><i class="fas fa-water"></i> 3 nascentes</span>
+        </div>
+        <div class="imovel-preco">R$ 18.500.000</div>
+        <button class="btn-imovel" onclick="abrirWhatsApp('Olá! Tenho interesse na Fazenda de 1.200 hectares')">
+          <i class="fab fa-whatsapp"></i>
+          Quero saber mais
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="imovel-card">
+      <div class="imovel-img">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d" alt="Casa Alto Padrão">
+      </div>
+      <div class="imovel-info">
+        <h3>Casa Alto Padrão</h3>
+        <div class="imovel-detalhes">
+          <span><i class="fas fa-bed"></i> 4 suítes</span>
+          <span><i class="fas fa-car"></i> Garagem 3 vagas</span>
+        </div>
+        <div class="imovel-preco">R$ 2.450.000</div>
+        <button class="btn-imovel" onclick="abrirWhatsApp('Olá! Tenho interesse na Casa Alto Padrão')">
+          <i class="fab fa-whatsapp"></i>
+          Quero saber mais
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="imovel-card">
+      <div class="imovel-img">
+        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Chácara">
+      </div>
+      <div class="imovel-info">
+        <h3>Chácara 5 Hectares</h3>
+        <div class="imovel-detalhes">
+          <span><i class="fas fa-tachometer-alt"></i> 5 ha</span>
+          <span><i class="fas fa-home"></i> Casa 3 quartos</span>
+        </div>
+        <div class="imovel-preco">R$ 890.000</div>
+        <button class="btn-imovel" onclick="abrirWhatsApp('Olá! Tenho interesse na Chácara de 5 hectares')">
+          <i class="fab fa-whatsapp"></i>
+          Quero saber mais
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contato Section -->
+<section id="contato" class="contato-section hidden">
+  <div class="section-header">
+    <h2>Vamos conversar?</h2>
+    <p>Estou pronto para ajudar você a encontrar o imóvel ideal</p>
+  </div>
+
+  <div class="contato-container">
+    <div class="contato-info">
+      <h3>Informações de Contato</h3>
+      
+      <div class="contato-detalhes">
+        <div class="contato-item whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <span>(66) 99670-0226</span>
+        </div>
+        <div class="contato-item">
+          <i class="fas fa-envelope"></i>
+          <span>josue@imoveisrurais.com</span>
+        </div>
+        <div class="contato-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Mato Grosso - Brasil</span>
+        </div>
+      </div>
+
+      <div class="creci-badge">
+        <i class="fas fa-registered"></i> CRECI MT 20998
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <h4 style="color: var(--dourado); margin-bottom: 1rem;">Redes Sociais</h4>
+        <div class="social-links" style="justify-content: flex-start;">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contato-form">
+      <form id="whatsappForm">
+        <div class="form-group">
+          <input type="text" id="nome" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="telefone" placeholder="Seu telefone">
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Seu e-mail">
+        </div>
+        <div class="form-group">
+          <select id="interesse">
+            <option value="">Tipo de imóvel de interesse</option>
+            <option value="Fazenda">Fazenda</option>
+            <option value="Chácara">Chácara</option>
+            <option value="Casa">Casa</option>
+            <option value="Terreno">Terreno</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
+        </div>
+        <!-- Botão WhatsApp no formulário -->
+        <button type="submit" class="btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <span>Enviar Mensagem</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>Josué Afonso</h4>
+      <p>Corretor de imóveis especializado em propriedades rurais e residenciais em Mato Grosso.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Links Rápidos</h4>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#imoveis">Imóveis</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Tipos de Imóveis</h4>
+      <ul>
+        <li><a href="#">Fazendas</a></li>
+        <li><a href="#">Chácaras</a></li>
+        <li><a href="#">Casas</a></li>
+        <li><a href="#">Terrenos</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Redes Sociais</h4>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2024 Josué Afonso - Corretor de Imóveis. Todos os direitos reservados.</p>
+    <p style="margin-top: 0.5rem;">CRECI MT 20998</p>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer para animações
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px' });
+
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+// Menu Mobile
+const menuBtn = document.getElementById('menuBtn');
+const mainNav = document.getElementById('mainNav');
+const header = document.querySelector('header');
+
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('active');
+  mainNav.classList.toggle('active');
+});
+
+// Fechar menu ao clicar em link
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    menuBtn.classList.remove('active');
+    mainNav.classList.remove('active');
+  });
+});
+
+// Fechar menu ao rolar (mobile)
+window.addEventListener('scroll', () => {
+  if (window.innerWidth <= 768) {
+    menuBtn.classList.remove('active');
+    mainNav.classList.remove('active');
+  }
+});
+
+// Função WhatsApp
+function abrirWhatsApp(mensagem) {
+  const numero = '5566996700226';
+  const texto = encodeURIComponent(mensagem);
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const url = isMobile 
+    ? `https://api.whatsapp.com/send?phone=${numero}&text=${texto}`
+    : `https://web.whatsapp.com/send?phone=${numero}&text=${texto}`;
+  window.open(url, '_blank');
+}
+
+// Formulário de contato
+document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const nome = document.getElementById('nome').value;
+  const telefone = document.getElementById('telefone').value;
+  const email = document.getElementById('email').value;
+  const interesse = document.getElementById('interesse').value;
+  const mensagem = document.getElementById('mensagem').value;
+  
+  let texto = `Olá Josué! Me chamo ${nome}.`;
+  
+  if (interesse) {
+    texto += `\nTenho interesse em: ${interesse}`;
+  }
+  
+  if (mensagem) {
+    texto += `\n\nMensagem: ${mensagem}`;
+  }
+  
+  texto += `\n\nMeus contatos:`;
+  if (telefone) texto += `\nTelefone: ${telefone}`;
+  if (email) texto += `\nE-mail: ${email}`;
+  
+  abrirWhatsApp(texto);
+});
+
+// Botão WhatsApp flutuante
+document.getElementById('whatsappFloat').addEventListener('click', (e) => {
+  e.preventDefault();
+  abrirWhatsApp('Olá! Vim pelo site e gostaria de mais informações.');
+});
+
+// Botões dos cards de imóveis
+document.querySelectorAll('.btn-imovel').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const onclickAttr = btn.getAttribute('onclick');
+    if (onclickAttr) {
+      const match = onclickAttr.match(/'([^']+)'/);
+      if (match) {
+        abrirWhatsApp(match[1]);
+      }
+    }
+  });
+});
+
+// Botão hero WhatsApp
+document.getElementById('heroWhatsAppBtn').addEventListener('click', (e) => {
+  e.preventDefault();
+  abrirWhatsApp('Olá! Gostaria de falar sobre os imóveis.');
+});
+
+// Scroll suave para links internos
+document.querySelectorAll('a[href^="#"]:not(.btn-whatsapp):not(.whatsapp-float)').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Header background mais escuro ao rolar
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    header.style.background = 'rgba(26, 53, 40, 0.98)';
+  } else {
+    header.style.background = 'rgba(26, 53, 40, 0.95)';
+  }
+});
+
+// EFEITO PARALLAX - Fundo desce ao rolar
+const heroBackground = document.getElementById('heroBackground');
+const heroSection = document.getElementById('inicio');
+
+function updateParallax() {
+  if (!heroSection || !heroBackground) return;
+  
+  const scrollPosition = window.scrollY;
+  const heroTop = heroSection.offsetTop;
+  const heroHeight = heroSection.offsetHeight;
+  
+  let scrollPercent = 0;
+  
+  if (scrollPosition <= heroTop + heroHeight) {
+    scrollPercent = Math.max(0, Math.min(1, (scrollPosition - heroTop) / heroHeight));
+  } else {
+    scrollPercent = 1;
+  }
+  
+  const moveY = -5 + (scrollPercent * 10);
+  heroBackground.style.transform = `translateY(${moveY}%) scale(1.05)`;
+}
+
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      updateParallax();
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+window.addEventListener('resize', updateParallax);
+updateParallax();
+
+// Otimização para iOS
+if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+  heroBackground.style.transform = 'translateY(-5%) scale(1.05)';
+  heroBackground.style.animation = 'floatBackground 8s ease-in-out infinite';
+}
+</script>
+
+</body>
+</html>

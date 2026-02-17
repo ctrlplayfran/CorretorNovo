@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Alto Padrão | Josué Afonso</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#1c3d2f;
+color:white;
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+}
+
+img{
+max-width:100%;
+height:auto;
+}
+
+:root{
+--verde:#3fa77a;
+--verde-escuro:#2f8861;
+}
+
+/* BOTÃO FIXO SUPERIOR */
+.voltar-fixo{
+position:fixed;
+top:20px;
+left:20px;
+background:rgba(63,167,122,0.95);
+padding:12px 22px;
+border-radius:40px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+transition:0.3s;
+z-index:999;
+}
+.voltar-fixo:hover{
+background:var(--verde-escuro);
+transform:translateY(-3px);
+}
+
+/* HERO */
+.hero{
+min-height:60svh;
+background:url("https://images.unsplash.com/photo-1500382017468-9049fed747ef") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px 20px;
+}
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:48px;
+background:rgba(0,0,0,0.5);
+padding:20px 40px;
+border-radius:10px;
+}
+
+/* BREADCRUMB */
+.breadcrumb{
+padding:20px 10%;
+font-size:14px;
+opacity:0.8;
+}
+.breadcrumb a{
+color:var(--verde);
+text-decoration:none;
+}
+.breadcrumb span{
+margin:0 5px;
+}
+
+/* CONTAINER */
+.container{
+padding:60px 10%;
+}
+
+/* GALERIA */
+.galeria{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+.galeria img{
+border-radius:15px;
+cursor:pointer;
+transition:0.4s;
+}
+.galeria img:hover{
+transform:scale(1.05);
+}
+
+/* ===== SEÇÃO TÉCNICA PROFISSIONAL ===== */
+.ficha-tecnica{
+margin-top:60px;
+background:#112018;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+.ficha-tecnica h2{
+margin-bottom:30px;
+font-family:'Playfair Display',serif;
+}
+
+.ficha-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.ficha-item{
+background:#1c3d2f;
+padding:20px;
+border-radius:15px;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.ficha-item h3{
+color:#d4af37;
+margin-bottom:10px;
+font-size:18px;
+}
+
+/* TOUR */
+.tour{
+margin-top:60px;
+}
+#panorama{
+width:100%;
+height:500px;
+border-radius:15px;
+}
+
+/* MAPA */
+.mapa-container{
+margin-top:60px;
+padding:20px;
+background:#112018;
+border-radius:15px;
+}
+.mapa-container iframe{
+width:100%;
+height:500px;
+border-radius:15px;
+border:none;
+}
+
+/* NAVEGAÇÃO */
+.navegacao-imoveis{
+display:flex;
+justify-content:space-between;
+margin-top:80px;
+gap:20px;
+flex-wrap:wrap;
+}
+.nav-btn{
+padding:12px 25px;
+background:var(--verde);
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+transition:0.3s;
+text-align:center;
+}
+.nav-btn:hover{
+background:var(--verde-escuro);
+transform:translateY(-3px);
+}
+
+/* CONTATO */
+.contato{
+padding:80px 10%;
+}
+.form-group{
+position:relative;
+margin-bottom:25px;
+}
+.form-group input,
+.form-group textarea{
+width:100%;
+padding:15px;
+border-radius:12px;
+border:2px solid #0a3221;
+background:#1c3d2f;
+color:white;
+}
+.form-btn{
+width:100%;
+padding:15px;
+background:#d4af37;
+border:none;
+border-radius:40px;
+font-weight:bold;
+cursor:pointer;
+}
+.form-btn:hover{
+background:#b7942f;
+}
+
+/* RESPONSIVO */
+@media (max-width:768px){
+
+.container,
+.breadcrumb,
+.contato{
+padding:40px 5%;
+}
+
+.hero h1{
+font-size:28px;
+padding:15px 20px;
+}
+
+#panorama{
+height:300px;
+}
+
+.mapa-container iframe{
+height:300px;
+}
+
+.navegacao-imoveis{
+flex-direction:column;
+}
+
+.ficha-tecnica{
+padding:25px;
+}
+
+.voltar-fixo{
+top:10px;
+left:10px;
+padding:10px 18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="voltar-fixo">← Início</a>
+
+<section class="hero">
+<h1>Fazenda Alto Padrão</h1>
+</section>
+
+<div class="breadcrumb">
+<a href="index.html">Home</a>
+<span>></span>
+<a href="#">Fazenda</a>
+<span>></span>
+Detalhes
+</div>
+
+<section class="container">
+
+<h2>Galeria de Fotos</h2>
+
+<div class="galeria">
+<img src="https://images.unsplash.com/photo-1599423300746-b62533397364">
+<img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6">
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+</div>
+
+<div class="ficha-tecnica">
+<h2>Ficha Técnica do Imóvel</h2>
+
+<div class="ficha-grid">
+
+<div class="ficha-item">
+<h3>Área Total</h3>
+<p>1.200 hectares</p>
+</div>
+
+<div class="ficha-item">
+<h3>Área Produtiva</h3>
+<p>950 hectares mecanizados</p>
+</div>
+
+<div class="ficha-item">
+<h3>Topografia</h3>
+<p>Plana e levemente ondulada</p>
+</div>
+
+<div class="ficha-item">
+<h3>Infraestrutura</h3>
+<p>Sede principal, casas para colaboradores, galpões e currais estruturados</p>
+</div>
+
+<div class="ficha-item">
+<h3>Recursos Hídricos</h3>
+<p>Nascentes, represas e poço artesiano</p>
+</div>
+
+<div class="ficha-item">
+<h3>Energia</h3>
+<p>Rede elétrica trifásica instalada</p>
+</div>
+
+<div class="ficha-item">
+<h3>Documentação</h3>
+<p>100% regularizada, CAR e georreferenciamento</p>
+</div>
+
+<div class="ficha-item">
+<h3>Vocação</h3>
+<p>Pecuária, agricultura ou integração lavoura-pecuária</p>
+</div>
+
+</div>
+</div>
+
+<div class="tour">
+<h2>Tour Virtual 360°</h2>
+<div id="panorama"></div>
+</div>
+
+<div class="mapa-container">
+<h2>📍 Localização Estratégica</h2>
+<iframe src="https://www.google.com/maps?q=-12.5423,-55.7211&hl=pt-BR&z=13&output=embed"></iframe>
+</div>
+
+<div class="navegacao-imoveis">
+<a href="imovel3.html" class="nav-btn">← Anterior</a>
+<a href="imovel2.html" class="nav-btn">Próximo →</a>
+</div>
+
+</section>
+
+<section class="contato">
+<div class="container">
+<h2>Contato via WhatsApp</h2>
+<form id="whatsappForm">
+<div class="form-group">
+<input type="email" id="email" placeholder="Seu e-mail (opcional)">
+</div>
+<div class="form-group">
+<textarea id="mensagem" rows="4">Olá! Tenho interesse na Fazenda Alto Padrão.</textarea>
+</div>
+<button type="submit" class="form-btn">Enviar pelo WhatsApp</button>
+</form>
+</div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+<script>
+
+pannellum.viewer('panorama',{
+"type":"equirectangular",
+"panorama":"IMAGEM_360.jpg",
+"autoLoad":true
+});
+
+document.getElementById('whatsappForm').addEventListener('submit',function(e){
+e.preventDefault();
+
+const email=document.getElementById('email').value.trim();
+let mensagem=document.getElementById('mensagem').value;
+
+if(email){
+mensagem += "\nMeu e-mail: " + email;
+}
+
+const numero='5566996700226';
+window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+});
+</script>
+
+</body>
+</html>
