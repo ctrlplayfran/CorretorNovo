@@ -3,388 +3,825 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>Fazenda Alto Padrão | Josué Afonso</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Pannellum para tour 360 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
 
 <style>
-
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-background:#1c3d2f;
-color:white;
-overflow-x:hidden;
--webkit-font-smoothing:antialiased;
+:root {
+  --verde-escuro: #1a3528;
+  --verde-medio: #2b5a43;
+  --verde-claro: #3a7257;
+  --dourado: #c9a23d;
+  --dourado-claro: #e5c36b;
+  --dourado-escuro: #a77f2c;
+  --texto-claro: #f0f0e0;
+  --sombra: 0 10px 30px rgba(0,0,0,0.2);
+  --borda-raio: 16px;
+  
+  /* Cores do WhatsApp */
+  --whatsapp: #25D366;
+  --whatsapp-dark: #128C7E;
 }
 
-img{
-max-width:100%;
-height:auto;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root{
---verde:#3fa77a;
---verde-escuro:#2f8861;
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--verde-escuro);
+  color: var(--texto-claro);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* BOTÃO FIXO SUPERIOR */
-.voltar-fixo{
-position:fixed;
-top:20px;
-left:20px;
-background:rgba(63,167,122,0.95);
-padding:12px 22px;
-border-radius:40px;
-color:white;
-text-decoration:none;
-font-weight:bold;
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-transition:0.3s;
-z-index:999;
-}
-.voltar-fixo:hover{
-background:var(--verde-escuro);
-transform:translateY(-3px);
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* HERO */
-.hero{
-min-height:60svh;
-background:url("https://images.unsplash.com/photo-1500382017468-9049fed747ef") center/cover no-repeat;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:40px 20px;
-}
-.hero h1{
-font-family:'Playfair Display',serif;
-font-size:48px;
-background:rgba(0,0,0,0.5);
-padding:20px 40px;
-border-radius:10px;
-}
-
-/* BREADCRUMB */
-.breadcrumb{
-padding:20px 10%;
-font-size:14px;
-opacity:0.8;
-}
-.breadcrumb a{
-color:var(--verde);
-text-decoration:none;
-}
-.breadcrumb span{
-margin:0 5px;
+/* ===== BOTÃO VOLTAR APRIMORADO ===== */
+.voltar-fixo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(26, 53, 40, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 12px 22px;
+  border-radius: 50px;
+  color: var(--dourado);
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border: 2px solid var(--dourado);
+  transition: all 0.3s;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
 }
 
-/* CONTAINER */
-.container{
-padding:60px 10%;
+.voltar-fixo i {
+  font-size: 1.1rem;
+  transition: transform 0.3s;
 }
 
-/* GALERIA */
-.galeria{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
-.galeria img{
-border-radius:15px;
-cursor:pointer;
-transition:0.4s;
-}
-.galeria img:hover{
-transform:scale(1.05);
+.voltar-fixo:hover {
+  background: var(--dourado);
+  color: var(--verde-escuro);
+  transform: translateY(-3px);
 }
 
-/* ===== SEÇÃO TÉCNICA PROFISSIONAL ===== */
-.ficha-tecnica{
-margin-top:60px;
-background:#112018;
-padding:40px;
-border-radius:20px;
-box-shadow:0 10px 40px rgba(0,0,0,0.4);
+.voltar-fixo:hover i {
+  transform: translateX(-3px);
 }
 
-.ficha-tecnica h2{
-margin-bottom:30px;
-font-family:'Playfair Display',serif;
+/* ===== WHATSAPP FLOATING BUTTON ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--whatsapp);
+  color: white;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+  z-index: 99;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulse-whatsapp 2s infinite;
+  text-decoration: none;
+  border: 3px solid white;
 }
 
-.ficha-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+@keyframes pulse-whatsapp {
+  0% { transform: scale(1); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+  50% { transform: scale(1.1); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
 }
 
-.ficha-item{
-background:#1c3d2f;
-padding:20px;
-border-radius:15px;
-border:1px solid rgba(255,255,255,0.05);
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(5deg);
+  background: var(--whatsapp-dark);
+  animation: none;
 }
 
-.ficha-item h3{
-color:#d4af37;
-margin-bottom:10px;
-font-size:18px;
+/* ===== HERO SECTION APRIMORADA ===== */
+.hero {
+  min-height: 70vh;
+  background: linear-gradient(rgba(26, 53, 40, 0.7), rgba(26, 53, 40, 0.8)), 
+              url("https://images.unsplash.com/photo-1500382017468-9049fed747ef") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 40px;
+  position: relative;
 }
 
-/* TOUR */
-.tour{
-margin-top:60px;
-}
-#panorama{
-width:100%;
-height:500px;
-border-radius:15px;
-}
-
-/* MAPA */
-.mapa-container{
-margin-top:60px;
-padding:20px;
-background:#112018;
-border-radius:15px;
-}
-.mapa-container iframe{
-width:100%;
-height:500px;
-border-radius:15px;
-border:none;
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px 40px;
+  border-radius: 20px;
+  color: var(--dourado);
+  border: 1px solid rgba(201, 162, 61, 0.3);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* NAVEGAÇÃO */
-.navegacao-imoveis{
-display:flex;
-justify-content:space-between;
-margin-top:80px;
-gap:20px;
-flex-wrap:wrap;
-}
-.nav-btn{
-padding:12px 25px;
-background:var(--verde);
-color:white;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-transition:0.3s;
-text-align:center;
-}
-.nav-btn:hover{
-background:var(--verde-escuro);
-transform:translateY(-3px);
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  padding: 20px 5%;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* CONTATO */
-.contato{
-padding:80px 10%;
+.breadcrumb a {
+  color: var(--dourado);
+  text-decoration: none;
+  transition: color 0.3s;
 }
-.form-group{
-position:relative;
-margin-bottom:25px;
+
+.breadcrumb a:hover {
+  color: var(--dourado-claro);
+  text-decoration: underline;
 }
+
+.breadcrumb span {
+  margin: 0 8px;
+  color: var(--dourado);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 5%;
+}
+
+/* ===== GALERIA DE FOTOS ===== */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin: 40px 0;
+}
+
+.galeria img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: var(--borda-raio);
+  cursor: pointer;
+  transition: all 0.4s;
+  border: 2px solid transparent;
+  box-shadow: var(--sombra);
+}
+
+.galeria img:hover {
+  transform: scale(1.03);
+  border-color: var(--dourado);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* ===== FICHA TÉCNICA ===== */
+.ficha-tecnica {
+  margin-top: 60px;
+  background: rgba(17, 32, 24, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: var(--borda-raio);
+  box-shadow: var(--sombra);
+  border: 1px solid rgba(201, 162, 61, 0.2);
+}
+
+.ficha-tecnica h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 30px;
+  color: var(--dourado);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  position: relative;
+  display: inline-block;
+}
+
+.ficha-tecnica h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--dourado);
+  border-radius: 2px;
+}
+
+.ficha-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.ficha-item {
+  background: rgba(26, 53, 40, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 25px;
+  border-radius: var(--borda-raio);
+  border: 1px solid rgba(201, 162, 61, 0.2);
+  transition: transform 0.3s;
+}
+
+.ficha-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--dourado);
+}
+
+.ficha-item h3 {
+  color: var(--dourado);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ficha-item h3 i {
+  font-size: 1.3rem;
+}
+
+.ficha-item p {
+  opacity: 0.9;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ===== TOUR VIRTUAL ===== */
+.tour {
+  margin-top: 60px;
+}
+
+.tour h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 25px;
+  color: var(--dourado);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+#panorama {
+  width: 100%;
+  height: 500px;
+  border-radius: var(--borda-raio);
+  overflow: hidden;
+  border: 2px solid var(--dourado);
+  box-shadow: var(--sombra);
+}
+
+/* ===== MAPA ===== */
+.mapa-container {
+  margin-top: 60px;
+  padding: 30px;
+  background: rgba(17, 32, 24, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--borda-raio);
+  border: 1px solid rgba(201, 162, 61, 0.2);
+}
+
+.mapa-container h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 25px;
+  color: var(--dourado);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mapa-container iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: var(--borda-raio);
+  border: none;
+  box-shadow: var(--sombra);
+}
+
+/* ===== NAVEGAÇÃO ENTRE IMÓVEIS ===== */
+.navegacao-imoveis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--verde-medio), var(--verde-escuro));
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid var(--dourado);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.nav-btn i {
+  font-size: 1.1rem;
+}
+
+.nav-btn:hover {
+  background: var(--dourado);
+  color: var(--verde-escuro);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(201, 162, 61, 0.3);
+}
+
+/* ===== SEÇÃO DE CONTATO APRIMORADA ===== */
+.contato {
+  padding: 60px 5%;
+  background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+  border-top: 2px solid var(--dourado);
+}
+
+.contato .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contato h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--dourado);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
 .form-group input,
-.form-group textarea{
-width:100%;
-padding:15px;
-border-radius:12px;
-border:2px solid #0a3221;
-background:#1c3d2f;
-color:white;
-}
-.form-btn{
-width:100%;
-padding:15px;
-background:#d4af37;
-border:none;
-border-radius:40px;
-font-weight:bold;
-cursor:pointer;
-}
-.form-btn:hover{
-background:#b7942f;
+.form-group textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 2px solid rgba(201, 162, 61, 0.3);
+  background: rgba(26, 53, 40, 0.6);
+  color: var(--texto-claro);
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
-/* RESPONSIVO */
-@media (max-width:768px){
-
-.container,
-.breadcrumb,
-.contato{
-padding:40px 5%;
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--dourado);
+  background: rgba(26, 53, 40, 0.8);
 }
 
-.hero h1{
-font-size:28px;
-padding:15px 20px;
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255,255,255,0.5);
 }
 
-#panorama{
-height:300px;
+.form-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--whatsapp);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
 }
 
-.mapa-container iframe{
-height:300px;
+.form-btn i {
+  font-size: 1.3rem;
 }
 
-.navegacao-imoveis{
-flex-direction:column;
+.form-btn:hover {
+  background: var(--whatsapp-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
 }
 
-.ficha-tecnica{
-padding:25px;
+/* ===== RESPONSIVIDADE MOBILE ===== */
+@media (max-width: 768px) {
+  .voltar-fixo {
+    top: 15px;
+    left: 15px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    font-size: 2rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .hero {
+    min-height: 50vh;
+    padding: 80px 15px 30px;
+  }
+
+  .hero h1 {
+    padding: 15px 25px;
+    font-size: 1.8rem;
+  }
+
+  .container {
+    padding: 30px 4%;
+  }
+
+  .galeria {
+    gap: 15px;
+  }
+
+  .galeria img {
+    height: 220px;
+  }
+
+  .ficha-tecnica {
+    padding: 25px;
+    margin-top: 40px;
+  }
+
+  .ficha-item {
+    padding: 20px;
+  }
+
+  #panorama {
+    height: 350px;
+  }
+
+  .mapa-container {
+    padding: 20px;
+  }
+
+  .mapa-container iframe {
+    height: 350px;
+  }
+
+  .navegacao-imoveis {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .contato {
+    padding: 40px 4%;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 14px 18px;
+  }
 }
 
-.voltar-fixo{
-top:10px;
-left:10px;
-padding:10px 18px;
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.5rem;
+    padding: 12px 20px;
+  }
+
+  .galeria img {
+    height: 200px;
+  }
+
+  .ficha-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #panorama {
+    height: 280px;
+  }
+
+  .mapa-container iframe {
+    height: 280px;
+  }
+
+  .form-btn {
+    padding: 14px;
+    font-size: 1rem;
+  }
 }
 
+/* ===== AJUSTES PARA IOS ===== */
+@supports (-webkit-touch-callout: none) {
+  .voltar-fixo,
+  .ficha-tecnica,
+  .mapa-container {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 }
 
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.8s;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 
 <body>
 
-<a href="index.html" class="voltar-fixo">← Início</a>
+<!-- Botão Voltar Aprimorado -->
+<a href="index.html" class="voltar-fixo">
+  <i class="fas fa-arrow-left"></i>
+  Início
+</a>
 
+<!-- WhatsApp Flutuante -->
+<a href="#" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Hero Section -->
 <section class="hero">
-<h1>Fazenda Alto Padrão</h1>
+  <h1 class="fade-in">Fazenda Alto Padrão</h1>
 </section>
 
+<!-- Breadcrumb -->
 <div class="breadcrumb">
-<a href="index.html">Home</a>
-<span>></span>
-<a href="#">Fazenda</a>
-<span>></span>
-Detalhes
+  <a href="index.html">Home</a>
+  <span><i class="fas fa-chevron-right"></i></span>
+  <a href="#">Fazendas</a>
+  <span><i class="fas fa-chevron-right"></i></span>
+  <span>Fazenda Alto Padrão</span>
 </div>
 
-<section class="container">
+<!-- Conteúdo Principal -->
+<main class="container">
 
-<h2>Galeria de Fotos</h2>
+  <!-- Galeria de Fotos -->
+  <h2 style="font-family: 'Playfair Display', serif; color: var(--dourado); margin-bottom: 20px;">
+    <i class="fas fa-camera" style="margin-right: 10px;"></i> Galeria de Fotos
+  </h2>
+  <div class="galeria">
+    <img src="https://images.unsplash.com/photo-1599423300746-b62533397364" alt="Vista da fazenda" onclick="abrirImagem(this.src)">
+    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6" alt="Casa sede" onclick="abrirImagem(this.src)">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Pastagens" onclick="abrirImagem(this.src)">
+  </div>
 
-<div class="galeria">
-<img src="https://images.unsplash.com/photo-1599423300746-b62533397364">
-<img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6">
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
-</div>
+  <!-- Ficha Técnica -->
+  <div class="ficha-tecnica">
+    <h2><i class="fas fa-clipboard-list" style="margin-right: 10px;"></i> Ficha Técnica</h2>
 
-<div class="ficha-tecnica">
-<h2>Ficha Técnica do Imóvel</h2>
+    <div class="ficha-grid">
+      <div class="ficha-item">
+        <h3><i class="fas fa-ruler-combined"></i> Área Total</h3>
+        <p>1.200 hectares</p>
+      </div>
 
-<div class="ficha-grid">
+      <div class="ficha-item">
+        <h3><i class="fas fa-tractor"></i> Área Produtiva</h3>
+        <p>950 hectares mecanizados</p>
+      </div>
 
-<div class="ficha-item">
-<h3>Área Total</h3>
-<p>1.200 hectares</p>
-</div>
+      <div class="ficha-item">
+        <h3><i class="fas fa-mountain"></i> Topografia</h3>
+        <p>Plana e levemente ondulada</p>
+      </div>
 
-<div class="ficha-item">
-<h3>Área Produtiva</h3>
-<p>950 hectares mecanizados</p>
-</div>
+      <div class="ficha-item">
+        <h3><i class="fas fa-warehouse"></i> Infraestrutura</h3>
+        <p>Sede principal, casas para colaboradores, galpões e currais estruturados</p>
+      </div>
 
-<div class="ficha-item">
-<h3>Topografia</h3>
-<p>Plana e levemente ondulada</p>
-</div>
+      <div class="ficha-item">
+        <h3><i class="fas fa-water"></i> Recursos Hídricos</h3>
+        <p>Nascentes, represas e poço artesiano</p>
+      </div>
 
-<div class="ficha-item">
-<h3>Infraestrutura</h3>
-<p>Sede principal, casas para colaboradores, galpões e currais estruturados</p>
-</div>
+      <div class="ficha-item">
+        <h3><i class="fas fa-bolt"></i> Energia</h3>
+        <p>Rede elétrica trifásica instalada</p>
+      </div>
 
-<div class="ficha-item">
-<h3>Recursos Hídricos</h3>
-<p>Nascentes, represas e poço artesiano</p>
-</div>
+      <div class="ficha-item">
+        <h3><i class="fas fa-file-signature"></i> Documentação</h3>
+        <p>100% regularizada, CAR e georreferenciamento</p>
+      </div>
 
-<div class="ficha-item">
-<h3>Energia</h3>
-<p>Rede elétrica trifásica instalada</p>
-</div>
+      <div class="ficha-item">
+        <h3><i class="fas fa-seedling"></i> Vocação</h3>
+        <p>Pecuária, agricultura ou integração lavoura-pecuária</p>
+      </div>
+    </div>
+  </div>
 
-<div class="ficha-item">
-<h3>Documentação</h3>
-<p>100% regularizada, CAR e georreferenciamento</p>
-</div>
+  <!-- Tour Virtual 360° -->
+  <div class="tour">
+    <h2><i class="fas fa-vr-cardboard" style="margin-right: 10px;"></i> Tour Virtual 360°</h2>
+    <div id="panorama"></div>
+    <p style="text-align: center; margin-top: 15px; opacity: 0.8;">
+      <i class="fas fa-info-circle"></i> Arraste para explorar o ambiente
+    </p>
+  </div>
 
-<div class="ficha-item">
-<h3>Vocação</h3>
-<p>Pecuária, agricultura ou integração lavoura-pecuária</p>
-</div>
+  <!-- Localização -->
+  <div class="mapa-container">
+    <h2><i class="fas fa-map-marker-alt"></i> Localização Estratégica</h2>
+    <iframe src="https://www.google.com/maps?q=-12.5423,-55.7211&hl=pt-BR&z=13&output=embed" 
+            title="Mapa da localização da fazenda"
+            loading="lazy"></iframe>
+  </div>
 
-</div>
-</div>
+  <!-- Navegação entre Imóveis -->
+  <div class="navegacao-imoveis">
+    <a href="imovel3.html" class="nav-btn">
+      <i class="fas fa-arrow-left"></i>
+      Anterior
+    </a>
+    <a href="index.html" class="nav-btn">
+      <i class="fas fa-home"></i>
+      Voltar para Home
+    </a>
+    <a href="imovel2.html" class="nav-btn">
+      Próximo
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
 
-<div class="tour">
-<h2>Tour Virtual 360°</h2>
-<div id="panorama"></div>
-</div>
+</main>
 
-<div class="mapa-container">
-<h2>📍 Localização Estratégica</h2>
-<iframe src="https://www.google.com/maps?q=-12.5423,-55.7211&hl=pt-BR&z=13&output=embed"></iframe>
-</div>
-
-<div class="navegacao-imoveis">
-<a href="imovel3.html" class="nav-btn">← Anterior</a>
-<a href="imovel2.html" class="nav-btn">Próximo →</a>
-</div>
-
-</section>
-
+<!-- Seção de Contato -->
 <section class="contato">
-<div class="container">
-<h2>Contato via WhatsApp</h2>
-<form id="whatsappForm">
-<div class="form-group">
-<input type="email" id="email" placeholder="Seu e-mail (opcional)">
-</div>
-<div class="form-group">
-<textarea id="mensagem" rows="4">Olá! Tenho interesse na Fazenda Alto Padrão.</textarea>
-</div>
-<button type="submit" class="form-btn">Enviar pelo WhatsApp</button>
-</form>
-</div>
+  <div class="container">
+    <h2><i class="fab fa-whatsapp"></i> Fale com o Especialista</h2>
+    <form id="whatsappForm">
+      <div class="form-group">
+        <input type="text" id="nome" placeholder="Seu nome" required>
+      </div>
+      <div class="form-group">
+        <input type="tel" id="telefone" placeholder="Seu telefone (opcional)">
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Seu e-mail (opcional)">
+      </div>
+      <div class="form-group">
+        <textarea id="mensagem" rows="4" required>Olá! Tenho interesse na Fazenda Alto Padrão. Poderia me enviar mais informações?</textarea>
+      </div>
+      <button type="submit" class="form-btn">
+        <i class="fab fa-whatsapp"></i>
+        Enviar Mensagem
+      </button>
+    </form>
+  </div>
 </section>
 
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 
 <script>
-
-pannellum.viewer('panorama',{
-"type":"equirectangular",
-"panorama":"IMAGEM_360.jpg",
-"autoLoad":true
-});
-
-document.getElementById('whatsappForm').addEventListener('submit',function(e){
-e.preventDefault();
-
-const email=document.getElementById('email').value.trim();
-let mensagem=document.getElementById('mensagem').value;
-
-if(email){
-mensagem += "\nMeu e-mail: " + email;
+// Inicialização do Tour Virtual 360°
+try {
+  pannellum.viewer('panorama', {
+    "type": "equirectangular",
+    "panorama": "https://images.unsplash.com/photo-1500382017468-9049fed747ef", // Imagem substituta para demonstração
+    "autoLoad": true,
+    "autoRotate": -2,
+    "compass": true,
+    "showZoomCtrl": true,
+    "showFullscreenCtrl": true
+  });
+} catch (e) {
+  console.log("Erro ao carregar panorama:", e);
 }
 
-const numero='5566996700226';
-window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+// Função para abrir imagem em lightbox (simples)
+function abrirImagem(src) {
+  window.open(src, '_blank');
+}
 
+// Função WhatsApp
+function abrirWhatsApp(mensagem) {
+  const numero = '5566996700226';
+  const texto = encodeURIComponent(mensagem);
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const url = isMobile 
+    ? `https://api.whatsapp.com/send?phone=${numero}&text=${texto}`
+    : `https://web.whatsapp.com/send?phone=${numero}&text=${texto}`;
+  window.open(url, '_blank');
+}
+
+// Formulário de contato
+document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const nome = document.getElementById('nome').value;
+  const telefone = document.getElementById('telefone').value;
+  const email = document.getElementById('email').value;
+  const mensagem = document.getElementById('mensagem').value;
+  
+  let texto = `Olá Josué! Me chamo ${nome}.`;
+  
+  texto += `\n\n${mensagem}`;
+  
+  texto += `\n\nMeus contatos:`;
+  if (telefone) texto += `\nTelefone: ${telefone}`;
+  if (email) texto += `\nE-mail: ${email}`;
+  
+  abrirWhatsApp(texto);
 });
+
+// Botão WhatsApp flutuante
+document.getElementById('whatsappFloat').addEventListener('click', (e) => {
+  e.preventDefault();
+  abrirWhatsApp('Olá! Vim pelo site e gostaria de mais informações sobre a Fazenda Alto Padrão.');
+});
+
+// Animação de entrada dos elementos
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.ficha-item, .galeria img, .nav-btn').forEach(el => {
+  el.classList.add('hidden');
+  observer.observe(el);
+});
+
+// Ajuste para iOS
+if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+  document.documentElement.style.setProperty('--sombra', '0 5px 15px rgba(0,0,0,0.2)');
+}
 </script>
 
 </body>
