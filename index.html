@@ -218,7 +218,7 @@ nav a.highlight:hover {
   gap: 2rem;
 }
 
-/* Nome */
+/* Nome com animação mobile adaptada para desktop */
 .name-container {
   position: relative;
   display: inline-block;
@@ -232,6 +232,7 @@ nav a.highlight:hover {
   position: relative;
   z-index: 2;
   text-shadow: 0 0 20px rgba(201, 162, 61, 0.3);
+  animation: desktopGlow 3s ease-in-out infinite;
 }
 
 .name-container h1 span {
@@ -242,104 +243,184 @@ nav a.highlight:hover {
   margin-top: 0.2rem;
 }
 
-/* Linhas animadas - versão desktop */
-.gold-line-1, .gold-line-2, .gold-line-3, .gold-line-4,
-.gold-line-5, .gold-line-6 {
+/* Animação de brilho para desktop */
+@keyframes desktopGlow {
+  0% {
+    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+    opacity: 0.8;
+  }
+  50% {
+    text-shadow: 0 0 20px var(--dourado-claro), 0 0 30px var(--dourado), 0 0 40px var(--dourado);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+    opacity: 0.8;
+  }
+}
+
+/* Linha animada abaixo do nome - igual ao mobile */
+.name-container::after {
+  content: '';
   position: absolute;
-  background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro));
-  border-radius: 3px;
-  box-shadow: 0 0 15px var(--dourado);
-  z-index: 1;
-  opacity: 0;
-}
-
-.gold-line-1 {
-  top: -10px;
-  left: -20px;
-  height: 3px;
-  animation: expandLine 3s ease-in-out infinite;
-}
-
-.gold-line-2 {
-  top: -10px;
-  right: -20px;
-  height: 3px;
-  background: linear-gradient(270deg, transparent, var(--dourado), var(--dourado-claro));
-  animation: expandLine 3s ease-in-out infinite 0.5s;
-}
-
-.gold-line-3 {
-  bottom: 10px;
-  left: -20px;
-  height: 3px;
-  animation: expandLine 3s ease-in-out infinite 1s;
-}
-
-.gold-line-4 {
-  bottom: 10px;
-  right: -20px;
-  height: 3px;
-  background: linear-gradient(270deg, transparent, var(--dourado), var(--dourado-claro));
-  animation: expandLine 3s ease-in-out infinite 1.5s;
-}
-
-.gold-line-5 {
-  top: -20px;
-  left: -10px;
-  width: 3px;
-  background: linear-gradient(180deg, transparent, var(--dourado), var(--dourado-claro));
-  animation: expandVertical 3s ease-in-out infinite 0.75s;
-}
-
-.gold-line-6 {
-  top: -20px;
-  right: -10px;
-  width: 3px;
-  background: linear-gradient(180deg, transparent, var(--dourado), var(--dourado-claro));
-  animation: expandVertical 3s ease-in-out infinite 1.25s;
-}
-
-/* Partículas douradas - versão desktop */
-.gold-particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: var(--dourado);
-  border-radius: 50%;
-  filter: blur(1px);
-  opacity: 0;
-  animation: particleFloat 4s ease-in-out infinite;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), transparent);
+  border-radius: 2px;
+  animation: desktopLine 3s ease-in-out infinite;
   box-shadow: 0 0 10px var(--dourado);
 }
 
-.particle-1 {
-  top: -15px;
-  left: 10%;
-  animation-delay: 0.2s;
+@keyframes desktopLine {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  30% {
+    width: 100%;
+    opacity: 0.8;
+  }
+  70% {
+    width: 100%;
+    opacity: 0.8;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
 }
 
-.particle-2 {
-  bottom: -5px;
-  right: 15%;
-  animation-delay: 1.2s;
+/* Partículas de brilho - adaptadas do mobile */
+.name-container::before {
+  content: '✦';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  color: var(--dourado);
+  font-size: 1.5rem;
+  animation: desktopSparkle 4s ease-in-out infinite;
+  opacity: 0;
+  text-shadow: 0 0 10px var(--dourado);
+  z-index: 3;
+}
+
+.desktop-sparkle-1, .desktop-sparkle-2, .desktop-sparkle-3 {
+  position: absolute;
+  color: var(--dourado);
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: desktopSparkle 3s ease-in-out infinite;
+  text-shadow: 0 0 15px var(--dourado);
+  z-index: 3;
+}
+
+.desktop-sparkle-1 {
+  top: -30px;
+  right: -10px;
+  animation-delay: 0.5s;
+  content: '✧';
+}
+
+.desktop-sparkle-2 {
+  bottom: -20px;
+  left: 30%;
+  animation-delay: 1.5s;
+}
+
+.desktop-sparkle-3 {
+  top: 40%;
+  right: -30px;
+  animation-delay: 2.5s;
+}
+
+@keyframes desktopSparkle {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.3) rotate(45deg);
+    opacity: 0.9;
+  }
+  40% {
+    transform: scale(1.1) rotate(90deg);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(0.9) rotate(135deg);
+    opacity: 0.7;
+  }
+  80% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0) rotate(225deg);
+    opacity: 0;
+  }
+}
+
+/* Pontos de brilho pulsantes */
+.desktop-glow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--dourado);
+  border-radius: 50%;
+  filter: blur(3px);
+  animation: desktopPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 20px var(--dourado);
+  z-index: 3;
+}
+
+.glow-1 {
+  top: -20px;
+  left: 15%;
+  animation-delay: 0.2s;
+  width: 12px;
+  height: 12px;
+}
+
+.glow-2 {
+  bottom: -15px;
+  right: 20%;
+  animation-delay: 0.8s;
   width: 8px;
   height: 8px;
 }
 
-.particle-3 {
-  top: 20%;
-  right: -20px;
-  animation-delay: 2.2s;
-  width: 5px;
-  height: 5px;
+.glow-3 {
+  top: 25%;
+  left: -15px;
+  animation-delay: 1.4s;
+  width: 15px;
+  height: 15px;
 }
 
-.particle-4 {
-  bottom: 30%;
-  left: -15px;
-  animation-delay: 3.2s;
-  width: 7px;
-  height: 7px;
+.glow-4 {
+  bottom: 35%;
+  right: -20px;
+  animation-delay: 2s;
+  width: 10px;
+  height: 10px;
+}
+
+@keyframes desktopPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
 }
 
 /* Moldura geométrica (hexágono) */
@@ -1175,7 +1256,7 @@ footer {
   }
 }
 
-/* ===== VERSÃO MOBILE (até 768px) - IGUAL AO PRIMEIRO CÓDIGO ===== */
+/* ===== VERSÃO MOBILE (até 768px) ===== */
 @media (max-width: 768px) {
   .menu-btn {
     display: flex;
@@ -1244,7 +1325,7 @@ footer {
     100% { transform: translateY(-3%) scale(1.03); }
   }
   
-  /* ===== LAYOUT MOBILE - JUNTA TUDO ===== */
+  /* ===== LAYOUT MOBILE ===== */
   .hero-left, .hero-right {
     background: rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
@@ -1254,13 +1335,13 @@ footer {
     margin-top: 1rem;
   }
   
-  /* Remove as linhas douradas do desktop */
-  .gold-line-1, .gold-line-2, .gold-line-3, .gold-line-4,
-  .gold-line-5, .gold-line-6, .gold-particle {
+  /* Esconde elementos específicos do desktop no mobile */
+  .desktop-sparkle-1, .desktop-sparkle-2, .desktop-sparkle-3,
+  .desktop-glow {
     display: none;
   }
   
-  /* ANIMAÇÕES MOBILE */
+  /* ANIMAÇÕES MOBILE - mantidas */
   .name-container h1 {
     animation: mobileGlow 3s ease-in-out infinite;
   }
@@ -1432,7 +1513,7 @@ footer {
   }
 }
 
-/* ===== VERSÃO DESKTOP (acima de 769px) - IGUAL AO SEGUNDO CÓDIGO ===== */
+/* ===== VERSÃO DESKTOP (acima de 769px) ===== */
 @media (min-width: 769px) {
   .hero-background {
     opacity: 0.6;
@@ -1452,91 +1533,9 @@ footer {
     display: none;
   }
   
-  .gold-line-1, .gold-line-2, .gold-line-3, .gold-line-4,
-  .gold-line-5, .gold-line-6, .gold-particle {
+  .desktop-sparkle-1, .desktop-sparkle-2, .desktop-sparkle-3,
+  .desktop-glow {
     display: block;
-  }
-}
-
-/* Animações desktop */
-@keyframes expandLine {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  20% {
-    width: 80%;
-    opacity: 1;
-  }
-  40% {
-    width: 100%;
-    opacity: 1;
-  }
-  60% {
-    width: 100%;
-    opacity: 0.8;
-  }
-  80% {
-    width: 50%;
-    opacity: 0.4;
-  }
-  100% {
-    width: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes expandVertical {
-  0% {
-    height: 0;
-    opacity: 0;
-  }
-  20% {
-    height: 80%;
-    opacity: 1;
-  }
-  40% {
-    height: 100%;
-    opacity: 1;
-  }
-  60% {
-    height: 100%;
-    opacity: 0.8;
-  }
-  80% {
-    height: 50%;
-    opacity: 0.4;
-  }
-  100% {
-    height: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes particleFloat {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0;
-  }
-  20% {
-    transform: translate(5px, -5px) scale(1.2);
-    opacity: 1;
-  }
-  40% {
-    transform: translate(10px, -10px) scale(1.5);
-    opacity: 0.8;
-  }
-  60% {
-    transform: translate(15px, -15px) scale(1.2);
-    opacity: 0.4;
-  }
-  80% {
-    transform: translate(20px, -20px) scale(0.8);
-    opacity: 0.2;
-  }
-  100% {
-    transform: translate(25px, -25px) scale(0);
-    opacity: 0;
   }
 }
 
@@ -1609,28 +1608,15 @@ footer {
         <span>Corretor de Imóveis</span>
       </h1>
       
-      <!-- Linhas douradas animadas (desktop) -->
-      <div class="gold-line-1"></div>
-      <div class="gold-line-2"></div>
-      <div class="gold-line-3"></div>
-      <div class="gold-line-4"></div>
-      <div class="gold-line-5"></div>
-      <div class="gold-line-6"></div>
+      <!-- Elementos de brilho do mobile adaptados para desktop -->
+      <div class="desktop-glow glow-1"></div>
+      <div class="desktop-glow glow-2"></div>
+      <div class="desktop-glow glow-3"></div>
+      <div class="desktop-glow glow-4"></div>
       
-      <!-- Partículas douradas (desktop) -->
-      <div class="gold-particle particle-1"></div>
-      <div class="gold-particle particle-2"></div>
-      <div class="gold-particle particle-3"></div>
-      <div class="gold-particle particle-4"></div>
-      
-      <!-- Elementos de animação mobile -->
-      <div class="mobile-glow glow-1"></div>
-      <div class="mobile-glow glow-2"></div>
-      <div class="mobile-glow glow-3"></div>
-      
-      <div class="mobile-sparkle sparkle-1">✧</div>
-      <div class="mobile-sparkle sparkle-2">✦</div>
-      <div class="mobile-sparkle sparkle-3">✧</div>
+      <div class="desktop-sparkle-1">✧</div>
+      <div class="desktop-sparkle-2">✦</div>
+      <div class="desktop-sparkle-3">✧</div>
     </div>
     
     <div class="foto-container">
