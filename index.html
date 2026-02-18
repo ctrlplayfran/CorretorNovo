@@ -246,26 +246,87 @@ nav a:hover::after {
   justify-self: center;
 }
 
+/* ===== MOLDURA GEOMÉTRICA EM VOLTA DA FOTO ===== */
 .foto-container {
   width: min(350px, 80vw);
   height: min(350px, 80vw);
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  overflow: hidden;
-  border: 4px solid var(--dourado);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  animation: morph 8s ease-in-out infinite;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes morph {
-  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-  50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-  100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-}
-
-.foto-container img {
+/* Moldura geométrica (hexágono) */
+.geometric-frame {
   width: 100%;
   height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.geometric-frame::before {
+  content: '';
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  background: transparent;
+  border: 4px solid var(--dourado);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  animation: rotateFrame 12s linear infinite;
+  box-shadow: 0 0 30px rgba(201, 162, 61, 0.3);
+}
+
+.geometric-frame::after {
+  content: '';
+  position: absolute;
+  width: 105%;
+  height: 105%;
+  background: transparent;
+  border: 2px solid rgba(201, 162, 61, 0.3);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  animation: rotateFrameReverse 15s linear infinite;
+}
+
+@keyframes rotateFrame {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes rotateFrameReverse {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-180deg) scale(1.02);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1);
+  }
+}
+
+.geometric-frame img {
+  width: 85%;
+  height: 85%;
   object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--dourado);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.5s;
+}
+
+.geometric-frame:hover img {
+  transform: scale(1.05);
 }
 
 /* ===== BOTÃO WHATSAPP ===== */
@@ -326,11 +387,6 @@ nav a:hover::after {
 .btn-whatsapp:hover::before {
   width: 300px;
   height: 300px;
-}
-
-.btn-whatsapp:active {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
 }
 
 /* WhatsApp flutuante */
@@ -528,31 +584,25 @@ section {
 
 /* Botão nos cards */
 .btn-imovel {
-  background: var(--whatsapp);
+  background: var(--dourado);
   border: none;
-  color: white;
+  color: var(--verde-escuro);
   padding: 12px 20px;
   border-radius: 50px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.3s;
-  cursor: pointer;
   width: 100%;
   justify-content: center;
   font-size: 0.95rem;
-  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s;
 }
 
-.btn-imovel i {
-  font-size: 1.3rem;
-}
-
-.btn-imovel:hover {
-  background: var(--whatsapp-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+.imovel-card:hover .btn-imovel {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 /* Contato Section */
@@ -754,7 +804,7 @@ footer {
   }
 }
 
-/* ===== AJUSTES MOBILE - BACKGROUND NÃO TAMPA INFORMAÇÕES ===== */
+/* ===== AJUSTES MOBILE ===== */
 @media (max-width: 768px) {
   .menu-btn {
     display: flex;
@@ -793,7 +843,6 @@ footer {
     display: none;
   }
 
-  /* AJUSTE CRÍTICO - BACKGROUND MAIS CLARO E MENOS OPACO NO MOBILE */
   .hero {
     background: linear-gradient(135deg, rgba(26, 53, 40, 0.95), rgba(43, 90, 67, 0.95));
     min-height: auto;
@@ -801,19 +850,17 @@ footer {
   }
   
   .hero-background {
-    opacity: 0.25; /* Reduzido de 0.6 para 0.25 no mobile */
+    opacity: 0.25;
     height: 100%;
     animation: floatBackgroundMobile 8s ease-in-out infinite;
   }
   
-  /* Animação mais suave para mobile */
   @keyframes floatBackgroundMobile {
     0% { transform: translateY(-3%) scale(1.03); }
     50% { transform: translateY(3%) scale(1.05); }
     100% { transform: translateY(-3%) scale(1.03); }
   }
   
-  /* Aumenta contraste do texto no mobile */
   .hero-content {
     background: rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
@@ -882,6 +929,12 @@ footer {
     width: 100%;
     justify-content: center;
   }
+  
+  .geometric-frame::before,
+  .geometric-frame::after {
+    width: 105%;
+    height: 105%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -924,12 +977,17 @@ footer {
   .hero-content {
     padding: 1rem;
   }
+  
+  .geometric-frame img {
+    width: 80%;
+    height: 80%;
+  }
 }
 
 /* ===== AJUSTE PARA GARANTIR QUE DESKTOP FIQUE INTACTO ===== */
 @media (min-width: 769px) {
   .hero-background {
-    opacity: 0.6; /* Mantém opacidade original do desktop */
+    opacity: 0.6;
   }
   
   .hero-content {
@@ -971,35 +1029,12 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-/* Estilo para o botão de ver detalhes (substituindo o WhatsApp) */
-.btn-imovel {
-  background: var(--dourado);
-  border: none;
-  color: var(--verde-escuro);
-  padding: 12px 20px;
-  border-radius: 50px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  justify-content: center;
-  font-size: 0.95rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s;
-}
-
-/* Efeito hover apenas visual já que o botão não é clicável */
-.imovel-card:hover .btn-imovel {
-  transform: scale(1.02);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
 </style>
 </head>
 
 <body>
 
-<!-- WhatsApp Flutuante (ícone apenas) -->
+<!-- WhatsApp Flutuante -->
 <a href="#" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
@@ -1025,9 +1060,8 @@ footer {
   </nav>
 </header>
 
-<!-- Hero Section com Fundo Animado -->
-<section id="inicio" class="hero" id="heroSection">
-  <!-- Container da imagem de fundo animada -->
+<!-- Hero Section com Moldura Geométrica -->
+<section id="inicio" class="hero">
   <div class="hero-background" id="heroBackground"></div>
   
   <div class="hero-content fade-up">
@@ -1059,7 +1093,6 @@ footer {
       </div>
     </div>
 
-    <!-- Botão WhatsApp com ícone tradicional -->
     <a href="#" class="btn-whatsapp" id="heroWhatsAppBtn">
       <i class="fab fa-whatsapp"></i>
       <span>Falar no WhatsApp</span>
@@ -1068,7 +1101,9 @@ footer {
 
   <div class="hero-image fade-up">
     <div class="foto-container">
-      <img src="Assets/Imagens/FotoPerfil.png" alt="Josué Afonso - Corretor">
+      <div class="geometric-frame">
+        <img src="Assets/Imagens/FotoPerfil.png" alt="Josué Afonso - Corretor">
+      </div>
     </div>
   </div>
 </section>
@@ -1102,7 +1137,6 @@ footer {
 </section>
 
 <!-- Imóveis Section -->
-<!-- Imóveis Section -->
 <section id="imoveis" class="hidden">
   <div class="section-header">
     <h2>Imóveis em Destaque</h2>
@@ -1110,8 +1144,7 @@ footer {
   </div>
 
   <div class="galeria-grid">
-    <!-- Card 1 - Fazenda (link para fazenda.html) -->
-    <a href="fazenda.html" class="imovel-card" style="text-decoration: none; color: inherit;">
+    <a href="fazenda.html" class="imovel-card">
       <div class="imovel-img">
         <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Fazenda 1.200 Hectares" loading="lazy">
       </div>
@@ -1122,15 +1155,14 @@ footer {
           <span><i class="fas fa-water"></i> 3 nascentes</span>
         </div>
         <div class="imovel-preco">R$ 18.500.000</div>
-        <div class="btn-imovel" style="pointer-events: none; background: var(--dourado); color: var(--verde-escuro);">
+        <div class="btn-imovel" style="pointer-events: none;">
           <i class="fas fa-eye"></i>
           Ver detalhes
         </div>
       </div>
     </a>
 
-    <!-- Card 2 - Casa (link para imovel2.html) -->
-    <a href="imovel2.html" class="imovel-card" style="text-decoration: none; color: inherit;">
+    <a href="imovel2.html" class="imovel-card">
       <div class="imovel-img">
         <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d" alt="Casa Alto Padrão" loading="lazy">
       </div>
@@ -1141,15 +1173,14 @@ footer {
           <span><i class="fas fa-car"></i> Garagem 3 vagas</span>
         </div>
         <div class="imovel-preco">R$ 2.450.000</div>
-        <div class="btn-imovel" style="pointer-events: none; background: var(--dourado); color: var(--verde-escuro);">
+        <div class="btn-imovel" style="pointer-events: none;">
           <i class="fas fa-eye"></i>
           Ver detalhes
         </div>
       </div>
     </a>
 
-    <!-- Card 3 - Chácara (link para imovel3.html) -->
-    <a href="imovel3.html" class="imovel-card" style="text-decoration: none; color: inherit;">
+    <a href="imovel3.html" class="imovel-card">
       <div class="imovel-img">
         <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Chácara 5 Hectares" loading="lazy">
       </div>
@@ -1160,7 +1191,7 @@ footer {
           <span><i class="fas fa-home"></i> Casa 3 quartos</span>
         </div>
         <div class="imovel-preco">R$ 890.000</div>
-        <div class="btn-imovel" style="pointer-events: none; background: var(--dourado); color: var(--verde-escuro);">
+        <div class="btn-imovel" style="pointer-events: none;">
           <i class="fas fa-eye"></i>
           Ver detalhes
         </div>
@@ -1233,7 +1264,6 @@ footer {
         <div class="form-group">
           <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
         </div>
-        <!-- Botão WhatsApp no formulário -->
         <button type="submit" class="btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
           <span>Enviar Mensagem</span>
@@ -1296,7 +1326,7 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.classList.add('show');
     }
   });
-}, { threshold: 0.1, rootMargin: '0px' });
+}, { threshold: 0.1 });
 
 document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
 
@@ -1310,7 +1340,6 @@ menuBtn.addEventListener('click', () => {
   mainNav.classList.toggle('active');
 });
 
-// Fechar menu ao clicar em link
 document.querySelectorAll('nav a').forEach(link => {
   link.addEventListener('click', () => {
     menuBtn.classList.remove('active');
@@ -1318,7 +1347,6 @@ document.querySelectorAll('nav a').forEach(link => {
   });
 });
 
-// Fechar menu ao rolar (mobile)
 window.addEventListener('scroll', () => {
   if (window.innerWidth <= 768) {
     menuBtn.classList.remove('active');
@@ -1370,27 +1398,13 @@ document.getElementById('whatsappFloat').addEventListener('click', (e) => {
   abrirWhatsApp('Olá! Vim pelo site e gostaria de mais informações.');
 });
 
-// Botões dos cards de imóveis
-document.querySelectorAll('.btn-imovel').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const onclickAttr = btn.getAttribute('onclick');
-    if (onclickAttr) {
-      const match = onclickAttr.match(/'([^']+)'/);
-      if (match) {
-        abrirWhatsApp(match[1]);
-      }
-    }
-  });
-});
-
 // Botão hero WhatsApp
 document.getElementById('heroWhatsAppBtn').addEventListener('click', (e) => {
   e.preventDefault();
   abrirWhatsApp('Olá! Gostaria de falar sobre os imóveis.');
 });
 
-// Scroll suave para links internos (exceto botões WhatsApp)
+// Scroll suave para links internos
 document.querySelectorAll('a[href^="#"]:not(.btn-whatsapp):not(.whatsapp-float)').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -1413,14 +1427,13 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// EFEITO PARALLAX - Fundo desce ao rolar (apenas desktop)
+// EFEITO PARALLAX
 const heroBackground = document.getElementById('heroBackground');
 const heroSection = document.getElementById('inicio');
 
 function updateParallax() {
   if (!heroSection || !heroBackground) return;
   
-  // DESATIVA PARALLAX NO MOBILE
   if (window.innerWidth <= 768) {
     heroBackground.style.transform = '';
     return;
