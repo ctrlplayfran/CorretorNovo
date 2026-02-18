@@ -194,18 +194,213 @@ nav a:hover::after {
   z-index: 2;
 }
 
-.hero-content h1 {
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
-  color: var(--dourado);
+/* ===== ANIMAÇÃO DO NOME COM LINHAS DOURADAS ===== */
+.name-container {
+  position: relative;
+  display: inline-block;
   margin-bottom: 0.5rem;
-  line-height: 1.2;
 }
 
-.hero-content h1 span {
+.name-container h1 {
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  color: var(--dourado);
+  line-height: 1.2;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 20px rgba(201, 162, 61, 0.3);
+}
+
+.name-container h1 span {
   color: var(--texto-claro);
   font-size: clamp(1rem, 3vw, 1.5rem);
   display: block;
   font-weight: 400;
+  margin-top: 0.2rem;
+}
+
+/* Linhas animadas - versão desktop */
+.gold-line-1, .gold-line-2, .gold-line-3, .gold-line-4,
+.gold-line-5, .gold-line-6 {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro));
+  border-radius: 3px;
+  box-shadow: 0 0 15px var(--dourado);
+  z-index: 1;
+  opacity: 0;
+}
+
+.gold-line-1 {
+  top: -10px;
+  left: -20px;
+  height: 3px;
+  animation: expandLine 3s ease-in-out infinite;
+}
+
+.gold-line-2 {
+  top: -10px;
+  right: -20px;
+  height: 3px;
+  background: linear-gradient(270deg, transparent, var(--dourado), var(--dourado-claro));
+  animation: expandLine 3s ease-in-out infinite 0.5s;
+}
+
+.gold-line-3 {
+  bottom: 10px;
+  left: -20px;
+  height: 3px;
+  animation: expandLine 3s ease-in-out infinite 1s;
+}
+
+.gold-line-4 {
+  bottom: 10px;
+  right: -20px;
+  height: 3px;
+  background: linear-gradient(270deg, transparent, var(--dourado), var(--dourado-claro));
+  animation: expandLine 3s ease-in-out infinite 1.5s;
+}
+
+.gold-line-5 {
+  top: -20px;
+  left: -10px;
+  width: 3px;
+  background: linear-gradient(180deg, transparent, var(--dourado), var(--dourado-claro));
+  animation: expandVertical 3s ease-in-out infinite 0.75s;
+}
+
+.gold-line-6 {
+  top: -20px;
+  right: -10px;
+  width: 3px;
+  background: linear-gradient(180deg, transparent, var(--dourado), var(--dourado-claro));
+  animation: expandVertical 3s ease-in-out infinite 1.25s;
+}
+
+/* Partículas douradas - versão desktop */
+.gold-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--dourado);
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0;
+  animation: particleFloat 4s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--dourado);
+}
+
+.particle-1 {
+  top: -15px;
+  left: 10%;
+  animation-delay: 0.2s;
+}
+
+.particle-2 {
+  bottom: -5px;
+  right: 15%;
+  animation-delay: 1.2s;
+  width: 8px;
+  height: 8px;
+}
+
+.particle-3 {
+  top: 20%;
+  right: -20px;
+  animation-delay: 2.2s;
+  width: 5px;
+  height: 5px;
+}
+
+.particle-4 {
+  bottom: 30%;
+  left: -15px;
+  animation-delay: 3.2s;
+  width: 7px;
+  height: 7px;
+}
+
+/* ===== ANIMAÇÕES MOBILE ===== */
+.mobile-glow {
+  display: none; /* Escondido por padrão, aparece apenas no mobile */
+}
+
+.mobile-sparkle {
+  display: none;
+}
+
+@keyframes mobileGlow {
+  0% {
+    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+    opacity: 0.7;
+  }
+  50% {
+    text-shadow: 0 0 20px var(--dourado-claro), 0 0 30px var(--dourado);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+    opacity: 0.7;
+  }
+}
+
+@keyframes mobileSparkle {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.2) rotate(45deg);
+    opacity: 0.8;
+  }
+  40% {
+    transform: scale(1) rotate(90deg);
+    opacity: 0.4;
+  }
+  60% {
+    transform: scale(0.8) rotate(135deg);
+    opacity: 0.6;
+  }
+  80% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0) rotate(225deg);
+    opacity: 0;
+  }
+}
+
+@keyframes mobileLine {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  30% {
+    width: 100%;
+    opacity: 0.6;
+  }
+  70% {
+    width: 100%;
+    opacity: 0.6;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes mobilePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
 }
 
 .hero-badge {
@@ -870,6 +1065,117 @@ footer {
     margin-top: 1rem;
   }
   
+  /* ===== ANIMAÇÕES MOBILE ATIVADAS ===== */
+  .gold-line-1, .gold-line-2, .gold-line-3, .gold-line-4,
+  .gold-line-5, .gold-line-6, .gold-particle {
+    display: none; /* Remove animações complexas do desktop */
+  }
+  
+  /* Animação de brilho pulsante no nome (mobile) */
+  .name-container h1 {
+    animation: mobileGlow 3s ease-in-out infinite;
+  }
+  
+  /* Linha dourada inferior animada (mobile) */
+  .name-container::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), transparent);
+    border-radius: 2px;
+    animation: mobileLine 3s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--dourado);
+  }
+  
+  /* Pontos brilhantes ao redor do nome (mobile) */
+  .name-container {
+    position: relative;
+  }
+  
+  .name-container::before {
+    content: '✦';
+    position: absolute;
+    top: -15px;
+    left: -10px;
+    color: var(--dourado);
+    font-size: 1.2rem;
+    animation: mobileSparkle 4s ease-in-out infinite;
+    opacity: 0;
+    text-shadow: 0 0 10px var(--dourado);
+  }
+  
+  .mobile-sparkle {
+    display: block;
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .sparkle-1, .sparkle-2, .sparkle-3 {
+    position: absolute;
+    color: var(--dourado);
+    font-size: 1rem;
+    opacity: 0;
+    animation: mobileSparkle 3s ease-in-out infinite;
+  }
+  
+  .sparkle-1 {
+    top: -20px;
+    right: 0;
+    animation-delay: 0.5s;
+    content: '✧';
+  }
+  
+  .sparkle-2 {
+    bottom: -15px;
+    left: 20%;
+    animation-delay: 1.5s;
+  }
+  
+  .sparkle-3 {
+    top: 20%;
+    right: -15px;
+    animation-delay: 2.5s;
+  }
+  
+  /* Pontos brilhantes adicionais com elementos HTML */
+  .mobile-glow {
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--dourado);
+    border-radius: 50%;
+    filter: blur(2px);
+    animation: mobilePulse 2s ease-in-out infinite;
+    box-shadow: 0 0 15px var(--dourado);
+  }
+  
+  .glow-1 {
+    top: -10px;
+    left: 5%;
+    animation-delay: 0.2s;
+  }
+  
+  .glow-2 {
+    bottom: 0;
+    right: 10%;
+    animation-delay: 0.8s;
+    width: 6px;
+    height: 6px;
+  }
+  
+  .glow-3 {
+    top: 30%;
+    left: -5px;
+    animation-delay: 1.4s;
+    width: 10px;
+    height: 10px;
+  }
+  
   .hero-content h1,
   .hero-content p,
   .hero-content .hero-badge,
@@ -1001,9 +1307,94 @@ footer {
     padding: 0;
     backdrop-filter: none;
   }
+  
+  .mobile-glow, .mobile-sparkle {
+    display: none;
+  }
 }
 
-/* Animações */
+/* Animações desktop */
+@keyframes expandLine {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  20% {
+    width: 80%;
+    opacity: 1;
+  }
+  40% {
+    width: 100%;
+    opacity: 1;
+  }
+  60% {
+    width: 100%;
+    opacity: 0.8;
+  }
+  80% {
+    width: 50%;
+    opacity: 0.4;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes expandVertical {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  20% {
+    height: 80%;
+    opacity: 1;
+  }
+  40% {
+    height: 100%;
+    opacity: 1;
+  }
+  60% {
+    height: 100%;
+    opacity: 0.8;
+  }
+  80% {
+    height: 50%;
+    opacity: 0.4;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(5px, -5px) scale(1.2);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(10px, -10px) scale(1.5);
+    opacity: 0.8;
+  }
+  60% {
+    transform: translate(15px, -15px) scale(1.2);
+    opacity: 0.4;
+  }
+  80% {
+    transform: translate(20px, -20px) scale(0.8);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(25px, -25px) scale(0);
+    opacity: 0;
+  }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -1065,10 +1456,35 @@ footer {
   <div class="hero-background" id="heroBackground"></div>
   
   <div class="hero-content fade-up">
-    <h1>
-      Josué Afonso
-      <span>Corretor de Imóveis</span>
-    </h1>
+    <div class="name-container">
+      <h1>
+        Josué Afonso
+        <span>Corretor de Imóveis</span>
+      </h1>
+      
+      <!-- Linhas douradas animadas (desktop) -->
+      <div class="gold-line-1"></div>
+      <div class="gold-line-2"></div>
+      <div class="gold-line-3"></div>
+      <div class="gold-line-4"></div>
+      <div class="gold-line-5"></div>
+      <div class="gold-line-6"></div>
+      
+      <!-- Partículas douradas (desktop) -->
+      <div class="gold-particle particle-1"></div>
+      <div class="gold-particle particle-2"></div>
+      <div class="gold-particle particle-3"></div>
+      <div class="gold-particle particle-4"></div>
+      
+      <!-- Elementos de animação mobile -->
+      <div class="mobile-glow glow-1"></div>
+      <div class="mobile-glow glow-2"></div>
+      <div class="mobile-glow glow-3"></div>
+      
+      <div class="mobile-sparkle sparkle-1">✧</div>
+      <div class="mobile-sparkle sparkle-2">✦</div>
+      <div class="mobile-sparkle sparkle-3">✧</div>
+    </div>
     
     <div class="hero-badge">
       <i class="fas fa-check-circle"></i> Técnico em Transações Imobiliárias
