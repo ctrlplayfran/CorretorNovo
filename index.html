@@ -1,2123 +1,2235 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<title>Josué Afonso | Corretor de Imóveis</title>
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root {
-  --verde-escuro: #1a3528;
-  --verde-medio: #2b5a43;
-  --verde-claro: #3a7257;
-  --dourado: #c9a23d;
-  --dourado-claro: #e5c36b;
-  --dourado-escuro: #a77f2c;
-  --texto-claro: #f0f0e0;
-  --sombra: 0 10px 30px rgba(0,0,0,0.2);
-  --borda-raio: 16px;
-  --espacamento: clamp(1rem, 5vw, 2rem);
-  
-  /* Cores do WhatsApp */
-  --whatsapp: #25D366;
-  --whatsapp-dark: #128C7E;
-  --whatsapp-light: #DCF8C6;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--verde-escuro);
-  color: var(--texto-claro);
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-
-/* Importação da fonte Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
-
-/* ===== HEADER MODERNO ===== */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(26, 53, 40, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 0.8rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  border-bottom: 2px solid var(--dourado);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.2);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.logo i {
-  color: var(--dourado);
-  font-size: 1.8rem;
-}
-
-.logo span {
-  color: var(--dourado);
-  font-weight: 600;
-  font-size: 1.2rem;
-  letter-spacing: 0.5px;
-}
-
-/* Navegação Desktop */
-nav {
-  display: flex;
-  gap: 2rem;
-}
-
-nav a {
-  color: var(--texto-claro);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s;
-  position: relative;
-  padding: 0.3rem 0;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--dourado);
-  transition: width 0.3s;
-}
-
-nav a:hover {
-  color: var(--dourado-claro);
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-
-/* Destaque para o link "Quer vender?" */
-nav a.highlight {
-  background: var(--dourado);
-  color: var(--verde-escuro);
-  padding: 0.5rem 1.2rem;
-  border-radius: 50px;
-  font-weight: 600;
-}
-
-nav a.highlight::after {
-  display: none;
-}
-
-nav a.highlight:hover {
-  background: var(--dourado-claro);
-  transform: translateY(-2px);
-}
-
-/* Menu Mobile */
-.menu-btn {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  z-index: 1001;
-  padding: 0.5rem;
-}
-
-.menu-btn span {
-  width: 28px;
-  height: 2px;
-  background: var(--dourado);
-  transition: 0.3s;
-}
-
-.menu-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ===== HERO SECTION COM FUNDO ANIMADO ===== */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 2rem;
-  padding: 6rem 5% 2rem;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(26, 53, 40, 0.85), rgba(43, 90, 67, 0.85));
-}
-
-/* Container da imagem de fundo - DESKTOP */
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  background-image: url('Assets/Imagens/logosn.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  opacity: 0.6;
-  z-index: 0;
-  will-change: transform;
-  pointer-events: none;
-  transform: translateY(0);
-  animation: floatBackground 8s ease-in-out infinite;
-}
-
-/* Animação de flutuação */
-@keyframes floatBackground {
-  0% {
-    transform: translateY(-5%) scale(1.05);
-  }
-  50% {
-    transform: translateY(5%) scale(1.08);
-  }
-  100% {
-    transform: translateY(-5%) scale(1.05);
-  }
-}
-
-/* ===== LADO ESQUERDO - NOME E FOTO (DESKTOP) ===== */
-.hero-left {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-
-/* Nome com animação mobile adaptada para desktop */
-.name-container {
-  position: relative;
-  display: inline-block;
-  text-align: center;
-}
-
-.name-container h1 {
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
-  color: var(--dourado);
-  line-height: 1.2;
-  position: relative;
-  z-index: 2;
-  text-shadow: 0 0 20px rgba(201, 162, 61, 0.3);
-  animation: desktopGlow 3s ease-in-out infinite;
-}
-
-.name-container h1 span {
-  color: var(--texto-claro);
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  display: block;
-  font-weight: 400;
-  margin-top: 0.2rem;
-}
-
-/* Animação de brilho para desktop */
-@keyframes desktopGlow {
-  0% {
-    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
-    opacity: 0.8;
-  }
-  50% {
-    text-shadow: 0 0 20px var(--dourado-claro), 0 0 30px var(--dourado), 0 0 40px var(--dourado);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
-    opacity: 0.8;
-  }
-}
-
-/* Linha animada abaixo do nome - igual ao mobile */
-.name-container::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), transparent);
-  border-radius: 2px;
-  animation: desktopLine 3s ease-in-out infinite;
-  box-shadow: 0 0 10px var(--dourado);
-}
-
-@keyframes desktopLine {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  30% {
-    width: 100%;
-    opacity: 0.8;
-  }
-  70% {
-    width: 100%;
-    opacity: 0.8;
-  }
-  100% {
-    width: 0;
-    opacity: 0;
-  }
-}
-
-/* Partículas de brilho - adaptadas do mobile */
-.name-container::before {
-  content: '✦';
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  color: var(--dourado);
-  font-size: 1.5rem;
-  animation: desktopSparkle 4s ease-in-out infinite;
-  opacity: 0;
-  text-shadow: 0 0 10px var(--dourado);
-  z-index: 3;
-}
-
-.desktop-sparkle-1, .desktop-sparkle-2, .desktop-sparkle-3 {
-  position: absolute;
-  color: var(--dourado);
-  font-size: 1.2rem;
-  opacity: 0;
-  animation: desktopSparkle 3s ease-in-out infinite;
-  text-shadow: 0 0 15px var(--dourado);
-  z-index: 3;
-}
-
-.desktop-sparkle-1 {
-  top: -30px;
-  right: -10px;
-  animation-delay: 0.5s;
-  content: '✧';
-}
-
-.desktop-sparkle-2 {
-  bottom: -20px;
-  left: 30%;
-  animation-delay: 1.5s;
-}
-
-.desktop-sparkle-3 {
-  top: 40%;
-  right: -30px;
-  animation-delay: 2.5s;
-}
-
-@keyframes desktopSparkle {
-  0% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0;
-  }
-  20% {
-    transform: scale(1.3) rotate(45deg);
-    opacity: 0.9;
-  }
-  40% {
-    transform: scale(1.1) rotate(90deg);
-    opacity: 0.5;
-  }
-  60% {
-    transform: scale(0.9) rotate(135deg);
-    opacity: 0.7;
-  }
-  80% {
-    transform: scale(1.2) rotate(180deg);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(0) rotate(225deg);
-    opacity: 0;
-  }
-}
-
-/* Pontos de brilho pulsantes */
-.desktop-glow {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: var(--dourado);
-  border-radius: 50%;
-  filter: blur(3px);
-  animation: desktopPulse 2s ease-in-out infinite;
-  box-shadow: 0 0 20px var(--dourado);
-  z-index: 3;
-}
-
-.glow-1 {
-  top: -20px;
-  left: 15%;
-  animation-delay: 0.2s;
-  width: 12px;
-  height: 12px;
-}
-
-.glow-2 {
-  bottom: -15px;
-  right: 20%;
-  animation-delay: 0.8s;
-  width: 8px;
-  height: 8px;
-}
-
-.glow-3 {
-  top: 25%;
-  left: -15px;
-  animation-delay: 1.4s;
-  width: 15px;
-  height: 15px;
-}
-
-.glow-4 {
-  bottom: 35%;
-  right: -20px;
-  animation-delay: 2s;
-  width: 10px;
-  height: 10px;
-}
-
-@keyframes desktopPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.8);
-    opacity: 0.9;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-}
-
-/* Moldura geométrica (hexágono) */
-.foto-container {
-  width: min(350px, 80vw);
-  height: min(350px, 80vw);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.geometric-frame {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.geometric-frame::before {
-  content: '';
-  position: absolute;
-  width: 110%;
-  height: 110%;
-  background: transparent;
-  border: 4px solid var(--dourado);
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  animation: rotateFrame 12s linear infinite;
-  box-shadow: 0 0 30px rgba(201, 162, 61, 0.3);
-}
-
-.geometric-frame::after {
-  content: '';
-  position: absolute;
-  width: 105%;
-  height: 105%;
-  background: transparent;
-  border: 2px solid rgba(201, 162, 61, 0.3);
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  animation: rotateFrameReverse 15s linear infinite;
-}
-
-@keyframes rotateFrame {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.05);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-@keyframes rotateFrameReverse {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(-180deg) scale(1.02);
-  }
-  100% {
-    transform: rotate(-360deg) scale(1);
-  }
-}
-
-.geometric-frame img {
-  width: 85%;
-  height: 85%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid var(--dourado);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  position: relative;
-  z-index: 2;
-  transition: transform 0.5s;
-}
-
-.geometric-frame:hover img {
-  transform: scale(1.05);
-}
-
-/* ===== LADO DIREITO - CONTEÚDO (DESKTOP) ===== */
-.hero-right {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  text-align: right;
-}
-
-.hero-right p {
-  text-align: right;
-  max-width: 500px;
-}
-
-.hero-badge {
-  background: rgba(201, 162, 61, 0.15);
-  border: 1px solid var(--dourado);
-  border-radius: 50px;
-  padding: 0.3rem 1rem;
-  display: inline-block;
-  margin: 1rem 0;
-  font-size: 0.9rem;
-  margin-left: auto;
-}
-
-.hero-stats {
-  display: flex;
-  gap: 2rem;
-  margin: 2rem 0;
-  justify-content: flex-end;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--dourado);
-  display: block;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  opacity: 0.9;
-}
-
-/* ===== BOTÃO WHATSAPP ===== */
-.btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: var(--whatsapp);
-  color: white;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 14px 32px;
-  border-radius: 60px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-whatsapp i {
-  font-size: 1.6rem;
-  transition: transform 0.3s;
-}
-
-.btn-whatsapp span {
-  position: relative;
-  z-index: 2;
-}
-
-.btn-whatsapp::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-  z-index: 1;
-}
-
-.btn-whatsapp:hover {
-  background: var(--whatsapp-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-}
-
-.btn-whatsapp:hover i {
-  transform: scale(1.2) rotate(5deg);
-}
-
-.btn-whatsapp:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-/* WhatsApp flutuante - LADO ESQUERDO */
-.whatsapp-float {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  background: var(--whatsapp);
-  color: white;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.2rem;
-  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-  z-index: 99;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: pulse-whatsapp 2s infinite;
-  text-decoration: none;
-  border: 3px solid white;
-}
-
-@keyframes pulse-whatsapp {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-  }
-  50% {
-    transform: scale(1.1);
-    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-  }
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.15) rotate(5deg);
-  background: var(--whatsapp-dark);
-  animation: none;
-}
-
-/* ===== SEÇÃO VENDER IMÓVEL ===== */
-.vender-section {
-  padding: 5rem 5%;
-  background: linear-gradient(135deg, var(--verde-escuro), var(--verde-medio));
-  position: relative;
-  overflow: hidden;
-  border-top: 2px solid var(--dourado);
-  border-bottom: 2px solid var(--dourado);
-}
-
-.vender-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('Assets/Imagens/logosn.png') no-repeat center;
-  background-size: cover;
-  opacity: 0.1;
-  z-index: 0;
-}
-
-.vender-container {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.vender-container h2 {
-  color: var(--dourado);
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
-}
-
-.vender-container p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
-.vender-form {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--dourado);
-  border-radius: var(--borda-raio);
-  padding: 2.5rem;
-  box-shadow: var(--sombra);
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--dourado-claro);
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 1rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(201, 162, 61, 0.3);
-  border-radius: 12px;
-  color: var(--texto-claro);
-  font-size: 1rem;
-  transition: all 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--dourado);
-  background: rgba(255,255,255,0.12);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: rgba(255,255,255,0.5);
-}
-
-.btn-vender {
-  background: var(--dourado);
-  color: var(--verde-escuro);
-  border: none;
-  padding: 1.2rem 2rem;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  cursor: pointer;
-  width: 100%;
-  transition: all 0.3s;
-  border: 2px solid transparent;
-}
-
-.btn-vender i {
-  font-size: 1.4rem;
-}
-
-.btn-vender:hover {
-  background: transparent;
-  color: var(--dourado);
-  border-color: var(--dourado);
-  transform: translateY(-3px);
-}
-
-/* ===== SEÇÕES ===== */
-section {
-  padding: 5rem 5%;
-  position: relative;
-  z-index: 1;
-}
-
-.section-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 4rem;
-}
-
-.section-header h2 {
-  color: var(--dourado);
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-  font-family: 'Playfair Display', serif;
-}
-
-.section-header h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: var(--dourado);
-  border-radius: 2px;
-}
-
-.section-header p {
-  opacity: 0.9;
-  font-size: 1.1rem;
-}
-
-/* Cards de Destaque */
-.highlight-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 3rem 0;
-}
-
-.card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(201, 162, 61, 0.2);
-  border-radius: var(--borda-raio);
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.3s, border-color 0.3s;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  border-color: var(--dourado);
-}
-
-.card i {
-  font-size: 3rem;
-  color: var(--dourado);
-  margin-bottom: 1.5rem;
-}
-
-.card h3 {
-  color: var(--dourado-claro);
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-}
-
-.card p {
-  opacity: 0.8;
-  font-size: 0.95rem;
-}
-
-/* Galeria de Imóveis */
-.galeria-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.imovel-card {
-  background: rgba(255,255,255,0.02);
-  border-radius: var(--borda-raio);
-  overflow: hidden;
-  border: 1px solid rgba(201, 162, 61, 0.2);
-  transition: all 0.3s;
-  text-decoration: none;
-  color: inherit;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
-
-.imovel-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--dourado);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-}
-
-.imovel-img {
-  height: 220px;
-  overflow: hidden;
-}
-
-.imovel-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s;
-}
-
-.imovel-card:hover .imovel-img img {
-  transform: scale(1.1);
-}
-
-.imovel-info {
-  padding: 1.5rem;
-}
-
-.imovel-info h3 {
-  color: var(--dourado);
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-}
-
-.imovel-preco {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--dourado-claro);
-  margin: 1rem 0;
-}
-
-.imovel-detalhes {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-.imovel-detalhes i {
-  color: var(--dourado);
-  margin-right: 0.3rem;
-}
-
-/* Botão nos cards */
-.btn-imovel {
-  background: var(--dourado);
-  border: none;
-  color: var(--verde-escuro);
-  padding: 12px 20px;
-  border-radius: 50px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  justify-content: center;
-  font-size: 0.95rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s;
-}
-
-.imovel-card:hover .btn-imovel {
-  transform: scale(1.02);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-/* Contato Section */
-.contato-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-  background: rgba(0,0,0,0.2);
-  border-radius: var(--borda-raio);
-  padding: 3rem;
-  border: 1px solid rgba(201, 162, 61, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.contato-info h3 {
-  color: var(--dourado);
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.contato-detalhes {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.contato-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.contato-item i {
-  width: 40px;
-  height: 40px;
-  background: rgba(201, 162, 61, 0.1);
-  border: 1px solid var(--dourado);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dourado);
-}
-
-.contato-item.whatsapp i {
-  background: rgba(37, 211, 102, 0.1);
-  border-color: var(--whatsapp);
-  color: var(--whatsapp);
-}
-
-.contato-item span {
-  font-size: 1.1rem;
-}
-
-.creci-badge {
-  background: rgba(201, 162, 61, 0.15);
-  border: 1px solid var(--dourado);
-  border-radius: 50px;
-  padding: 0.5rem 1.5rem;
-  display: inline-block;
-  font-weight: 600;
-}
-
-/* Formulário Moderno */
-.contato-form {
-  background: rgba(255,255,255,0.02);
-  border-radius: var(--borda-raio);
-  padding: 2rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 1rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(201, 162, 61, 0.3);
-  border-radius: 12px;
-  color: var(--texto-claro);
-  font-size: 1rem;
-  transition: all 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--dourado);
-  background: rgba(255,255,255,0.08);
-}
-
-/* Footer */
-footer {
-  background: rgba(0,0,0,0.3);
-  padding: 3rem 5% 1.5rem;
-  border-top: 1px solid rgba(201, 162, 61, 0.2);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-.footer-col h4 {
-  color: var(--dourado);
-  margin-bottom: 1.5rem;
-  font-size: 1.2rem;
-}
-
-.footer-col ul {
-  list-style: none;
-}
-
-.footer-col ul li {
-  margin-bottom: 0.8rem;
-}
-
-.footer-col ul li a {
-  color: var(--texto-claro);
-  text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-
-.footer-col ul li a:hover {
-  opacity: 1;
-  color: var(--dourado-claro);
-}
-
-.social-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-links a {
-  width: 40px;
-  height: 40px;
-  background: rgba(201, 162, 61, 0.1);
-  border: 1px solid var(--dourado);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dourado);
-  transition: all 0.3s;
-}
-
-.social-links a:hover {
-  background: var(--dourado);
-  color: var(--verde-escuro);
-  transform: translateY(-3px);
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
-/* ===== ANIMAÇÕES MOBILE ===== */
-@keyframes mobileGlow {
-  0% {
-    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
-    opacity: 0.7;
-  }
-  50% {
-    text-shadow: 0 0 20px var(--dourado-claro), 0 0 30px var(--dourado);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
-    opacity: 0.7;
-  }
-}
-
-@keyframes mobileSparkle {
-  0% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0;
-  }
-  20% {
-    transform: scale(1.2) rotate(45deg);
-    opacity: 0.8;
-  }
-  40% {
-    transform: scale(1) rotate(90deg);
-    opacity: 0.4;
-  }
-  60% {
-    transform: scale(0.8) rotate(135deg);
-    opacity: 0.6;
-  }
-  80% {
-    transform: scale(1.1) rotate(180deg);
-    opacity: 0.3;
-  }
-  100% {
-    transform: scale(0) rotate(225deg);
-    opacity: 0;
-  }
-}
-
-@keyframes mobileLine {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  30% {
-    width: 100%;
-    opacity: 0.6;
-  }
-  70% {
-    width: 100%;
-    opacity: 0.6;
-  }
-  100% {
-    width: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes mobilePulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-}
-
-/* ===== RESPONSIVIDADE ===== */
-@media (max-width: 968px) {
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding-top: 5rem;
-  }
-  
-  .hero-left {
-    grid-row: 1;
-  }
-  
-  .hero-right {
-    align-items: center;
-    text-align: center;
-  }
-  
-  .hero-right p {
-    text-align: center;
-    margin: 0 auto;
-  }
-  
-  .hero-badge {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .hero-stats {
-    justify-content: center;
-  }
-
-  .foto-container {
-    width: min(300px, 60vw);
-    height: min(300px, 60vw);
-    margin: 0 auto;
-  }
-
-  .contato-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
-  }
-  
-  nav a.highlight {
-    margin: 0.5rem 0;
-  }
-}
-
-/* ===== VERSÃO MOBILE (até 768px) ===== */
-@media (max-width: 768px) {
-  .menu-btn {
-    display: flex;
-  }
-
-  nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--verde-escuro);
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s;
-    border-bottom: 2px solid var(--dourado);
-    z-index: 999;
-  }
-
-  nav.active {
-    max-height: 400px;
-    padding: 1rem 0;
-  }
-
-  nav a {
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(201, 162, 61, 0.1);
-  }
-
-  nav a::after {
-    display: none;
-  }
-  
-  nav a.highlight {
-    background: transparent;
-    color: var(--dourado);
-    padding: 1rem;
-    border-radius: 0;
-  }
-  
-  nav a.highlight:hover {
-    background: rgba(201, 162, 61, 0.1);
-    color: var(--dourado-claro);
-  }
-
-  .hero {
-    background: linear-gradient(135deg, rgba(26, 53, 40, 0.95), rgba(43, 90, 67, 0.95));
-    min-height: auto;
-    padding-bottom: 3rem;
-  }
-  
-  .hero-background {
-    opacity: 0.25;
-    height: 100%;
-    animation: floatBackgroundMobile 8s ease-in-out infinite;
-  }
-  
-  @keyframes floatBackgroundMobile {
-    0% { transform: translateY(-3%) scale(1.03); }
-    50% { transform: translateY(3%) scale(1.05); }
-    100% { transform: translateY(-3%) scale(1.03); }
-  }
-  
-  /* ===== LAYOUT MOBILE ===== */
-  .hero-left, .hero-right {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    margin-top: 1rem;
-  }
-  
-  /* Esconde elementos específicos do desktop no mobile */
-  .desktop-sparkle-1, .desktop-sparkle-2, .desktop-sparkle-3,
-  .desktop-glow {
-    display: none;
-  }
-  
-  /* ANIMAÇÕES MOBILE - mantidas */
-  .name-container h1 {
-    animation: mobileGlow 3s ease-in-out infinite;
-  }
-  
-  .name-container::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), transparent);
-    border-radius: 2px;
-    animation: mobileLine 3s ease-in-out infinite;
-    box-shadow: 0 0 10px var(--dourado);
-  }
-  
-  .name-container {
-    position: relative;
-  }
-  
-  .name-container::before {
-    content: '✦';
-    position: absolute;
-    top: -15px;
-    left: -10px;
-    color: var(--dourado);
-    font-size: 1.2rem;
-    animation: mobileSparkle 4s ease-in-out infinite;
-    opacity: 0;
-    text-shadow: 0 0 10px var(--dourado);
-  }
-  
-  .mobile-sparkle {
-    display: block;
-    position: absolute;
-    pointer-events: none;
-  }
-  
-  .sparkle-1, .sparkle-2, .sparkle-3 {
-    position: absolute;
-    color: var(--dourado);
-    font-size: 1rem;
-    opacity: 0;
-    animation: mobileSparkle 3s ease-in-out infinite;
-  }
-  
-  .sparkle-1 {
-    top: -20px;
-    right: 0;
-    animation-delay: 0.5s;
-    content: '✧';
-  }
-  
-  .sparkle-2 {
-    bottom: -15px;
-    left: 20%;
-    animation-delay: 1.5s;
-  }
-  
-  .sparkle-3 {
-    top: 20%;
-    right: -15px;
-    animation-delay: 2.5s;
-  }
-  
-  .mobile-glow {
-    display: block;
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--dourado);
-    border-radius: 50%;
-    filter: blur(2px);
-    animation: mobilePulse 2s ease-in-out infinite;
-    box-shadow: 0 0 15px var(--dourado);
-  }
-  
-  .glow-1 {
-    top: -10px;
-    left: 5%;
-    animation-delay: 0.2s;
-  }
-  
-  .glow-2 {
-    bottom: 0;
-    right: 10%;
-    animation-delay: 0.8s;
-    width: 6px;
-    height: 6px;
-  }
-  
-  .glow-3 {
-    top: 30%;
-    left: -5px;
-    animation-delay: 1.4s;
-    width: 10px;
-    height: 10px;
-  }
-
-  .hero-stats {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .stat-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    border: 1px solid rgba(201, 162, 61, 0.3);
-  }
-  
-  .btn-whatsapp {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .vender-form {
-    padding: 1.5rem;
-  }
-  
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .whatsapp-float {
-    width: 55px;
-    height: 55px;
-    font-size: 2rem;
-    bottom: 1rem;
-    left: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .stat-number {
-    font-size: 1.5rem;
-  }
-
-  .galeria-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contato-container {
-    padding: 1.5rem;
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .social-links {
-    justify-content: center;
-  }
-  
-  .hero-left, .hero-right {
-    padding: 1rem;
-  }
-  
-  .geometric-frame img {
-    width: 80%;
-    height: 80%;
-  }
-}
-
-/* ===== VERSÃO DESKTOP (acima de 769px) ===== */
-@media (min-width: 769px) {
-  .hero-background {
-    opacity: 0.6;
-    background-size: contain;
-    background-position: center;
-  }
-  
-  .hero-left {
-    margin-left: -35%;
-  }
-  
-  .hero-right {
-    margin-right: 5%;
-  }
-  
-  .mobile-glow, .mobile-sparkle {
-    display: none;
-  }
-  
-  .desktop-sparkle-1, .desktop-sparkle-2, .desktop-sparkle-3,
-  .desktop-glow {
-    display: block;
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-up {
-  animation: fadeUp 0.8s ease forwards;
-}
-
-.hidden {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.8s;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Josué Afonso | Corretor de Imóveis</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --verde-escuro: #1a3528;
+      --verde-medio: #2b5a43;
+      --verde-claro: #3a7257;
+      --dourado: #c9a23d;
+      --dourado-claro: #e5c36b;
+      --dourado-escuro: #a77f2c;
+      --texto-claro: #f0f0e0;
+      --sombra: 0 10px 30px rgba(0, 0, 0, 0.2);
+      --borda-raio: 16px;
+      --espacamento: clamp(1rem, 5vw, 2rem);
+
+      /* Cores do WhatsApp */
+      --whatsapp: #25D366;
+      --whatsapp-dark: #128C7E;
+      --whatsapp-light: #DCF8C6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Importação da fonte Inter */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+
+    /* ===== HEADER MODERNO ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 53, 40, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.8rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 2px solid var(--dourado);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      color: var(--dourado);
+      font-size: 1.8rem;
+    }
+
+    .logo span {
+      color: var(--dourado);
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Navegação Desktop */
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--dourado);
+      transition: width 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--dourado-claro);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Destaque para o link "Quer vender?" */
+    nav a.highlight {
+      background: var(--dourado);
+      color: var(--verde-escuro);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    nav a.highlight::after {
+      display: none;
+    }
+
+    nav a.highlight:hover {
+      background: var(--dourado-claro);
+      transform: translateY(-2px);
+    }
+
+    /* Menu Mobile */
+    .menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0.5rem;
+    }
+
+    .menu-btn span {
+      width: 28px;
+      height: 2px;
+      background: var(--dourado);
+      transition: 0.3s;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* ===== HERO SECTION COM FUNDO ANIMADO ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 2rem;
+      padding: 6rem 5% 2rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(26, 53, 40, 0.85), rgba(43, 90, 67, 0.85));
+    }
+
+    /* Container da imagem de fundo - DESKTOP */
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background-image: url('Assets/Imagens/logosn.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.6;
+      z-index: 0;
+      will-change: transform;
+      pointer-events: none;
+      transform: translateY(0);
+      animation: floatBackground 8s ease-in-out infinite;
+    }
+
+    /* Animação de flutuação */
+    @keyframes floatBackground {
+      0% {
+        transform: translateY(-5%) scale(1.05);
+      }
+
+      50% {
+        transform: translateY(5%) scale(1.08);
+      }
+
+      100% {
+        transform: translateY(-5%) scale(1.05);
+      }
+    }
+
+    /* ===== LADO ESQUERDO - NOME E FOTO (DESKTOP) ===== */
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    /* Nome com animação mobile adaptada para desktop */
+    .name-container {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .name-container h1 {
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      color: var(--dourado);
+      line-height: 1.2;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 0 20px rgba(201, 162, 61, 0.3);
+      animation: desktopGlow 3s ease-in-out infinite;
+    }
+
+    .name-container h1 span {
+      color: var(--texto-claro);
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      display: block;
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+
+    /* Animação de brilho para desktop */
+    @keyframes desktopGlow {
+      0% {
+        text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+        opacity: 0.8;
+      }
+
+      50% {
+        text-shadow: 0 0 20px var(--dourado-claro), 0 0 30px var(--dourado), 0 0 40px var(--dourado);
+        opacity: 1;
+      }
+
+      100% {
+        text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+        opacity: 0.8;
+      }
+    }
+
+    /* Linha animada abaixo do nome - igual ao mobile */
+    .name-container::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), transparent);
+      border-radius: 2px;
+      animation: desktopLine 3s ease-in-out infinite;
+      box-shadow: 0 0 10px var(--dourado);
+    }
+
+    @keyframes desktopLine {
+      0% {
+        width: 0;
+        opacity: 0;
+      }
+
+      30% {
+        width: 100%;
+        opacity: 0.8;
+      }
+
+      70% {
+        width: 100%;
+        opacity: 0.8;
+      }
+
+      100% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    /* Partículas de brilho - adaptadas do mobile */
+    .name-container::before {
+      content: '✦';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      color: var(--dourado);
+      font-size: 1.5rem;
+      animation: desktopSparkle 4s ease-in-out infinite;
+      opacity: 0;
+      text-shadow: 0 0 10px var(--dourado);
+      z-index: 3;
+    }
+
+    .desktop-sparkle-1,
+    .desktop-sparkle-2,
+    .desktop-sparkle-3 {
+      position: absolute;
+      color: var(--dourado);
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: desktopSparkle 3s ease-in-out infinite;
+      text-shadow: 0 0 15px var(--dourado);
+      z-index: 3;
+    }
+
+    .desktop-sparkle-1 {
+      top: -30px;
+      right: -10px;
+      animation-delay: 0.5s;
+      content: '✧';
+    }
+
+    .desktop-sparkle-2 {
+      bottom: -20px;
+      left: 30%;
+      animation-delay: 1.5s;
+    }
+
+    .desktop-sparkle-3 {
+      top: 40%;
+      right: -30px;
+      animation-delay: 2.5s;
+    }
+
+    @keyframes desktopSparkle {
+      0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        transform: scale(1.3) rotate(45deg);
+        opacity: 0.9;
+      }
+
+      40% {
+        transform: scale(1.1) rotate(90deg);
+        opacity: 0.5;
+      }
+
+      60% {
+        transform: scale(0.9) rotate(135deg);
+        opacity: 0.7;
+      }
+
+      80% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.4;
+      }
+
+      100% {
+        transform: scale(0) rotate(225deg);
+        opacity: 0;
+      }
+    }
+
+    /* Pontos de brilho pulsantes */
+    .desktop-glow {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--dourado);
+      border-radius: 50%;
+      filter: blur(3px);
+      animation: desktopPulse 2s ease-in-out infinite;
+      box-shadow: 0 0 20px var(--dourado);
+      z-index: 3;
+    }
+
+    .glow-1 {
+      top: -20px;
+      left: 15%;
+      animation-delay: 0.2s;
+      width: 12px;
+      height: 12px;
+    }
+
+    .glow-2 {
+      bottom: -15px;
+      right: 20%;
+      animation-delay: 0.8s;
+      width: 8px;
+      height: 8px;
+    }
+
+    .glow-3 {
+      top: 25%;
+      left: -15px;
+      animation-delay: 1.4s;
+      width: 15px;
+      height: 15px;
+    }
+
+    .glow-4 {
+      bottom: 35%;
+      right: -20px;
+      animation-delay: 2s;
+      width: 10px;
+      height: 10px;
+    }
+
+    @keyframes desktopPulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+
+      50% {
+        transform: scale(1.8);
+        opacity: 0.9;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    /* Moldura geométrica (hexágono) */
+    .foto-container {
+      width: min(350px, 80vw);
+      height: min(350px, 80vw);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .geometric-frame {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .geometric-frame::before {
+      content: '';
+      position: absolute;
+      width: 110%;
+      height: 110%;
+      background: transparent;
+      border: 4px solid var(--dourado);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      animation: rotateFrame 12s linear infinite;
+      box-shadow: 0 0 30px rgba(201, 162, 61, 0.3);
+    }
+
+    .geometric-frame::after {
+      content: '';
+      position: absolute;
+      width: 105%;
+      height: 105%;
+      background: transparent;
+      border: 2px solid rgba(201, 162, 61, 0.3);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      animation: rotateFrameReverse 15s linear infinite;
+    }
+
+    @keyframes rotateFrame {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(180deg) scale(1.05);
+      }
+
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    @keyframes rotateFrameReverse {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(-180deg) scale(1.02);
+      }
+
+      100% {
+        transform: rotate(-360deg) scale(1);
+      }
+    }
+
+    .geometric-frame img {
+      width: 85%;
+      height: 85%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--dourado);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 2;
+      transition: transform 0.5s;
+    }
+
+    .geometric-frame:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ===== LADO DIREITO - CONTEÚDO (DESKTOP) ===== */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: right;
+    }
+
+    .hero-right p {
+      text-align: right;
+      max-width: 500px;
+    }
+
+    .hero-badge {
+      background: rgba(201, 162, 61, 0.15);
+      border: 1px solid var(--dourado);
+      border-radius: 50px;
+      padding: 0.3rem 1rem;
+      display: inline-block;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      margin-left: auto;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+      justify-content: flex-end;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dourado);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* ===== BOTÃO WHATSAPP ===== */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--whatsapp);
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      border-radius: 60px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-whatsapp i {
+      font-size: 1.6rem;
+      transition: transform 0.3s;
+    }
+
+    .btn-whatsapp span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn-whatsapp::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+      z-index: 1;
+    }
+
+    .btn-whatsapp:hover {
+      background: var(--whatsapp-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-whatsapp:hover i {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .btn-whatsapp:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* WhatsApp flutuante - LADO ESQUERDO */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      background: var(--whatsapp);
+      color: white;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      z-index: 99;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: pulse-whatsapp 2s infinite;
+      text-decoration: none;
+      border: 3px solid white;
+    }
+
+    @keyframes pulse-whatsapp {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      }
+
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      }
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.15) rotate(5deg);
+      background: var(--whatsapp-dark);
+      animation: none;
+    }
+
+    /* ===== SEÇÃO VENDER IMÓVEL ===== */
+    .vender-section {
+      padding: 5rem 5%;
+      background: linear-gradient(135deg, var(--verde-escuro), var(--verde-medio));
+      position: relative;
+      overflow: hidden;
+      border-top: 2px solid var(--dourado);
+      border-bottom: 2px solid var(--dourado);
+    }
+
+    .vender-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('Assets/Imagens/logosn.png') no-repeat center;
+      background-size: cover;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .vender-container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .vender-container h2 {
+      color: var(--dourado);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .vender-container p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .vender-form {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--dourado);
+      border-radius: var(--borda-raio);
+      padding: 2.5rem;
+      box-shadow: var(--sombra);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dourado-claro);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(201, 162, 61, 0.3);
+      border-radius: 12px;
+      color: var(--texto-claro);
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--dourado);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-vender {
+      background: var(--dourado);
+      color: var(--verde-escuro);
+      border: none;
+      padding: 1.2rem 2rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .btn-vender i {
+      font-size: 1.4rem;
+    }
+
+    .btn-vender:hover {
+      background: transparent;
+      color: var(--dourado);
+      border-color: var(--dourado);
+      transform: translateY(-3px);
+    }
+
+    /* ===== SEÇÕES ===== */
+    section {
+      padding: 5rem 5%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-header h2 {
+      color: var(--dourado);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--dourado);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    /* Cards de Destaque */
+    .highlight-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(201, 162, 61, 0.2);
+      border-radius: var(--borda-raio);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--dourado);
+    }
+
+    .card i {
+      font-size: 3rem;
+      color: var(--dourado);
+      margin-bottom: 1.5rem;
+    }
+
+    .card h3 {
+      color: var(--dourado-claro);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+
+    /* Galeria de Imóveis */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .imovel-card {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--borda-raio);
+      overflow: hidden;
+      border: 1px solid rgba(201, 162, 61, 0.2);
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .imovel-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--dourado);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .imovel-img {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .imovel-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+
+    .imovel-card:hover .imovel-img img {
+      transform: scale(1.1);
+    }
+
+    .imovel-info {
+      padding: 1.5rem;
+    }
+
+    .imovel-info h3 {
+      color: var(--dourado);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .imovel-preco {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dourado-claro);
+      margin: 1rem 0;
+    }
+
+    .imovel-detalhes {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .imovel-detalhes i {
+      color: var(--dourado);
+      margin-right: 0.3rem;
+    }
+
+    /* Botão nos cards */
+    .btn-imovel {
+      background: var(--dourado);
+      border: none;
+      color: var(--verde-escuro);
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+      font-size: 0.95rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+    }
+
+    .imovel-card:hover .btn-imovel {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Contato Section */
+    .contato-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--borda-raio);
+      padding: 3rem;
+      border: 1px solid rgba(201, 162, 61, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .contato-info h3 {
+      color: var(--dourado);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contato-detalhes {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .contato-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contato-item i {
+      width: 40px;
+      height: 40px;
+      background: rgba(201, 162, 61, 0.1);
+      border: 1px solid var(--dourado);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dourado);
+    }
+
+    .contato-item.whatsapp i {
+      background: rgba(37, 211, 102, 0.1);
+      border-color: var(--whatsapp);
+      color: var(--whatsapp);
+    }
+
+    .contato-item span {
+      font-size: 1.1rem;
+    }
+
+    .creci-badge {
+      background: rgba(201, 162, 61, 0.15);
+      border: 1px solid var(--dourado);
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    /* Formulário Moderno */
+    .contato-form {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--borda-raio);
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(201, 162, 61, 0.3);
+      border-radius: 12px;
+      color: var(--texto-claro);
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--dourado);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 3rem 5% 1.5rem;
+      border-top: 1px solid rgba(201, 162, 61, 0.2);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h4 {
+      color: var(--dourado);
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+      opacity: 1;
+      color: var(--dourado-claro);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(201, 162, 61, 0.1);
+      border: 1px solid var(--dourado);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dourado);
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--dourado);
+      color: var(--verde-escuro);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* ===== ANIMAÇÕES MOBILE ===== */
+    @keyframes mobileGlow {
+      0% {
+        text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+        opacity: 0.7;
+      }
+
+      50% {
+        text-shadow: 0 0 20px var(--dourado-claro), 0 0 30px var(--dourado);
+        opacity: 1;
+      }
+
+      100% {
+        text-shadow: 0 0 5px var(--dourado), 0 0 10px var(--dourado);
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes mobileSparkle {
+      0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        transform: scale(1.2) rotate(45deg);
+        opacity: 0.8;
+      }
+
+      40% {
+        transform: scale(1) rotate(90deg);
+        opacity: 0.4;
+      }
+
+      60% {
+        transform: scale(0.8) rotate(135deg);
+        opacity: 0.6;
+      }
+
+      80% {
+        transform: scale(1.1) rotate(180deg);
+        opacity: 0.3;
+      }
+
+      100% {
+        transform: scale(0) rotate(225deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes mobileLine {
+      0% {
+        width: 0;
+        opacity: 0;
+      }
+
+      30% {
+        width: 100%;
+        opacity: 0.6;
+      }
+
+      70% {
+        width: 100%;
+        opacity: 0.6;
+      }
+
+      100% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes mobilePulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+
+      50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    @media (max-width: 968px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 5rem;
+      }
+
+      .hero-left {
+        grid-row: 1;
+      }
+
+      .hero-right {
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-right p {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-badge {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .foto-container {
+        width: min(300px, 60vw);
+        height: min(300px, 60vw);
+        margin: 0 auto;
+      }
+
+      .contato-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      nav a.highlight {
+        margin: 0.5rem 0;
+      }
+    }
+
+    /* ===== VERSÃO MOBILE (até 768px) ===== */
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: flex;
+      }
+
+      nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--verde-escuro);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s;
+        border-bottom: 2px solid var(--dourado);
+        z-index: 999;
+      }
+
+      nav.active {
+        max-height: 400px;
+        padding: 1rem 0;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(201, 162, 61, 0.1);
+      }
+
+      nav a::after {
+        display: none;
+      }
+
+      nav a.highlight {
+        background: transparent;
+        color: var(--dourado);
+        padding: 1rem;
+        border-radius: 0;
+      }
+
+      nav a.highlight:hover {
+        background: rgba(201, 162, 61, 0.1);
+        color: var(--dourado-claro);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, rgba(26, 53, 40, 0.95), rgba(43, 90, 67, 0.95));
+        min-height: auto;
+        padding-bottom: 3rem;
+      }
+
+      .hero-background {
+        opacity: 0.25;
+        height: 100%;
+        animation: floatBackgroundMobile 8s ease-in-out infinite;
+      }
+
+      @keyframes floatBackgroundMobile {
+        0% {
+          transform: translateY(-3%) scale(1.03);
+        }
+
+        50% {
+          transform: translateY(3%) scale(1.05);
+        }
+
+        100% {
+          transform: translateY(-3%) scale(1.03);
+        }
+      }
+
+      /* ===== LAYOUT MOBILE ===== */
+      .hero-left,
+      .hero-right {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        margin-top: 1rem;
+      }
+
+      /* Esconde elementos específicos do desktop no mobile */
+      .desktop-sparkle-1,
+      .desktop-sparkle-2,
+      .desktop-sparkle-3,
+      .desktop-glow {
+        display: none;
+      }
+
+      /* ANIMAÇÕES MOBILE - mantidas */
+      .name-container h1 {
+        animation: mobileGlow 3s ease-in-out infinite;
+      }
+
+      .name-container::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), transparent);
+        border-radius: 2px;
+        animation: mobileLine 3s ease-in-out infinite;
+        box-shadow: 0 0 10px var(--dourado);
+      }
+
+      .name-container {
+        position: relative;
+      }
+
+      .name-container::before {
+        content: '✦';
+        position: absolute;
+        top: -15px;
+        left: -10px;
+        color: var(--dourado);
+        font-size: 1.2rem;
+        animation: mobileSparkle 4s ease-in-out infinite;
+        opacity: 0;
+        text-shadow: 0 0 10px var(--dourado);
+      }
+
+      .mobile-sparkle {
+        display: block;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .sparkle-1,
+      .sparkle-2,
+      .sparkle-3 {
+        position: absolute;
+        color: var(--dourado);
+        font-size: 1rem;
+        opacity: 0;
+        animation: mobileSparkle 3s ease-in-out infinite;
+      }
+
+      .sparkle-1 {
+        top: -20px;
+        right: 0;
+        animation-delay: 0.5s;
+        content: '✧';
+      }
+
+      .sparkle-2 {
+        bottom: -15px;
+        left: 20%;
+        animation-delay: 1.5s;
+      }
+
+      .sparkle-3 {
+        top: 20%;
+        right: -15px;
+        animation-delay: 2.5s;
+      }
+
+      .mobile-glow {
+        display: block;
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: var(--dourado);
+        border-radius: 50%;
+        filter: blur(2px);
+        animation: mobilePulse 2s ease-in-out infinite;
+        box-shadow: 0 0 15px var(--dourado);
+      }
+
+      .glow-1 {
+        top: -10px;
+        left: 5%;
+        animation-delay: 0.2s;
+      }
+
+      .glow-2 {
+        bottom: 0;
+        right: 10%;
+        animation-delay: 0.8s;
+        width: 6px;
+        height: 6px;
+      }
+
+      .glow-3 {
+        top: 30%;
+        left: -5px;
+        animation-delay: 1.4s;
+        width: 10px;
+        height: 10px;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(201, 162, 61, 0.3);
+      }
+
+      .btn-whatsapp {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .vender-form {
+        padding: 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 2rem;
+        bottom: 1rem;
+        left: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stat-number {
+        font-size: 1.5rem;
+      }
+
+      .galeria-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contato-container {
+        padding: 1.5rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .hero-left,
+      .hero-right {
+        padding: 1rem;
+      }
+
+      .geometric-frame img {
+        width: 80%;
+        height: 80%;
+      }
+    }
+
+    /* ===== VERSÃO DESKTOP (acima de 769px) ===== */
+    @media (min-width: 769px) {
+      .hero-background {
+        opacity: 0.6;
+        background-size: contain;
+        background-position: center;
+      }
+
+      .hero-left {
+        margin-left: -35%;
+      }
+
+      .hero-right {
+        margin-right: 5%;
+      }
+
+      .mobile-glow,
+      .mobile-sparkle {
+        display: none;
+      }
+
+      .desktop-sparkle-1,
+      .desktop-sparkle-2,
+      .desktop-sparkle-3,
+      .desktop-glow {
+        display: block;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.8s;
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- WhatsApp Flutuante - LADO ESQUERDO -->
-<a href="#" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
+  <!-- WhatsApp Flutuante - LADO ESQUERDO -->
+  <a href="#" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-<!-- Header -->
-<header>
-  <div class="logo">
-    <i class="fas fa-tree"></i>
-    <span>JOSUÉ AFONSO</span>
-  </div>
-
-  <div class="menu-btn" id="menuBtn">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <nav id="mainNav">
-    <a href="#inicio">Início</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#imoveis">Imóveis</a>
-    <a href="#vender" class="highlight">💰 Quer vender?</a>
-    <a href="#contato">Contato</a>
-  </nav>
-</header>
-
-<!-- Hero Section -->
-<section id="inicio" class="hero">
-  <div class="hero-background" id="heroBackground"></div>
-  
-  <!-- Lado Esquerdo - Nome e Foto -->
-  <div class="hero-left fade-up">
-    <div class="name-container">
-      <h1>
-        Josué Afonso
-        <span>Corretor de Imóveis</span>
-      </h1>
-      
-      <!-- Elementos de brilho do mobile adaptados para desktop -->
-      <div class="desktop-glow glow-1"></div>
-      <div class="desktop-glow glow-2"></div>
-      <div class="desktop-glow glow-3"></div>
-      <div class="desktop-glow glow-4"></div>
-      
-      <div class="desktop-sparkle-1">✧</div>
-      <div class="desktop-sparkle-2">✦</div>
-      <div class="desktop-sparkle-3">✧</div>
-    </div>
-    
-    <div class="foto-container">
-      <div class="geometric-frame">
-        <img src="Assets/Imagens/FotoPerfil.png" alt="Josué Afonso - Corretor">
-      </div>
-    </div>
-  </div>
-
-  <!-- Lado Direito - Conteúdo -->
-  <div class="hero-right fade-up">
-    <div class="hero-badge">
-      <i class="fas fa-check-circle"></i> Técnico em Transações Imobiliárias
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-tree"></i>
+      <span>JOSUÉ AFONSO</span>
     </div>
 
-    <p style="font-size: 1.2rem; margin: 1.5rem 0;">
-      Transformando sonhos em propriedades reais com segurança e expertise
-    </p>
+    <div class="menu-btn" id="menuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-number">500+</span>
-        <span class="stat-label">Imóveis Comercializados</span>
+    <nav id="mainNav">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#imoveis">Imóveis</a>
+      <a href="#vender" class="highlight">💰 Quer vender?</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="hero">
+    <div class="hero-background" id="heroBackground"></div>
+
+    <!-- Lado Esquerdo - Nome e Foto -->
+    <div class="hero-left fade-up">
+      <div class="name-container">
+        <h1>
+          Josué Afonso
+          <span>Corretor de Imóveis</span>
+        </h1>
+
+        <!-- Elementos de brilho do mobile adaptados para desktop -->
+        <div class="desktop-glow glow-1"></div>
+        <div class="desktop-glow glow-2"></div>
+        <div class="desktop-glow glow-3"></div>
+        <div class="desktop-glow glow-4"></div>
+
+        <div class="desktop-sparkle-1">✧</div>
+        <div class="desktop-sparkle-2">✦</div>
+        <div class="desktop-sparkle-3">✧</div>
       </div>
-      <div class="stat-item">
-        <span class="stat-number">12</span>
-        <span class="stat-label">Anos de Experiência</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">MT</span>
-        <span class="stat-label">CRECI 20998</span>
+
+      <div class="foto-container">
+        <div class="geometric-frame">
+          <img src="Assets/Imagens/FotoPerfil.png" alt="Josué Afonso - Corretor">
+        </div>
       </div>
     </div>
 
-    <a href="#" class="btn-whatsapp" id="heroWhatsAppBtn">
-      <i class="fab fa-whatsapp"></i>
-      <span>Falar no WhatsApp</span>
-    </a>
-  </div>
-</section>
+    <!-- Lado Direito - Conteúdo -->
+    <div class="hero-right fade-up">
+      <div class="hero-badge">
+        <i class="fas fa-check-circle"></i> Técnico em Transações Imobiliárias
+      </div>
 
-<!-- ===== SEÇÃO VENDER IMÓVEL ===== -->
-<section id="vender" class="vender-section">
-  <div class="vender-container">
-    <h2>💰 Quer vender seu imóvel?</h2>
-    <p>Anuncie gratuitamente e alcance milhares de compradores em potencial!</p>
-    
-    <div class="vender-form">
-      <form id="venderForm">
-        <div class="form-row">
+      <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+        Transformando sonhos em propriedades reais com segurança e expertise
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Imóveis Comercializados</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Anos de Experiência</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">MT</span>
+          <span class="stat-label">CRECI 20998</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn-whatsapp" id="heroWhatsAppBtn">
+        <i class="fab fa-whatsapp"></i>
+        <span>Falar no WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO VENDER IMÓVEL ===== -->
+  <section id="vender" class="vender-section">
+    <div class="vender-container">
+      <h2>💰 Quer vender seu imóvel?</h2>
+      <!-- IMAGEM CHAMATIVA AMARELA -->
+<div style="text-align: center; margin: 25px 0;">
+    <div style="
+        background: linear-gradient(145deg, #FFD966 0%, #FFB347 100%);
+        padding: 25px 40px;
+        border-radius: 60px 60px 60px 60px / 30px 30px 30px 30px;
+        display: inline-block;
+        box-shadow: 0 15px 0 #B45F06, 0 20px 20px rgba(0,0,0,0.3);
+        border: 2px solid #F1C40F;
+        transform: rotate(-2deg);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        font-family: 'Arial Black', 'Impact', sans-serif;
+    ">
+        <!-- Brilho interno -->
+        <div style="
+            position: relative;
+            z-index: 2;
+            text-shadow: 3px 3px 0 #B45F06, 5px 5px 0 rgba(0,0,0,0.2);
+            color: #FFFFFF;
+            font-size: 48px;
+            letter-spacing: 4px;
+            word-break: keep-all;
+            line-height: 1.2;
+        ">
+            ⚡ ANUNCIE AQUI! ⚡
+        </div>
+        <!-- Detalhe de brilho extra -->
+        <div style="
+            position: relative;
+            top: -10px;
+            font-size: 18px;
+            color: #FFE484;
+            text-shadow: 1px 1px 0 #B45F06;
+            font-weight: bold;
+            letter-spacing: 2px;
+        ">
+            ★ DESTAQUE SEU IMÓVEL ★
+        </div>
+    </div>
+</div>
+      <p>Anuncie gratuitamente e alcance milhares de compradores em potencial!</p>
+
+      <div class="vender-form">
+        <form id="venderForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vender-nome">Seu nome *</label>
+              <input type="text" id="vender-nome" placeholder="Digite seu nome completo" required>
+            </div>
+            <div class="form-group">
+              <label for="vender-telefone">Telefone / WhatsApp *</label>
+              <input type="tel" id="vender-telefone" placeholder="(66) 99999-9999" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vender-email">E-mail</label>
+              <input type="email" id="vender-email" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+              <label for="vender-cidade">Cidade *</label>
+              <input type="text" id="vender-cidade" placeholder="Cidade do imóvel" required>
+            </div>
+          </div>
+
           <div class="form-group">
-            <label for="vender-nome">Seu nome *</label>
-            <input type="text" id="vender-nome" placeholder="Digite seu nome completo" required>
+            <label for="vender-tipo">Tipo de imóvel *</label>
+            <select id="vender-tipo" required>
+              <option value="">Selecione o tipo</option>
+              <option value="Fazenda">Fazenda</option>
+              <option value="Chácara">Chácara / Sítio</option>
+              <option value="Casa">Casa</option>
+              <option value="Apartamento">Apartamento</option>
+              <option value="Terreno">Terreno / Lote</option>
+              <option value="Comercial">Comercial / Barracão</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="vender-descricao">Descrição do imóvel *</label>
+            <textarea id="vender-descricao" rows="4"
+              placeholder="Conte um pouco sobre o imóvel: área, localização, características, etc." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="vender-valor">Valor pretendido (opcional)</label>
+            <input type="text" id="vender-valor" placeholder="Ex: R$ 500.000">
+          </div>
+
+          <button type="submit" class="btn-vender">
+            <i class="fab fa-whatsapp"></i>
+            Enviar proposta pelo WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destaques Section -->
+  <section id="sobre" class="hidden">
+    <div class="section-header">
+      <h2>Por que escolher nosso trabalho?</h2>
+      <p>Experiência, transparência e os melhores negócios do mercado</p>
+    </div>
+
+    <div class="highlight-cards">
+      <div class="card">
+        <i class="fas fa-handshake"></i>
+        <h3>Negociação Estratégica</h3>
+        <p>Mais de uma década fechando negócios vantajosos para compradores e vendedores</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-file-signature"></i>
+        <h3>Segurança Jurídica</h3>
+        <p>Toda documentação analisada por especialistas para sua tranquilidade</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Imóveis Rurais</h3>
+        <p>Especialista em fazendas, chácaras e propriedades agrícolas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Imóveis Section -->
+  <section id="imoveis" class="hidden">
+    <div class="section-header">
+      <h2>Imóveis em Destaque</h2>
+      <p>Selecionamos as melhores oportunidades para você</p>
+    </div>
+
+    <div class="galeria-grid">
+      <a href="fazenda.html" class="imovel-card">
+        <div class="imovel-img">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Fazenda 1.200 Hectares"
+            loading="lazy">
+        </div>
+        <div class="imovel-info">
+          <h3>Fazenda 1.200 Hectares</h3>
+          <div class="imovel-detalhes">
+            <span><i class="fas fa-tachometer-alt"></i> 1.200 ha</span>
+            <span><i class="fas fa-water"></i> 3 nascentes</span>
+          </div>
+          <div class="imovel-preco">R$ 18.500.000</div>
+          <div class="btn-imovel" style="pointer-events: none;">
+            <i class="fas fa-eye"></i>
+            Ver detalhes
+          </div>
+        </div>
+      </a>
+
+      <a href="imovel2.html" class="imovel-card">
+        <div class="imovel-img">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d" alt="Casa Alto Padrão" loading="lazy">
+        </div>
+        <div class="imovel-info">
+          <h3>Casa Alto Padrão</h3>
+          <div class="imovel-detalhes">
+            <span><i class="fas fa-bed"></i> 4 suítes</span>
+            <span><i class="fas fa-car"></i> Garagem 3 vagas</span>
+          </div>
+          <div class="imovel-preco">R$ 2.450.000</div>
+          <div class="btn-imovel" style="pointer-events: none;">
+            <i class="fas fa-eye"></i>
+            Ver detalhes
+          </div>
+        </div>
+      </a>
+
+      <a href="imovel3.html" class="imovel-card">
+        <div class="imovel-img">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Chácara 5 Hectares"
+            loading="lazy">
+        </div>
+        <div class="imovel-info">
+          <h3>Chácara 5 Hectares</h3>
+          <div class="imovel-detalhes">
+            <span><i class="fas fa-tachometer-alt"></i> 5 ha</span>
+            <span><i class="fas fa-home"></i> Casa 3 quartos</span>
+          </div>
+          <div class="imovel-preco">R$ 890.000</div>
+          <div class="btn-imovel" style="pointer-events: none;">
+            <i class="fas fa-eye"></i>
+            Ver detalhes
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contato Section -->
+  <section id="contato" class="contato-section hidden">
+    <div class="section-header">
+      <h2>Vamos conversar?</h2>
+      <p>Estou pronto para ajudar você a encontrar o imóvel ideal</p>
+    </div>
+
+    <div class="contato-container">
+      <div class="contato-info">
+        <h3>Informações de Contato</h3>
+
+        <div class="contato-detalhes">
+          <div class="contato-item whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>(66) 99670-0226</span>
+          </div>
+          <div class="contato-item">
+            <i class="fas fa-envelope"></i>
+            <span>josueafonsocorretor@gmail.com</span>
+          </div>
+          <div class="contato-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Mato Grosso - Brasil</span>
+          </div>
+        </div>
+
+        <div class="creci-badge">
+          <i class="fas fa-registered"></i> CRECI MT 20998
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h4 style="color: var(--dourado); margin-bottom: 1rem;">Redes Sociais</h4>
+          <div class="social-links" style="justify-content: flex-start;">
+            <a href="https://www.instagram.com/josueafonso_corretor/" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-instagram"></i></a>
+            <a href="https://web.facebook.com/josue.afonso.336" target="_blank" rel="noopener noreferrer"><i
+                class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contato-form">
+        <form id="whatsappForm">
+          <div class="form-group">
+            <input type="text" id="nome" placeholder="Seu nome" required>
           </div>
           <div class="form-group">
-            <label for="vender-telefone">Telefone / WhatsApp *</label>
-            <input type="tel" id="vender-telefone" placeholder="(66) 99999-9999" required>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label for="vender-email">E-mail</label>
-            <input type="email" id="vender-email" placeholder="seu@email.com">
+            <input type="tel" id="telefone" placeholder="Seu telefone">
           </div>
           <div class="form-group">
-            <label for="vender-cidade">Cidade *</label>
-            <input type="text" id="vender-cidade" placeholder="Cidade do imóvel" required>
+            <input type="email" id="email" placeholder="Seu e-mail">
           </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="vender-tipo">Tipo de imóvel *</label>
-          <select id="vender-tipo" required>
-            <option value="">Selecione o tipo</option>
-            <option value="Fazenda">Fazenda</option>
-            <option value="Chácara">Chácara / Sítio</option>
-            <option value="Casa">Casa</option>
-            <option value="Apartamento">Apartamento</option>
-            <option value="Terreno">Terreno / Lote</option>
-            <option value="Comercial">Comercial / Barracão</option>
-            <option value="Outro">Outro</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="vender-descricao">Descrição do imóvel *</label>
-          <textarea id="vender-descricao" rows="4" placeholder="Conte um pouco sobre o imóvel: área, localização, características, etc." required></textarea>
-        </div>
-        
-        <div class="form-group">
-          <label for="vender-valor">Valor pretendido (opcional)</label>
-          <input type="text" id="vender-valor" placeholder="Ex: R$ 500.000">
-        </div>
-        
-        <button type="submit" class="btn-vender">
-          <i class="fab fa-whatsapp"></i>
-          Enviar proposta pelo WhatsApp
-        </button>
-      </form>
+          <div class="form-group">
+            <select id="interesse">
+              <option value="">Tipo de imóvel de interesse</option>
+              <option value="Fazenda">Fazenda</option>
+              <option value="Chácara">Chácara</option>
+              <option value="Casa">Casa</option>
+              <option value="Terreno">Terreno</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
+          </div>
+          <button type="submit" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>Enviar Mensagem</span>
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Destaques Section -->
-<section id="sobre" class="hidden">
-  <div class="section-header">
-    <h2>Por que escolher nosso trabalho?</h2>
-    <p>Experiência, transparência e os melhores negócios do mercado</p>
-  </div>
-
-  <div class="highlight-cards">
-    <div class="card">
-      <i class="fas fa-handshake"></i>
-      <h3>Negociação Estratégica</h3>
-      <p>Mais de uma década fechando negócios vantajosos para compradores e vendedores</p>
-    </div>
-
-    <div class="card">
-      <i class="fas fa-file-signature"></i>
-      <h3>Segurança Jurídica</h3>
-      <p>Toda documentação analisada por especialistas para sua tranquilidade</p>
-    </div>
-
-    <div class="card">
-      <i class="fas fa-map-marked-alt"></i>
-      <h3>Imóveis Rurais</h3>
-      <p>Especialista em fazendas, chácaras e propriedades agrícolas</p>
-    </div>
-  </div>
-</section>
-
-<!-- Imóveis Section -->
-<section id="imoveis" class="hidden">
-  <div class="section-header">
-    <h2>Imóveis em Destaque</h2>
-    <p>Selecionamos as melhores oportunidades para você</p>
-  </div>
-
-  <div class="galeria-grid">
-    <a href="fazenda.html" class="imovel-card">
-      <div class="imovel-img">
-        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Fazenda 1.200 Hectares" loading="lazy">
-      </div>
-      <div class="imovel-info">
-        <h3>Fazenda 1.200 Hectares</h3>
-        <div class="imovel-detalhes">
-          <span><i class="fas fa-tachometer-alt"></i> 1.200 ha</span>
-          <span><i class="fas fa-water"></i> 3 nascentes</span>
-        </div>
-        <div class="imovel-preco">R$ 18.500.000</div>
-        <div class="btn-imovel" style="pointer-events: none;">
-          <i class="fas fa-eye"></i>
-          Ver detalhes
-        </div>
-      </div>
-    </a>
-
-    <a href="imovel2.html" class="imovel-card">
-      <div class="imovel-img">
-        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d" alt="Casa Alto Padrão" loading="lazy">
-      </div>
-      <div class="imovel-info">
-        <h3>Casa Alto Padrão</h3>
-        <div class="imovel-detalhes">
-          <span><i class="fas fa-bed"></i> 4 suítes</span>
-          <span><i class="fas fa-car"></i> Garagem 3 vagas</span>
-        </div>
-        <div class="imovel-preco">R$ 2.450.000</div>
-        <div class="btn-imovel" style="pointer-events: none;">
-          <i class="fas fa-eye"></i>
-          Ver detalhes
-        </div>
-      </div>
-    </a>
-
-    <a href="imovel3.html" class="imovel-card">
-      <div class="imovel-img">
-        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Chácara 5 Hectares" loading="lazy">
-      </div>
-      <div class="imovel-info">
-        <h3>Chácara 5 Hectares</h3>
-        <div class="imovel-detalhes">
-          <span><i class="fas fa-tachometer-alt"></i> 5 ha</span>
-          <span><i class="fas fa-home"></i> Casa 3 quartos</span>
-        </div>
-        <div class="imovel-preco">R$ 890.000</div>
-        <div class="btn-imovel" style="pointer-events: none;">
-          <i class="fas fa-eye"></i>
-          Ver detalhes
-        </div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Contato Section -->
-<section id="contato" class="contato-section hidden">
-  <div class="section-header">
-    <h2>Vamos conversar?</h2>
-    <p>Estou pronto para ajudar você a encontrar o imóvel ideal</p>
-  </div>
-
-  <div class="contato-container">
-    <div class="contato-info">
-      <h3>Informações de Contato</h3>
-      
-      <div class="contato-detalhes">
-        <div class="contato-item whatsapp">
-          <i class="fab fa-whatsapp"></i>
-          <span>(66) 99670-0226</span>
-        </div>
-        <div class="contato-item">
-          <i class="fas fa-envelope"></i>
-          <span>josueafonsocorretor@gmail.com</span>
-        </div>
-        <div class="contato-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Mato Grosso - Brasil</span>
-        </div>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Josué Afonso</h4>
+        <p>Corretor de imóveis especializado em propriedades rurais e residenciais em Mato Grosso.</p>
       </div>
 
-      <div class="creci-badge">
-        <i class="fas fa-registered"></i> CRECI MT 20998
+      <div class="footer-col">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#imoveis">Imóveis</a></li>
+          <li><a href="#vender">Quer vender?</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
       </div>
 
-      <div style="margin-top: 2rem;">
-        <h4 style="color: var(--dourado); margin-bottom: 1rem;">Redes Sociais</h4>
-        <div class="social-links" style="justify-content: flex-start;">
-          <a href="https://www.instagram.com/josueafonso_corretor/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-          <a href="https://web.facebook.com/josue.afonso.336" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+      <div class="footer-col">
+        <h4>Tipos de Imóveis</h4>
+        <ul>
+          <li><a href="#">Fazendas</a></li>
+          <li><a href="#">Chácaras</a></li>
+          <li><a href="#">Casas</a></li>
+          <li><a href="#">Terrenos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociais</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/josueafonso_corretor/" target="_blank" rel="noopener noreferrer"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://web.facebook.com/josue.afonso.336" target="_blank" rel="noopener noreferrer"><i
+              class="fab fa-facebook-f"></i></a>
         </div>
       </div>
     </div>
 
-    <div class="contato-form">
-      <form id="whatsappForm">
-        <div class="form-group">
-          <input type="text" id="nome" placeholder="Seu nome" required>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Josué Afonso - Corretor de Imóveis. Todos os direitos reservados.</p>
+      <p style="margin-top: 0.5rem;">CRECI MT 20998</p>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Josué Afonso - Corretor de Imóveis. Todos os direitos reservados.</p>
+        <p style="margin-top: 0.5rem;">CRECI MT 20998</p>
+        <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="politica-privacidade.html"
+            style="color: var(--dourado-claro); text-decoration: none; font-size: 0.9rem;">Política de Privacidade</a>
+          <a href="termos-uso.html"
+            style="color: var(--dourado-claro); text-decoration: none; font-size: 0.9rem;">Termos de Uso</a>
         </div>
-        <div class="form-group">
-          <input type="tel" id="telefone" placeholder="Seu telefone">
-        </div>
-        <div class="form-group">
-          <input type="email" id="email" placeholder="Seu e-mail">
-        </div>
-        <div class="form-group">
-          <select id="interesse">
-            <option value="">Tipo de imóvel de interesse</option>
-            <option value="Fazenda">Fazenda</option>
-            <option value="Chácara">Chácara</option>
-            <option value="Casa">Casa</option>
-            <option value="Terreno">Terreno</option>
-            <option value="Outro">Outro</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea id="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
-        </div>
-        <button type="submit" class="btn-whatsapp">
-          <i class="fab fa-whatsapp"></i>
-          <span>Enviar Mensagem</span>
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="footer-content">
-    <div class="footer-col">
-      <h4>Josué Afonso</h4>
-      <p>Corretor de imóveis especializado em propriedades rurais e residenciais em Mato Grosso.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Links Rápidos</h4>
-      <ul>
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#imoveis">Imóveis</a></li>
-        <li><a href="#vender">Quer vender?</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Tipos de Imóveis</h4>
-      <ul>
-        <li><a href="#">Fazendas</a></li>
-        <li><a href="#">Chácaras</a></li>
-        <li><a href="#">Casas</a></li>
-        <li><a href="#">Terrenos</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Redes Sociais</h4>
-      <div class="social-links">
-        <a href="https://www.instagram.com/josueafonso_corretor/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-        <a href="https://web.facebook.com/josue.afonso.336" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <div class="footer-bottom">
-    <p>&copy; 2024 Josué Afonso - Corretor de Imóveis. Todos os direitos reservados.</p>
-    <p style="margin-top: 0.5rem;">CRECI MT 20998</p>
-  </div>
-</footer>
-
-<script>
-// Intersection Observer para animações
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
-
-// Menu Mobile
-const menuBtn = document.getElementById('menuBtn');
-const mainNav = document.getElementById('mainNav');
-const header = document.querySelector('header');
-
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('active');
-  mainNav.classList.toggle('active');
-});
-
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuBtn.classList.remove('active');
-    mainNav.classList.remove('active');
-  });
-});
-
-window.addEventListener('scroll', () => {
-  if (window.innerWidth <= 768) {
-    menuBtn.classList.remove('active');
-    mainNav.classList.remove('active');
-  }
-});
-
-// Função WhatsApp
-function abrirWhatsApp(mensagem) {
-  const numero = '5566996700226';
-  const texto = encodeURIComponent(mensagem);
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const url = isMobile 
-    ? `https://api.whatsapp.com/send?phone=${numero}&text=${texto}`
-    : `https://web.whatsapp.com/send?phone=${numero}&text=${texto}`;
-  window.open(url, '_blank');
-}
-
-// Formulário de contato principal
-document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const nome = document.getElementById('nome').value;
-  const telefone = document.getElementById('telefone').value;
-  const email = document.getElementById('email').value;
-  const interesse = document.getElementById('interesse').value;
-  const mensagem = document.getElementById('mensagem').value;
-  
-  let texto = `Olá Josué! Me chamo ${nome}.`;
-  
-  if (interesse) {
-    texto += `\nTenho interesse em: ${interesse}`;
-  }
-  
-  if (mensagem) {
-    texto += `\n\nMensagem: ${mensagem}`;
-  }
-  
-  texto += `\n\nMeus contatos:`;
-  if (telefone) texto += `\nTelefone: ${telefone}`;
-  if (email) texto += `\nE-mail: ${email}`;
-  
-  abrirWhatsApp(texto);
-});
-
-// Formulário de venda
-document.getElementById('venderForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const nome = document.getElementById('vender-nome').value;
-  const telefone = document.getElementById('vender-telefone').value;
-  const email = document.getElementById('vender-email').value;
-  const cidade = document.getElementById('vender-cidade').value;
-  const tipo = document.getElementById('vender-tipo').value;
-  const descricao = document.getElementById('vender-descricao').value;
-  const valor = document.getElementById('vender-valor').value;
-  
-  let texto = `Olá Josué! Gostaria de vender um imóvel com sua ajuda.\n\n`;
-  texto += `📋 DADOS DO PROPRIETÁRIO:\n`;
-  texto += `Nome: ${nome}\n`;
-  texto += `Telefone: ${telefone}\n`;
-  if (email) texto += `E-mail: ${email}\n\n`;
-  
-  texto += `🏠 DADOS DO IMÓVEL:\n`;
-  texto += `Cidade: ${cidade}\n`;
-  texto += `Tipo: ${tipo}\n`;
-  texto += `Descrição: ${descricao}\n`;
-  if (valor) texto += `Valor pretendido: ${valor}\n`;
-  
-  texto += `\nPor favor, entre em contato para avaliarmos o imóvel.`;
-  
-  abrirWhatsApp(texto);
-});
-
-// Botão WhatsApp flutuante
-document.getElementById('whatsappFloat').addEventListener('click', (e) => {
-  e.preventDefault();
-  abrirWhatsApp('Olá! Vim pelo site e gostaria de mais informações.');
-});
-
-// Botão hero WhatsApp
-document.getElementById('heroWhatsAppBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  abrirWhatsApp('Olá! Gostaria de falar sobre os imóveis.');
-});
-
-// Scroll suave para links internos
-document.querySelectorAll('a[href^="#"]:not(.btn-whatsapp):not(.whatsapp-float)').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+  <script>
+    // Intersection Observer para animações
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
       });
-    }
-  });
-});
+    }, { threshold: 0.1 });
 
-// Header background mais escuro ao rolar
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 100) {
-    header.style.background = 'rgba(26, 53, 40, 0.98)';
-  } else {
-    header.style.background = 'rgba(26, 53, 40, 0.95)';
-  }
-});
+    document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
 
-// EFEITO PARALLAX
-const heroBackground = document.getElementById('heroBackground');
-const heroSection = document.getElementById('inicio');
+    // Menu Mobile
+    const menuBtn = document.getElementById('menuBtn');
+    const mainNav = document.getElementById('mainNav');
+    const header = document.querySelector('header');
 
-function updateParallax() {
-  if (!heroSection || !heroBackground) return;
-  
-  if (window.innerWidth <= 768) {
-    heroBackground.style.transform = '';
-    return;
-  }
-  
-  const scrollPosition = window.scrollY;
-  const heroTop = heroSection.offsetTop;
-  const heroHeight = heroSection.offsetHeight;
-  
-  let scrollPercent = 0;
-  
-  if (scrollPosition <= heroTop + heroHeight) {
-    scrollPercent = Math.max(0, Math.min(1, (scrollPosition - heroTop) / heroHeight));
-  } else {
-    scrollPercent = 1;
-  }
-  
-  const moveY = -5 + (scrollPercent * 10);
-  heroBackground.style.transform = `translateY(${moveY}%) scale(1.05)`;
-}
-
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      updateParallax();
-      ticking = false;
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      mainNav.classList.toggle('active');
     });
-    ticking = true;
-  }
-});
 
-window.addEventListener('resize', updateParallax);
-updateParallax();
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        mainNav.classList.remove('active');
+      });
+    });
 
-// Otimização para iOS
-if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-  if (window.innerWidth <= 768) {
-    heroBackground.style.opacity = '0.25';
-  } else {
-    heroBackground.style.opacity = '0.6';
-  }
-}
-</script>
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768) {
+        menuBtn.classList.remove('active');
+        mainNav.classList.remove('active');
+      }
+    });
+
+    // Função WhatsApp
+    function abrirWhatsApp(mensagem) {
+      const numero = '5566996700226';
+      const texto = encodeURIComponent(mensagem);
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const url = isMobile
+        ? `https://api.whatsapp.com/send?phone=${numero}&text=${texto}`
+        : `https://web.whatsapp.com/send?phone=${numero}&text=${texto}`;
+      window.open(url, '_blank');
+    }
+
+    // Formulário de contato principal
+    document.getElementById('whatsappForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const telefone = document.getElementById('telefone').value;
+      const email = document.getElementById('email').value;
+      const interesse = document.getElementById('interesse').value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      let texto = `Olá Josué! Me chamo ${nome}.`;
+
+      if (interesse) {
+        texto += `\nTenho interesse em: ${interesse}`;
+      }
+
+      if (mensagem) {
+        texto += `\n\nMensagem: ${mensagem}`;
+      }
+
+      texto += `\n\nMeus contatos:`;
+      if (telefone) texto += `\nTelefone: ${telefone}`;
+      if (email) texto += `\nE-mail: ${email}`;
+
+      abrirWhatsApp(texto);
+    });
+
+    // Formulário de venda
+    document.getElementById('venderForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('vender-nome').value;
+      const telefone = document.getElementById('vender-telefone').value;
+      const email = document.getElementById('vender-email').value;
+      const cidade = document.getElementById('vender-cidade').value;
+      const tipo = document.getElementById('vender-tipo').value;
+      const descricao = document.getElementById('vender-descricao').value;
+      const valor = document.getElementById('vender-valor').value;
+
+      let texto = `Olá Josué! Gostaria de vender um imóvel com sua ajuda.\n\n`;
+      texto += `📋 DADOS DO PROPRIETÁRIO:\n`;
+      texto += `Nome: ${nome}\n`;
+      texto += `Telefone: ${telefone}\n`;
+      if (email) texto += `E-mail: ${email}\n\n`;
+
+      texto += `🏠 DADOS DO IMÓVEL:\n`;
+      texto += `Cidade: ${cidade}\n`;
+      texto += `Tipo: ${tipo}\n`;
+      texto += `Descrição: ${descricao}\n`;
+      if (valor) texto += `Valor pretendido: ${valor}\n`;
+
+      texto += `\nPor favor, entre em contato para avaliarmos o imóvel.`;
+
+      abrirWhatsApp(texto);
+    });
+
+    // Botão WhatsApp flutuante
+    document.getElementById('whatsappFloat').addEventListener('click', (e) => {
+      e.preventDefault();
+      abrirWhatsApp('Olá! Vim pelo site e gostaria de mais informações.');
+    });
+
+    // Botão hero WhatsApp
+    document.getElementById('heroWhatsAppBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      abrirWhatsApp('Olá! Gostaria de falar sobre os imóveis.');
+    });
+
+    // Scroll suave para links internos
+    document.querySelectorAll('a[href^="#"]:not(.btn-whatsapp):not(.whatsapp-float)').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Header background mais escuro ao rolar
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(26, 53, 40, 0.98)';
+      } else {
+        header.style.background = 'rgba(26, 53, 40, 0.95)';
+      }
+    });
+
+    // EFEITO PARALLAX
+    const heroBackground = document.getElementById('heroBackground');
+    const heroSection = document.getElementById('inicio');
+
+    function updateParallax() {
+      if (!heroSection || !heroBackground) return;
+
+      if (window.innerWidth <= 768) {
+        heroBackground.style.transform = '';
+        return;
+      }
+
+      const scrollPosition = window.scrollY;
+      const heroTop = heroSection.offsetTop;
+      const heroHeight = heroSection.offsetHeight;
+
+      let scrollPercent = 0;
+
+      if (scrollPosition <= heroTop + heroHeight) {
+        scrollPercent = Math.max(0, Math.min(1, (scrollPosition - heroTop) / heroHeight));
+      } else {
+        scrollPercent = 1;
+      }
+
+      const moveY = -5 + (scrollPercent * 10);
+      heroBackground.style.transform = `translateY(${moveY}%) scale(1.05)`;
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateParallax();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    window.addEventListener('resize', updateParallax);
+    updateParallax();
+
+    // Otimização para iOS
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      if (window.innerWidth <= 768) {
+        heroBackground.style.opacity = '0.25';
+      } else {
+        heroBackground.style.opacity = '0.6';
+      }
+    }
+  </script>
 
 </body>
+
 </html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade | Josué Afonso - Corretor de Imóveis</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --verde-escuro: #1a3528;
+      --verde-medio: #2b5a43;
+      --verde-claro: #3a7257;
+      --dourado: #c9a23d;
+      --dourado-claro: #e5c36b;
+      --texto-claro: #f0f0e0;
+      --cinza-claro: #e0e0e0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      line-height: 1.6;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+    
+    /* Header simplificado */
+    header {
+      background: rgba(26, 53, 40, 0.98);
+      padding: 1rem 5%;
+      border-bottom: 2px solid var(--dourado);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo i {
+      color: var(--dourado);
+      font-size: 1.8rem;
+    }
+    
+    .logo span {
+      color: var(--dourado);
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    
+    .back-link {
+      color: var(--texto-claro);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .back-link:hover {
+      color: var(--dourado);
+    }
+    
+    /* Conteúdo principal */
+    .privacy-container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      border: 1px solid rgba(201, 162, 61, 0.2);
+      backdrop-filter: blur(5px);
+    }
+    
+    h1 {
+      color: var(--dourado);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      border-bottom: 2px solid var(--dourado);
+      padding-bottom: 1rem;
+    }
+    
+    .last-update {
+      color: var(--dourado-claro);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    
+    h2 {
+      color: var(--dourado-claro);
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    h3 {
+      color: var(--dourado);
+      font-size: 1.2rem;
+      margin: 1.5rem 0 0.8rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      color: var(--texto-claro);
+      opacity: 0.9;
+    }
+    
+    ul, ol {
+      margin: 1rem 0 1.5rem 2rem;
+      color: var(--texto-claro);
+      opacity: 0.9;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .highlight-box {
+      background: rgba(201, 162, 61, 0.1);
+      border-left: 4px solid var(--dourado);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 10px 10px 0;
+    }
+    
+    .contact-info {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border: 1px solid var(--dourado);
+    }
+    
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .contact-info i {
+      color: var(--dourado);
+      width: 20px;
+      font-size: 1.2rem;
+    }
+    
+    .contact-info a {
+      color: var(--dourado-claro);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-info a:hover {
+      color: var(--dourado);
+      text-decoration: underline;
+    }
+    
+    .btn-voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--dourado);
+      border: 2px solid var(--dourado);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 2rem;
+      transition: all 0.3s;
+    }
+    
+    .btn-voltar:hover {
+      background: var(--dourado);
+      color: var(--verde-escuro);
+      transform: translateX(-5px);
+    }
+    
+    .btn-voltar i {
+      transition: transform 0.3s;
+    }
+    
+    .btn-voltar:hover i {
+      transform: translateX(-3px);
+    }
+    
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2rem 5%;
+      text-align: center;
+      border-top: 1px solid rgba(201, 162, 61, 0.2);
+      margin-top: 3rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--dourado);
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .privacy-container {
+        margin: 1.5rem;
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <i class="fas fa-tree"></i>
+      <span>JOSUÉ AFONSO</span>
+    </div>
+    <a href="index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      <span>Voltar para o site</span>
+    </a>
+  </div>
+</header>
+
+<main class="privacy-container">
+  <h1>Política de Privacidade</h1>
+  <p class="last-update">Última atualização: 18 de fevereiro de 2026</p>
+  
+  <p>A sua privacidade é importante para nós. Esta Política de Privacidade explica como coletamos, usamos, compartilhamos e protegemos suas informações pessoais quando você visita nosso site ou utiliza nossos serviços como corretor de imóveis.</p>
+  
+  <div class="highlight-box">
+    <p><strong>Resumo:</strong> Valorizamos sua confiança e estamos comprometidos em proteger seus dados pessoais. Utilizamos suas informações apenas para fornecer nossos serviços de intermediação imobiliária e melhorar sua experiência. Nunca vendemos seus dados para terceiros.</p>
+  </div>
+  
+  <h2>1. Informações que Coletamos</h2>
+  
+  <h3>1.1 Informações fornecidas por você</h3>
+  <p>Coletamos informações que você nos fornece diretamente ao utilizar nosso site ou entrar em contato conosco:</p>
+  <ul>
+    <li><strong>Dados de contato:</strong> nome completo, e-mail, telefone, WhatsApp</li>
+    <li><strong>Informações sobre imóveis:</strong> quando você anuncia um imóvel para venda, coletamos dados como endereço, características do imóvel, valor pretendido, fotos</li>
+    <li><strong>Mensagens:</strong> conteúdo das mensagens enviadas através dos formulários de contato</li>
+    <li><strong>Preferências:</strong> tipo de imóvel de interesse, localização desejada, faixa de preço</li>
+  </ul>
+  
+  <h3>1.2 Informações coletadas automaticamente</h3>
+  <p>Quando você visita nosso site, algumas informações são coletadas automaticamente:</p>
+  <ul>
+    <li><strong>Dados de navegação:</strong> endereço IP, tipo de navegador, provedor de internet, páginas visitadas, tempo de visita</li>
+    <li><strong>Cookies:</strong> utilizamos cookies para melhorar sua experiência e analisar o tráfego do site</li>
+    <li><strong>Dispositivo:</strong> informações sobre o dispositivo utilizado (modelo, sistema operacional, resolução de tela)</li>
+  </ul>
+  
+  <h2>2. Como Utilizamos suas Informações</h2>
+  <p>Utilizamos suas informações para:</p>
+  <ul>
+    <li><strong>Prestação de serviços:</strong> conectar compradores e vendedores, realizar visitas aos imóveis, negociar propostas</li>
+    <li><strong>Comunicação:</strong> responder suas dúvidas, enviar informações sobre imóveis de seu interesse, agendar visitas</li>
+    <li><strong>Marketing:</strong> enviar newsletter com novidades e ofertas (com seu consentimento)</li>
+    <li><strong>Melhoria do site:</strong> analisar como os usuários interagem com nosso site para melhorar a experiência</li>
+    <li><strong>Segurança:</strong> prevenir fraudes e garantir a segurança das transações</li>
+  </ul>
+  
+  <h2>3. Compartilhamento de Informações</h2>
+  <p>Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros para fins de marketing sem seu consentimento explícito. Podemos compartilhar suas informações nas seguintes situações:</p>
+  <ul>
+    <li><strong>Com seu consentimento:</strong> quando você autoriza o compartilhamento para finalidades específicas</li>
+    <li><strong>Para cumprimento legal:</strong> quando exigido por lei, ordem judicial ou regulamentação governamental</li>
+    <li><strong>Proteção de direitos:</strong> para proteger nossos direitos, propriedade ou segurança, ou de nossos clientes</li>
+    <li><strong>Parceiros de serviço:</strong> com prestadores de serviços que nos auxiliam nas operações (hospedagem do site, envio de e-mails), sempre sob contrato de confidencialidade</li>
+  </ul>
+  
+  <h2>4. Cookies e Tecnologias Semelhantes</h2>
+  <p>Utilizamos cookies para melhorar sua experiência em nosso site. Os cookies são pequenos arquivos de texto armazenados em seu dispositivo que nos ajudam a:</p>
+  <ul>
+    <li>Lembrar suas preferências e configurações</li>
+    <li>Entender como você utiliza nosso site</li>
+    <li>Personalizar conteúdo e anúncios</li>
+    <li>Analisar o tráfego e desempenho do site</li>
+  </ul>
+  <p>Você pode controlar o uso de cookies nas configurações do seu navegador. No entanto, a desativação de alguns cookies pode afetar a funcionalidade do site.</p>
+  
+  <h3>Tipos de cookies que utilizamos:</h3>
+  <ul>
+    <li><strong>Cookies essenciais:</strong> necessários para o funcionamento básico do site</li>
+    <li><strong>Cookies de desempenho:</strong> nos ajudam a entender como os visitantes interagem com o site</li>
+    <li><strong>Cookies de funcionalidade:</strong> lembram suas escolhas para proporcionar uma experiência personalizada</li>
+  </ul>
+  
+  <h2>5. Armazenamento e Segurança dos Dados</h2>
+  <p>Implementamos medidas de segurança técnicas e organizacionais para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição. Essas medidas incluem:</p>
+  <ul>
+    <li>Criptografia de dados em trânsito (SSL/TLS)</li>
+    <li>Acesso restrito a dados pessoais apenas a funcionários autorizados</li>
+    <li>Monitoramento regular de sistemas para detectar vulnerabilidades</li>
+  </ul>
+  <p>Seus dados são armazenados em servidores seguros, localizados preferencialmente no Brasil. Mantemos suas informações apenas pelo tempo necessário para cumprir as finalidades para as quais foram coletadas ou para cumprir obrigações legais.</p>
+  
+  <h2>6. Seus Direitos</h2>
+  <p>De acordo com a Lei Geral de Proteção de Dados (LGPD - Lei 13.709/2018), você tem os seguintes direitos:</p>
+  <ul>
+    <li><strong>Confirmação e acesso:</strong> saber se tratamos seus dados e acessá-los</li>
+    <li><strong>Correção:</strong> solicitar a correção de dados incompletos, inexatos ou desatualizados</li>
+    <li><strong>Anonimização, bloqueio ou eliminação:</strong> solicitar a anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos</li>
+    <li><strong>Portabilidade:</strong> solicitar a portabilidade dos dados a outro fornecedor</li>
+    <li><strong>Eliminação:</strong> solicitar a eliminação dos dados tratados com seu consentimento</li>
+    <li><strong>Informação:</strong> ser informado sobre as entidades com as quais compartilhamos seus dados</li>
+    <li><strong>Revogação do consentimento:</strong> revogar seu consentimento a qualquer momento</li>
+  </ul>
+  
+  <h2>7. Links para Sites de Terceiros</h2>
+  <p>Nosso site pode conter links para sites de terceiros (como redes sociais, portais imobiliários). Esta Política de Privacidade não se aplica a esses sites. Recomendamos que você leia as políticas de privacidade de cada site que visitar.</p>
+  
+  <h2>8. Alterações nesta Política</h2>
+  <p>Podemos atualizar esta Política de Privacidade periodicamente para refletir mudanças em nossas práticas ou por razões legais. Notificaremos sobre alterações significativas publicando a nova versão em nosso site, com a data de atualização no topo da página. Recomendamos que você revise esta política regularmente.</p>
+  
+  <h2>9. Contato</h2>
+  <p>Se você tiver dúvidas sobre esta Política de Privacidade ou sobre como tratamos seus dados, ou se desejar exercer qualquer um de seus direitos, entre em contato conosco:</p>
+  
+  <div class="contact-info">
+    <p>
+      <i class="fas fa-user"></i>
+      <strong>Josué Afonso</strong> - Corretor de Imóveis
+    </p>
+    <p>
+      <i class="fas fa-phone"></i>
+      <a href="tel:5566996700226">(66) 99670-0226</a>
+    </p>
+    <p>
+      <i class="fab fa-whatsapp"></i>
+      <a href="https://wa.me/5566996700226" target="_blank">(66) 99670-0226 (WhatsApp)</a>
+    </p>
+    <p>
+      <i class="fas fa-envelope"></i>
+      <a href="mailto:josueafonsocorretor@gmail.com">josueafonsocorretor@gmail.com</a>
+    </p>
+    <p>
+      <i class="fas fa-map-marker-alt"></i>
+      Mato Grosso - Brasil
+    </p>
+    <p>
+      <i class="fas fa-registered"></i>
+      CRECI MT 20998
+    </p>
+  </div>
+  
+  <p>Nosso Encarregado de Proteção de Dados (DPO) pode ser contatado através do e-mail: <a href="mailto:josueafonsocorretor@gmail.com" style="color: var(--dourado-claro);">josueafonsocorretor@gmail.com</a></p>
+  
+  <a href="index.html" class="btn-voltar">
+    <i class="fas fa-arrow-left"></i>
+    Voltar para a página inicial
+  </a>
+</main>
+
+<footer>
+  <p>&copy; 2026 Josué Afonso - Corretor de Imóveis. Todos os direitos reservados.</p>
+  <p>CRECI MT 20998</p>
+  <div class="footer-links">
+    <a href="index.html">Início</a>
+    <a href="politica-privacidade.html">Política de Privacidade</a>
+    <a href="termos-uso.html">Termos de Uso</a>
+    <a href="index.html#contato">Contato</a>
+  </div>
+</footer>
+
+<script>
+  // Atualizar ano automaticamente no copyright
+  document.querySelector('footer p:first-child').innerHTML = `&copy; ${new Date().getFullYear()} Josué Afonso - Corretor de Imóveis. Todos os direitos reservados.`;
+</script>
+
+</body>
+</html>
