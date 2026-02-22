@@ -2365,6 +2365,234 @@
       }
     }
 
+    /* ===== CORREÇÕES PARA 393×852 E CENTRALIZAÇÃO ===== */
+    @media (min-width: 361px) and (max-width: 393px) {
+      /* Ajustes gerais */
+      .hero {
+        padding: 5rem 0.8rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      
+      .hero-left {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+      }
+      
+      .hero-right {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+      }
+      
+      /* Nome centralizado */
+      .name-container {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      
+      .name-container h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        text-align: center;
+        word-break: break-word;
+      }
+      
+      .name-container h1 span {
+        font-size: 1rem;
+        display: block;
+        margin-top: 0.3rem;
+      }
+      
+      /* Foto centralizada */
+      .foto-container {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto 1rem;
+      }
+      
+      .geometric-frame img {
+        width: 85%;
+        height: 85%;
+      }
+      
+      /* Badge movido para baixo da foto - centralizado */
+      .hero-left .hero-badge {
+        display: inline-block !important;
+        margin: 1rem auto 0 !important;
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.9rem !important;
+        background: rgba(201, 162, 61, 0.15);
+        border: 1px solid var(--dourado);
+        border-radius: 50px;
+        color: var(--texto-claro);
+        text-align: center;
+        white-space: normal;
+        word-break: break-word;
+        max-width: 280px;
+        width: auto;
+      }
+      
+      .hero-right .hero-badge {
+        display: none !important;
+      }
+      
+      /* Card premium */
+      .hero-destaque-premium {
+        width: 100%;
+        margin-bottom: 1.2rem;
+      }
+      
+      .premium-card {
+        padding: 10px;
+        gap: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 16px;
+      }
+      
+      .premium-img-container {
+        width: 55px;
+        height: 55px;
+        flex-shrink: 0;
+      }
+      
+      .premium-info {
+        flex: 1;
+        min-width: 160px;
+        text-align: left;
+      }
+      
+      .premium-tipo {
+        font-size: 0.7rem;
+      }
+      
+      .premium-nome {
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 160px;
+      }
+      
+      .premium-local {
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      
+      .premium-valor {
+        min-width: 75px;
+        text-align: right;
+      }
+      
+      .premium-valor .valor {
+        font-size: 1rem;
+      }
+      
+      /* Texto principal */
+      .hero-right p {
+        font-size: 1rem !important;
+        margin: 1rem 0 !important;
+        text-align: center;
+        max-width: 320px;
+      }
+      
+      /* Stats */
+      .hero-stats {
+        width: 100%;
+        gap: 0.8rem;
+        margin: 1rem 0;
+      }
+      
+      .stat-item {
+        padding: 0.8rem 1.2rem;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50px;
+        border: 1px solid rgba(201, 162, 61, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .stat-number {
+        font-size: 1.5rem;
+      }
+      
+      .stat-label {
+        font-size: 0.8rem;
+      }
+      
+      /* Botão WhatsApp */
+      .btn-whatsapp {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 1.1rem;
+        min-height: 55px;
+      }
+      
+      .btn-whatsapp i {
+        font-size: 1.4rem;
+      }
+      
+      /* Esconder elementos desktop no mobile */
+      .desktop-sparkle-1,
+      .desktop-sparkle-2,
+      .desktop-sparkle-3,
+      .desktop-glow {
+        display: none !important;
+      }
+    }
+
+    /* Ajustes para garantir centralização total em todos os mobiles */
+    @media (max-width: 768px) {
+      .hero-left,
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      
+      .hero-left .hero-badge {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .hero-right {
+        text-align: center;
+      }
+      
+      .hero-right p {
+        text-align: center;
+      }
+    }
+
     /* ===== VERSÃO DESKTOP (acima de 769px) - INTACTA ===== */
     @media (min-width: 769px) {
       .hero-background {
@@ -2436,6 +2664,280 @@
       position: fixed;
       width: 100%;
     }
+    /* ===== CORREÇÕES PARA ROTAÇÃO DE TELA EM MOBILE ===== */
+@media screen and (max-width: 968px) and (orientation: landscape) {
+  /* Ajustes gerais */
+  .hero {
+    min-height: auto !important;
+    padding: 4rem 1rem 2rem !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+  }
+
+  /* Ambos os lados visíveis e centralizados */
+  .hero-left,
+  .hero-right {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border-radius: 20px !important;
+    padding: 1rem !important;
+    width: calc(50% - 1rem) !important;
+    min-width: 280px !important;
+    margin: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  /* Ajuste da foto */
+  .foto-container {
+    width: 150px !important;
+    height: 150px !important;
+    margin: 0 auto 1rem !important;
+  }
+
+  .geometric-frame::before,
+  .geometric-frame::after {
+    animation: none !important; /* Desativa animações pesadas */
+  }
+
+  .geometric-frame img {
+    width: 85% !important;
+    height: 85% !important;
+  }
+
+  /* Nome mais compacto */
+  .name-container h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+    animation: none !important; /* Desativa animações pesadas */
+  }
+
+  .name-container h1 span {
+    font-size: 0.9rem !important;
+  }
+
+  .name-container::after,
+  .name-container::before,
+  .desktop-glow,
+  .desktop-sparkle-1,
+  .desktop-sparkle-2,
+  .desktop-sparkle-3 {
+    display: none !important; /* Remove elementos decorativos */
+  }
+
+  /* Card premium */
+  .hero-destaque-premium {
+    width: 100% !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .premium-card {
+    padding: 8px !important;
+    gap: 6px !important;
+    border-radius: 50px !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .premium-img-container {
+    width: 40px !important;
+    height: 40px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .premium-badge {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 0.5rem !important;
+    top: -3px !important;
+    right: -3px !important;
+  }
+
+  .premium-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+    text-align: left !important;
+  }
+
+  .premium-tipo {
+    font-size: 0.6rem !important;
+  }
+
+  .premium-nome {
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100px !important;
+  }
+
+  .premium-local {
+    font-size: 0.6rem !important;
+    white-space: nowrap !important;
+  }
+
+  .premium-local i {
+    font-size: 0.5rem !important;
+  }
+
+  .premium-valor {
+    min-width: 70px !important;
+    text-align: right !important;
+    padding-right: 5px !important;
+  }
+
+  .premium-valor .valor {
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+  }
+
+  .premium-valor .label {
+    font-size: 0.5rem !important;
+  }
+
+  /* Badge */
+  .hero-badge {
+    display: inline-block !important;
+    font-size: 0.7rem !important;
+    padding: 0.3rem 1rem !important;
+    margin: 0.5rem 0 !important;
+    background: rgba(201, 162, 61, 0.15) !important;
+    border: 1px solid var(--dourado) !important;
+    border-radius: 50px !important;
+  }
+
+  /* Texto */
+  .hero-right p {
+    font-size: 0.85rem !important;
+    margin: 0.5rem 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Stats */
+  .hero-stats {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    margin: 0.5rem 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .stat-item {
+    flex: 0 1 auto !important;
+    min-width: 80px !important;
+    padding: 0.5rem 0.8rem !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(201, 162, 61, 0.3) !important;
+    border-radius: 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.2rem !important;
+  }
+
+  .stat-number {
+    font-size: 1.2rem !important;
+    line-height: 1 !important;
+  }
+
+  .stat-label {
+    font-size: 0.6rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* Botão WhatsApp */
+  .btn-whatsapp {
+    padding: 10px 16px !important;
+    font-size: 0.9rem !important;
+    min-height: 44px !important;
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .btn-whatsapp i {
+    font-size: 1.2rem !important;
+  }
+
+  /* Fundo mais sutil */
+  .hero-background {
+    opacity: 0.15 !important;
+    background-size: cover !important;
+    animation: none !important;
+    transform: scale(1.1) !important;
+  }
+}
+
+/* Ajuste para telas muito pequenas em landscape */
+@media screen and (max-width: 700px) and (orientation: landscape) {
+  .hero-left,
+  .hero-right {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+  
+  .hero {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  .foto-container {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  
+  .name-container h1 {
+    font-size: 1.3rem !important;
+  }
+  
+  .stat-item {
+    min-width: 70px !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+  
+  .stat-number {
+    font-size: 1rem !important;
+  }
+  
+  .stat-label {
+    font-size: 0.55rem !important;
+  }
+  
+  .premium-nome {
+    max-width: 80px !important;
+  }
+}
+
+/* Remover classe no-scroll quando necessário */
+.no-scroll {
+  overflow: auto !important;
+  position: static !important;
+}
+
+/* Correção adicional para o badge em landscape */
+@media screen and (max-width: 968px) and (orientation: landscape) {
+  .hero-left .hero-badge,
+  .hero-right .hero-badge {
+    display: inline-block !important;
+    margin: 0.5rem auto !important;
+    text-align: center !important;
+  }
+}
   </style>
 </head>
 
@@ -3153,48 +3655,124 @@
         });
       });
     }
-    // Mover o badge para baixo da foto no mobile
-function moverBadgeMobile() {
-  if (window.innerWidth <= 768) {
+
+    // Mover o badge para baixo da foto no mobile - VERSÃO CORRIGIDA
+    function moverBadgeMobile() {
+      const heroLeft = document.querySelector('.hero-left');
+      const heroRight = document.querySelector('.hero-right');
+      const badge = document.querySelector('.hero-badge');
+      
+      if (!heroLeft || !heroRight || !badge) return;
+      
+      if (window.innerWidth <= 768) {
+        // Verificar se o badge já foi movido
+        if (!heroLeft.querySelector('.hero-badge')) {
+          // Clonar o badge
+          const badgeClone = badge.cloneNode(true);
+          
+          // Aplicar estilos diretamente para garantir centralização
+          badgeClone.style.margin = '1rem auto 0';
+          badgeClone.style.display = 'inline-block';
+          badgeClone.style.textAlign = 'center';
+          badgeClone.style.maxWidth = '280px';
+          badgeClone.style.width = 'auto';
+          badgeClone.style.padding = '0.6rem 1.2rem';
+          badgeClone.style.fontSize = '0.9rem';
+          badgeClone.style.background = 'rgba(201, 162, 61, 0.15)';
+          badgeClone.style.border = '1px solid var(--dourado)';
+          badgeClone.style.borderRadius = '50px';
+          badgeClone.style.color = 'var(--texto-claro)';
+          badgeClone.style.whiteSpace = 'normal';
+          badgeClone.style.wordBreak = 'break-word';
+          
+          // Adicionar o clone no hero-left APÓS a foto
+          const fotoContainer = heroLeft.querySelector('.foto-container');
+          if (fotoContainer) {
+            fotoContainer.insertAdjacentElement('afterend', badgeClone);
+          } else {
+            heroLeft.appendChild(badgeClone);
+          }
+          
+          // Esconder o badge original
+          badge.style.display = 'none';
+        }
+      } else {
+        // Restaurar em desktop
+        const badgeMobile = heroLeft.querySelector('.hero-badge');
+        if (badgeMobile) {
+          badgeMobile.remove();
+          badge.style.display = 'inline-block';
+          badge.style.margin = '1rem 0';
+          badge.style.marginLeft = 'auto';
+        }
+      }
+    }
+
+    // Chamar a função no carregamento e redimensionamento
+    window.addEventListener('load', function() {
+      setTimeout(moverBadgeMobile, 100);
+    });
+    window.addEventListener('resize', function() {
+      setTimeout(moverBadgeMobile, 100);
+    });
+    window.addEventListener('orientationchange', function() {
+      setTimeout(moverBadgeMobile, 300);
+    });
+    // Função para ajustar layout na rotação
+function handleOrientationChange() {
+  if (window.innerWidth <= 968) {
+    const heroSection = document.getElementById('inicio');
     const heroLeft = document.querySelector('.hero-left');
     const heroRight = document.querySelector('.hero-right');
     const badge = document.querySelector('.hero-badge');
     
-    if (heroLeft && heroRight && badge) {
-      // Verificar se o badge já foi movido
-      if (!heroLeft.querySelector('.hero-badge')) {
-        // Clonar o badge para não perder o original
-        const badgeClone = badge.cloneNode(true);
-        badgeClone.style.margin = '1rem auto 0';
-        badgeClone.style.display = 'inline-block';
-        
-        // Adicionar o clone no hero-left
-        heroLeft.appendChild(badgeClone);
-        
-        // Esconder o badge original
-        badge.style.display = 'none';
-      }
+    // Reset de estilos inline que podem atrapalhar
+    if (heroSection) {
+      heroSection.style.minHeight = window.innerHeight + 'px';
     }
-  } else {
-    // Restaurar em desktop
-    const heroLeft = document.querySelector('.hero-left');
-    const heroRight = document.querySelector('.hero-right');
-    const badgeMobile = heroLeft ? heroLeft.querySelector('.hero-badge') : null;
-    const badgeOriginal = document.querySelector('.hero-badge');
     
-    if (badgeMobile && badgeOriginal) {
-      badgeMobile.remove();
-      badgeOriginal.style.display = 'inline-block';
-    }
+    // Forçar reflow para aplicar as media queries
+    setTimeout(() => {
+      // Garantir que ambos os lados estejam visíveis
+      if (heroLeft) heroLeft.style.display = 'flex';
+      if (heroRight) heroRight.style.display = 'flex';
+      
+      // Ajustar badge se necessário
+      if (badge) {
+        if (window.innerWidth <= 768 && window.innerHeight < window.innerWidth) {
+          // Landscape - badge pode ficar em qualquer lado
+          badge.style.margin = '0.5rem auto';
+        }
+      }
+      
+      // Remover classes problemáticas
+      document.body.classList.remove('no-scroll');
+    }, 50);
   }
 }
 
-// Chamar a função no carregamento e redimensionamento
-window.addEventListener('load', moverBadgeMobile);
-window.addEventListener('resize', moverBadgeMobile);
+// Event listeners para rotação
 window.addEventListener('orientationchange', function() {
-  setTimeout(moverBadgeMobile, 200);
+  // Pequeno delay para o navegador completar a rotação
+  setTimeout(handleOrientationChange, 100);
 });
+
+window.addEventListener('resize', function() {
+  // Detectar se é uma mudança de orientação pela proporção
+  if (window.innerHeight < window.innerWidth) {
+    // Landscape
+    handleOrientationChange();
+  } else {
+    // Portrait
+    // Recarregar funções existentes
+    if (typeof moverBadgeMobile === 'function') {
+      setTimeout(moverBadgeMobile, 100);
+    }
+  }
+});
+
+// Chamar na carga inicial
+window.addEventListener('load', handleOrientationChange);
   </script>
 
 </body>
