@@ -1498,94 +1498,194 @@
       }
     }
 
-    /* ===== CORREÇÕES PARA MOBILE E ROTAÇÃO ===== */
-    
-    /* Ajustes gerais para mobile em qualquer orientação */
-    @media (max-width: 768px) {
+    /* ===== RESPONSIVIDADE - MOBILE OTIMIZADO ===== */
+    @media (max-width: 968px) {
       .hero {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 5rem;
+      }
+
+      .hero-left {
+        grid-row: 1;
+      }
+
+      .hero-right {
         align-items: center;
-        min-height: 100vh;
-        height: auto;
-        padding: 5rem 1rem 2rem;
+        text-align: center;
+      }
+
+      .hero-right p {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-badge {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .foto-container {
+        width: min(300px, 60vw);
+        height: min(300px, 60vw);
+        margin: 0 auto;
+      }
+
+      .contato-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      nav a.highlight {
+        margin: 0.5rem 0;
+      }
+
+      .imovel-destaque-premium {
+        align-items: center;
       }
       
-      .hero-left, 
-      .hero-right {
+      .imovel-destaque-premium .info-minima {
+        text-align: center;
+      }
+    }
+
+    /* ===== VERSÃO MOBILE OTIMIZADA (até 768px) ===== */
+    @media (max-width: 768px) {
+      /* Garantir que não haja overflow horizontal */
+      html, body {
+        overflow-x: hidden;
         width: 100%;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
+        position: relative;
+      }
+
+      /* Ajuste de toque para todos os elementos interativos */
+      a, button, .menu-btn, .imovel-card, .premium-card, .btn-whatsapp, .btn-vender, .social-links a {
+        -webkit-tap-highlight-color: rgba(201, 162, 61, 0.3);
+        touch-action: manipulation;
+        cursor: pointer;
+      }
+
+      /* Remover delays de hover em mobile */
+      .imovel-card:hover,
+      .premium-card:hover,
+      .btn-whatsapp:hover,
+      .btn-vender:hover {
+        transform: none;
+      }
+
+      .imovel-card:active,
+      .premium-card:active,
+      .btn-whatsapp:active,
+      .btn-vender:active {
+        opacity: 0.8;
+        transform: scale(0.98);
+      }
+
+      .menu-btn {
         display: flex;
-        flex-direction: column;
+        min-height: 44px;
+        min-width: 44px;
         align-items: center;
         justify-content: center;
+      }
+
+      nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--verde-escuro);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        border-bottom: 2px solid var(--dourado);
+        z-index: 999;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      }
+
+      nav.active {
+        max-height: 500px;
+        padding: 0.5rem 0;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(201, 162, 61, 0.1);
+        font-size: 1.1rem;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      nav a::after {
+        display: none;
+      }
+
+      nav a.highlight {
+        background: transparent;
+        color: var(--dourado);
+        padding: 1rem;
+        border-radius: 0;
+      }
+
+      nav a.highlight:active {
+        background: rgba(201, 162, 61, 0.1);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, rgba(26, 53, 40, 0.95), rgba(43, 90, 67, 0.95));
+        min-height: auto;
+        padding: 5rem 1rem 2rem;
+        gap: 1rem;
+      }
+
+      .hero-background {
+        opacity: 0.25;
+        height: 100%;
+        background-size: contain;
+        animation: floatBackgroundMobile 8s ease-in-out infinite;
+        background-attachment: scroll;
+        width: 100%;
+        will-change: transform;
+      }
+
+      @keyframes floatBackgroundMobile {
+        0% {
+          transform: translateY(-2%) scale(1.02);
+        }
+        50% {
+          transform: translateY(2%) scale(1.04);
+        }
+        100% {
+          transform: translateY(-2%) scale(1.02);
+        }
+      }
+
+      /* Ajuste de padding para todos os containers em mobile */
+      .hero-left,
+      .hero-right {
         background: rgba(0, 0, 0, 0.2);
         padding: 1.5rem;
         border-radius: 20px;
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         margin-top: 1rem;
+        width: 100%;
         box-sizing: border-box;
       }
-      
-      .hero-right {
-        align-items: center;
-        text-align: center;
-      }
-      
-      .hero-right p {
-        text-align: center;
-        margin: 0 auto;
-      }
-      
-      .name-container {
-        text-align: center;
-        width: 100%;
-      }
-      
-      .foto-container {
-        margin: 0 auto;
-      }
-      
-      /* Imagem de fundo - ocupar toda a sessão */
-      .hero-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        min-height: 100vh;
-        background-image: url('Assets/Imagens/logosn.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover; /* Muda de 'contain' para 'cover' */
-        opacity: 0.25;
-        z-index: 0;
-        pointer-events: none;
-        animation: floatBackgroundMobile 8s ease-in-out infinite;
-        background-attachment: scroll;
-      }
-      
-      @keyframes floatBackgroundMobile {
-        0% {
-          transform: translateY(-2%) scale(1.05);
-        }
-        50% {
-          transform: translateY(2%) scale(1.08);
-        }
-        100% {
-          transform: translateY(-2%) scale(1.05);
-        }
-      }
-      
-      .hero-badge {
-        margin-left: 0;
-        margin-right: 0;
-      }
-      
+
       /* Esconde elementos específicos do desktop no mobile */
       .desktop-sparkle-1,
       .desktop-sparkle-2,
@@ -1593,14 +1693,125 @@
       .desktop-glow {
         display: none;
       }
-      
-      /* Stats em mobile */
+
+      /* ANIMAÇÕES MOBILE - otimizadas */
+      .name-container h1 {
+        animation: mobileGlow 3s ease-in-out infinite;
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        word-break: break-word;
+      }
+
+      .name-container h1 span {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+      }
+
+      .name-container::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), transparent);
+        border-radius: 2px;
+        animation: mobileLine 3s ease-in-out infinite;
+        box-shadow: 0 0 10px var(--dourado);
+      }
+
+      .name-container {
+        position: relative;
+        width: 100%;
+      }
+
+      .name-container::before {
+        content: '✦';
+        position: absolute;
+        top: -15px;
+        left: -10px;
+        color: var(--dourado);
+        font-size: 1.2rem;
+        animation: mobileSparkle 4s ease-in-out infinite;
+        opacity: 0;
+        text-shadow: 0 0 10px var(--dourado);
+      }
+
+      .mobile-sparkle {
+        display: block;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .sparkle-1,
+      .sparkle-2,
+      .sparkle-3 {
+        position: absolute;
+        color: var(--dourado);
+        font-size: 1rem;
+        opacity: 0;
+        animation: mobileSparkle 3s ease-in-out infinite;
+      }
+
+      .sparkle-1 {
+        top: -20px;
+        right: 0;
+        animation-delay: 0.5s;
+        content: '✧';
+      }
+
+      .sparkle-2 {
+        bottom: -15px;
+        left: 20%;
+        animation-delay: 1.5s;
+      }
+
+      .sparkle-3 {
+        top: 20%;
+        right: -15px;
+        animation-delay: 2.5s;
+      }
+
+      .mobile-glow {
+        display: block;
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: var(--dourado);
+        border-radius: 50%;
+        filter: blur(2px);
+        animation: mobilePulse 2s ease-in-out infinite;
+        box-shadow: 0 0 15px var(--dourado);
+      }
+
+      .glow-1 {
+        top: -10px;
+        left: 5%;
+        animation-delay: 0.2s;
+      }
+
+      .glow-2 {
+        bottom: 0;
+        right: 10%;
+        animation-delay: 0.8s;
+        width: 6px;
+        height: 6px;
+      }
+
+      .glow-3 {
+        top: 30%;
+        left: -5px;
+        animation-delay: 1.4s;
+        width: 10px;
+        height: 10px;
+      }
+
+      /* Stats em mobile - otimizado */
       .hero-stats {
         flex-direction: column;
         gap: 0.8rem;
         width: 100%;
       }
-      
+
       .stat-item {
         display: flex;
         align-items: center;
@@ -1612,7 +1823,15 @@
         width: 100%;
         box-sizing: border-box;
       }
-      
+
+      .stat-number {
+        font-size: 1.8rem;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+      }
+
       /* Botão WhatsApp em mobile */
       .btn-whatsapp {
         width: 100%;
@@ -1621,14 +1840,18 @@
         font-size: 1.2rem;
         min-height: 60px;
       }
-      
-      /* CARD PREMIUM em mobile */
+
+      .btn-whatsapp i {
+        font-size: 1.8rem;
+      }
+
+      /* CORREÇÃO CARD PREMIUM */
       .hero-destaque-premium {
         margin-left: 0;
         max-width: 100%;
         width: 100%;
       }
-      
+
       .premium-card {
         border-radius: 16px;
         padding: 12px;
@@ -1639,80 +1862,255 @@
         justify-content: flex-start;
         background: rgba(0, 0, 0, 0.4);
       }
-      
+
       .premium-img-container {
         width: 60px;
         height: 60px;
         flex-shrink: 0;
       }
-      
+
       .premium-info {
         flex: 1;
         min-width: 140px;
         text-align: left;
       }
-      
+
+      .premium-tipo {
+        font-size: 0.7rem;
+      }
+
+      .premium-nome {
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+      }
+
+      .premium-local {
+        font-size: 0.7rem;
+        white-space: nowrap;
+      }
+
       .premium-valor {
         text-align: right;
         padding-right: 5px;
         min-width: 80px;
         flex-shrink: 0;
       }
+
+      .premium-valor .valor {
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      .premium-valor .label {
+        font-size: 0.55rem;
+      }
+
+      /* CORREÇÃO CONTATO E E-MAIL */
+      .contato-item {
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .contato-item i {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .contato-item span {
+        font-size: 0.9rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        flex: 1;
+      }
+
+      /* Forçar quebra no e-mail */
+      .contato-item:nth-child(2) span {
+        word-break: break-all !important;
+        font-size: 0.85rem;
+      }
+
+      /* Formulários em mobile */
+      .vender-form {
+        padding: 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px; /* Previne zoom em iOS */
+        padding: 1rem;
+        min-height: 50px;
+      }
+
+      /* Botão flutuante WhatsApp em mobile */
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 2rem;
+        bottom: 1rem;
+        left: 1rem;
+        z-index: 1001;
+      }
+
+      /* Galeria em mobile */
+      .galeria-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .imovel-img {
+        height: 200px;
+      }
+
+      .imovel-info {
+        padding: 1.2rem;
+      }
+
+      .imovel-preco {
+        font-size: 1.3rem;
+      }
+
+      /* Seções em mobile */
+      section {
+        padding: 3rem 1rem;
+      }
+
+      .section-header h2 {
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
+      }
+
+      .section-header p {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+
+      /* Cards de destaque em mobile */
+      .highlight-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .card i {
+        font-size: 2.5rem;
+      }
+
+      /* Contato em mobile */
+      .contato-container {
+        padding: 1.5rem;
+        gap: 2rem;
+      }
+
+      .contato-info h3 {
+        font-size: 1.5rem;
+      }
+
+      /* Footer em mobile */
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .footer-col ul li a {
+        font-size: 1rem;
+        min-height: 44px;
+        display: inline-block;
+        padding: 8px 0;
+      }
+
+      .footer-bottom {
+        font-size: 0.8rem;
+      }
+
+      .footer-bottom div {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      /* Ajuste para a imagem de perfil em mobile */
+      .geometric-frame img {
+        width: 80%;
+        height: 80%;
+      }
+
+      /* Ajuste para o destaque premium antigo */
+      .imovel-destaque-premium .moldura-redonda {
+        width: 120px;
+        height: 120px;
+      }
+
+      /* Ajuste para o banner de anúncio */
+      .vender-container > div:first-of-type {
+        margin: 15px 0 !important;
+        transform: scale(0.9) rotate(-2deg) !important;
+      }
+
+      .vender-container > div:first-of-type div {
+        font-size: 36px !important;
+        padding: 20px 30px !important;
+      }
+
+      .vender-container > div:first-of-type div:last-child {
+        font-size: 14px !important;
+      }
     }
 
-    /* ===== MODO RETRATO (EM PÉ) ===== */
-    @media (max-width: 768px) and (orientation: portrait) {
-      .hero-left {
-        margin-bottom: 1rem;
+    /* ===== CORREÇÕES PARA ROTAÇÃO DE TELA ===== */
+    @media screen and (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        min-height: auto;
+        padding: 4rem 1rem 1rem;
       }
       
       .hero-background {
+        opacity: 0.15;
+        height: 100%;
         background-size: cover;
-        opacity: 0.3;
-      }
-    }
-
-    /* ===== MODO PAISAGEM (DEITADO) ===== */
-    @media (max-width: 768px) and (orientation: landscape) {
-      .hero {
-        flex-direction: row;
-        flex-wrap: wrap;
-        min-height: auto;
-        padding: 4rem 0.5rem 1rem;
+        animation: none;
+        transform: scale(1.1);
       }
       
       .hero-left {
-        width: 40%;
-        margin-right: 1%;
-        padding: 0.8rem;
+        display: flex;
       }
       
       .hero-right {
-        width: 55%;
-        margin-left: 1%;
-        padding: 0.8rem;
-      }
-      
-      .hero-background {
-        background-size: cover;
-        opacity: 0.2;
-        height: 100%;
-        min-height: 100%;
+        width: 100%;
+        padding: 1rem;
       }
       
       .foto-container {
-        width: min(180px, 25vw);
-        height: min(180px, 25vw);
-        margin: 0 auto;
+        width: min(150px, 25vw);
+        height: min(150px, 25vw);
       }
       
       .name-container h1 {
-        font-size: clamp(1.2rem, 3vw, 1.6rem);
-        text-align: center;
+        font-size: clamp(1.2rem, 3.5vw, 1.6rem);
       }
       
       .name-container h1 span {
-        font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
       }
       
       .hero-stats {
@@ -1722,166 +2120,126 @@
       }
       
       .stat-item {
-        min-width: 120px;
+        flex: 1 1 auto;
+        min-width: 100px;
         padding: 0.5rem;
       }
       
-      /* Centralizar todos os elementos */
-      .hero-left, .hero-right {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
+      .stat-number {
+        font-size: 1.2rem;
       }
       
-      .hero-right p,
-      .hero-badge,
-      .premium-card,
+      .stat-label {
+        font-size: 0.7rem;
+      }
+      
       .btn-whatsapp {
-        text-align: center;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        min-height: 44px;
       }
       
-      .premium-card {
-        justify-content: center;
+      .btn-whatsapp i {
+        font-size: 1.2rem;
       }
       
-      /* Card premium em paisagem */
+      /* CARD PREMIUM EM LANDSCAPE */
       .hero-destaque-premium {
-        width: 100%;
-        margin: 0 auto 0.8rem;
+        margin-bottom: 0.8rem;
       }
       
       .premium-card {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
         padding: 6px 10px;
+        gap: 8px;
+        flex-wrap: nowrap;
         border-radius: 50px;
-        background: rgba(0, 0, 0, 0.5);
-        max-width: 100%;
       }
       
       .premium-img-container {
-        width: 45px;
-        height: 45px;
-        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+      }
+      
+      .premium-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 0.5rem;
+        top: -3px;
+        right: -3px;
       }
       
       .premium-info {
-        flex: 2;
         min-width: auto;
-        text-align: left;
-        padding: 0 5px;
       }
       
       .premium-tipo {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
       }
       
       .premium-nome {
         font-size: 0.8rem;
         max-width: 120px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
       
       .premium-local {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
       }
       
       .premium-valor {
-        flex-shrink: 0;
-        min-width: 65px;
-        text-align: right;
-        padding-right: 5px;
+        min-width: 60px;
       }
       
       .premium-valor .valor {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
       }
       
       .hero-badge {
-        margin: 0.5rem auto;
-        display: inline-block;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.8rem;
+        margin: 0.5rem 0;
       }
       
-      .btn-whatsapp {
-        margin: 0 auto;
-        width: auto;
-        min-width: 250px;
+      .hero-right p {
+        font-size: 0.8rem !important;
+        margin: 0.5rem 0 !important;
       }
     }
 
-    /* ===== TELAS MUITO PEQUENAS EM PAISAGEM ===== */
-    @media (max-width: 640px) and (orientation: landscape) {
+    @media screen and (max-width: 480px) and (orientation: landscape) {
       .hero-left {
-        width: 100%;
-        margin-bottom: 0.5rem;
+        display: none;
       }
       
       .hero-right {
         width: 100%;
       }
       
-      .foto-container {
-        width: min(120px, 20vw);
-        height: min(120px, 20vw);
-      }
-      
-      .hero-stats {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding: 0.5rem 0;
-        gap: 0.3rem;
-      }
-      
       .stat-item {
-        min-width: 90px;
-        font-size: 0.8rem;
-        padding: 0.4rem;
+        min-width: 80px;
       }
       
-      .stat-number {
-        font-size: 1rem;
+      .premium-card {
+        padding: 4px 8px;
       }
       
-      .stat-label {
-        font-size: 0.6rem;
+      .premium-img-container {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .premium-nome {
+        max-width: 100px;
+        font-size: 0.7rem;
       }
     }
 
-    /* ===== CORREÇÃO PARA E-MAIL ===== */
-    @media (max-width: 768px) {
-      .contato-item {
-        flex-wrap: nowrap;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-      }
-      
-      .contato-item i {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-        flex-shrink: 0;
-      }
-      
-      .contato-item span {
-        font-size: 0.9rem;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-        flex: 1;
-      }
-      
-      /* Forçar quebra no e-mail */
-      .contato-item:nth-child(2) span {
-        word-break: break-all !important;
-        font-size: 0.85rem;
+    @media screen and (max-width: 768px) and (orientation: portrait) {
+      .hero-background {
+        opacity: 0.25;
+        height: 100%;
+        background-size: contain;
+        animation: floatBackgroundMobile 8s ease-in-out infinite;
+        transform: translateY(0) scale(1.05);
       }
     }
 
@@ -1889,44 +2247,109 @@
       .stat-number {
         font-size: 1.5rem;
       }
-      
+
       .stat-item {
         padding: 0.8rem 1rem;
       }
-      
+
       .hero-left,
       .hero-right {
         padding: 1rem;
       }
-      
+
       .foto-container {
         width: min(250px, 70vw);
         height: min(250px, 70vw);
       }
-      
+
+      .logo span {
+        font-size: 1rem;
+      }
+
+      .logo i {
+        font-size: 1.5rem;
+      }
+
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+        bottom: 0.8rem;
+        left: 0.8rem;
+      }
+
+      .btn-whatsapp {
+        padding: 14px 20px;
+        font-size: 1.1rem;
+        min-height: 55px;
+      }
+
+      .btn-whatsapp i {
+        font-size: 1.5rem;
+      }
+
       .premium-card {
         flex-wrap: wrap;
         justify-content: center;
         text-align: center;
       }
-      
+
       .premium-info {
         text-align: center;
         min-width: 100%;
         margin: 5px 0;
       }
-      
+
       .premium-nome {
         max-width: 100%;
         white-space: normal;
         text-align: center;
       }
-      
+
+      .premium-local {
+        justify-content: center;
+      }
+
       .premium-valor {
         text-align: center;
         width: 100%;
         padding-right: 0;
         margin-top: 5px;
+      }
+
+      .vender-container > div:first-of-type {
+        transform: scale(0.8) rotate(-2deg) !important;
+      }
+    }
+
+    /* Ajuste para telas muito pequenas */
+    @media (max-width: 360px) {
+      .logo span {
+        display: none;
+      }
+
+      .stat-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.3rem;
+      }
+
+      .hero-left,
+      .hero-right {
+        padding: 0.8rem;
+      }
+
+      .name-container h1 {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+      }
+
+      .premium-card {
+        padding: 0.5rem;
+      }
+
+      .premium-img-container {
+        width: 50px;
+        height: 50px;
       }
       
       .contato-item {
@@ -1938,22 +2361,7 @@
       .contato-item span {
         width: 100%;
         text-align: center;
-        font-size: 0.8rem;
-      }
-    }
-
-    /* ===== TABLETS EM PAISAGEM ===== */
-    @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
-      .hero-left {
-        margin-left: -15%;
-      }
-      
-      .hero-right {
-        margin-right: 2%;
-      }
-      
-      .hero-background {
-        background-size: contain;
+        font-size: 0.75rem;
       }
     }
 
@@ -1963,7 +2371,6 @@
         opacity: 0.6;
         background-size: contain;
         background-position: center;
-        height: 120%;
       }
 
       .hero-left {
@@ -2687,49 +3094,37 @@
     window.addEventListener('resize', updateParallax);
     updateParallax();
 
-    // Função para centralizar elementos após rotação
-    function centralizarHeroAposRotacao() {
+    // Detectar rotação da tela e recarregar animações
+    window.addEventListener('orientationchange', function() {
+      setTimeout(function() {
+        if (window.innerWidth <= 768) {
+          const heroBackground = document.getElementById('heroBackground');
+          if (heroBackground) {
+            heroBackground.style.animation = 'none';
+            heroBackground.offsetHeight;
+            heroBackground.style.animation = 'floatBackgroundMobile 8s ease-in-out infinite';
+          }
+          
+          const heroSection = document.getElementById('inicio');
+          if (heroSection) {
+            heroSection.style.minHeight = window.innerHeight + 'px';
+          }
+        }
+      }, 200);
+    });
+
+    // Ajustar altura do hero em mobile
+    function ajustarAlturaHero() {
       if (window.innerWidth <= 768) {
         const heroSection = document.getElementById('inicio');
-        const heroBackground = document.getElementById('heroBackground');
-        
-        // Ajustar altura do hero para ocupar toda a tela
         if (heroSection) {
           heroSection.style.minHeight = window.innerHeight + 'px';
-        }
-        
-        // Garantir que o background ocupe toda a área
-        if (heroBackground) {
-          heroBackground.style.height = '100%';
-          heroBackground.style.minHeight = window.innerHeight + 'px';
-        }
-        
-        // Forçar centralização em landscape
-        if (window.innerHeight < window.innerWidth) {
-          document.querySelectorAll('.hero-left, .hero-right').forEach(el => {
-            el.style.margin = '0 auto';
-          });
         }
       }
     }
 
-    // Chamar a função em vários eventos
-    window.addEventListener('orientationchange', function() {
-      setTimeout(centralizarHeroAposRotacao, 300);
-    });
-
-    window.addEventListener('resize', function() {
-      setTimeout(centralizarHeroAposRotacao, 100);
-    });
-
-    window.addEventListener('load', centralizarHeroAposRotacao);
-
-    // Também chamar quando o scroll terminar (para garantir)
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(centralizarHeroAposRotacao, 200);
-    });
+    window.addEventListener('load', ajustarAlturaHero);
+    window.addEventListener('resize', ajustarAlturaHero);
 
     // Otimização para iOS
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
