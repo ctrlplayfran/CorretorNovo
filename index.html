@@ -2131,6 +2131,169 @@
       position: fixed;
       width: 100%;
     }
+    @media (max-width: 768px) {
+  /* ... seu código existente ... */
+
+  /* CORREÇÃO CARD PREMIUM */
+  .hero-destaque-premium {
+    margin-left: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .premium-card {
+    border-radius: 16px;
+    padding: 12px;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .premium-img-container {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .premium-info {
+    flex: 1;
+    min-width: 140px;
+    text-align: left;
+  }
+
+  .premium-tipo {
+    font-size: 0.7rem;
+  }
+
+  .premium-nome {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+
+  .premium-local {
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  .premium-valor {
+    text-align: right;
+    padding-right: 5px;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+
+  .premium-valor .valor {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .premium-valor .label {
+    font-size: 0.55rem;
+  }
+
+  /* CORREÇÃO CONTATO E E-MAIL */
+  .contato-item {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .contato-item i {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contato-item span {
+    font-size: 0.9rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    flex: 1;
+  }
+
+  /* Forçar quebra no e-mail */
+  .contato-item span[href*="mailto"],
+  .contato-item span:contains("@") {
+    word-break: break-all !important;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .premium-card {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .premium-img-container {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 5px;
+  }
+
+  .premium-info {
+    text-align: center;
+    min-width: 100%;
+    margin: 5px 0;
+  }
+
+  .premium-nome {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .premium-local {
+    justify-content: center;
+  }
+
+  .premium-valor {
+    text-align: center;
+    width: 100%;
+    padding-right: 0;
+    margin-top: 5px;
+  }
+
+  .premium-valor .valor {
+    font-size: 1.1rem;
+  }
+
+  .contato-item span {
+    font-size: 0.8rem;
+  }
+  
+  .contato-item i {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 360px) {
+  .contato-item {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .contato-item span {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .premium-nome {
+    font-size: 0.9rem;
+  }
+}
   </style>
 </head>
 
