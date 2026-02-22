@@ -1649,6 +1649,8 @@
         min-height: auto;
         padding: 5rem 1rem 2rem;
         gap: 1rem;
+        display: flex;
+        flex-direction: column;
       }
 
       .hero-background {
@@ -2076,160 +2078,40 @@
       }
     }
 
-    /* ===== CORREÇÕES PARA ROTAÇÃO DE TELA ===== */
-    @media screen and (max-width: 768px) and (orientation: landscape) {
+    /* ===== MANTER LAYOUT MOBILE QUANDO ROTACIONADO COM FUNDO EXPANDIDO ===== */
+    @media screen and (max-width: 968px) and (orientation: landscape) {
       .hero {
-        min-height: auto;
-        padding: 4rem 1rem 1rem;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 5rem 1rem 2rem !important;
+      }
+      
+      .hero-left,
+      .hero-right {
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 0 auto 1rem !important;
       }
       
       .hero-background {
-        opacity: 0.15;
-        height: 100%;
-        background-size: cover;
-        animation: none;
-        transform: scale(1.1);
+        background-size: cover !important;
+        background-position: center !important;
+        animation: floatBackground 8s ease-in-out infinite !important;
+        opacity: 0.25 !important;
       }
       
-      .hero-left {
-        display: flex;
+      .geometric-frame::before,
+      .geometric-frame::after {
+        animation: rotateFrame 12s linear infinite, rotateFrameReverse 15s linear infinite !important;
       }
       
-      .hero-right {
-        width: 100%;
-        padding: 1rem;
+      .hero-left .hero-badge {
+        display: inline-block !important;
+        margin: 1rem auto 0 !important;
       }
       
-      .foto-container {
-        width: min(150px, 25vw);
-        height: min(150px, 25vw);
-      }
-      
-      .name-container h1 {
-        font-size: clamp(1.2rem, 3.5vw, 1.6rem);
-      }
-      
-      .name-container h1 span {
-        font-size: clamp(0.7rem, 2vw, 0.9rem);
-      }
-      
-      .hero-stats {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      
-      .stat-item {
-        flex: 1 1 auto;
-        min-width: 100px;
-        padding: 0.5rem;
-      }
-      
-      .stat-number {
-        font-size: 1.2rem;
-      }
-      
-      .stat-label {
-        font-size: 0.7rem;
-      }
-      
-      .btn-whatsapp {
-        padding: 10px 16px;
-        font-size: 0.9rem;
-        min-height: 44px;
-      }
-      
-      .btn-whatsapp i {
-        font-size: 1.2rem;
-      }
-      
-      /* CARD PREMIUM EM LANDSCAPE */
-      .hero-destaque-premium {
-        margin-bottom: 0.8rem;
-      }
-      
-      .premium-card {
-        padding: 6px 10px;
-        gap: 8px;
-        flex-wrap: nowrap;
-        border-radius: 50px;
-      }
-      
-      .premium-img-container {
-        width: 40px;
-        height: 40px;
-      }
-      
-      .premium-badge {
-        width: 16px;
-        height: 16px;
-        font-size: 0.5rem;
-        top: -3px;
-        right: -3px;
-      }
-      
-      .premium-info {
-        min-width: auto;
-      }
-      
-      .premium-tipo {
-        font-size: 0.55rem;
-      }
-      
-      .premium-nome {
-        font-size: 0.8rem;
-        max-width: 120px;
-      }
-      
-      .premium-local {
-        font-size: 0.55rem;
-      }
-      
-      .premium-valor {
-        min-width: 60px;
-      }
-      
-      .premium-valor .valor {
-        font-size: 0.8rem;
-      }
-      
-      .hero-badge {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.8rem;
-        margin: 0.5rem 0;
-      }
-      
-      .hero-right p {
-        font-size: 0.8rem !important;
-        margin: 0.5rem 0 !important;
-      }
-    }
-
-    @media screen and (max-width: 480px) and (orientation: landscape) {
-      .hero-left {
-        display: none;
-      }
-      
-      .hero-right {
-        width: 100%;
-      }
-      
-      .stat-item {
-        min-width: 80px;
-      }
-      
-      .premium-card {
-        padding: 4px 8px;
-      }
-      
-      .premium-img-container {
-        width: 35px;
-        height: 35px;
-      }
-      
-      .premium-nome {
-        max-width: 100px;
-        font-size: 0.7rem;
+      .hero-right .hero-badge {
+        display: none !important;
       }
     }
 
@@ -2664,399 +2546,6 @@
       position: fixed;
       width: 100%;
     }
-    /* ===== CORREÇÕES PARA ROTAÇÃO DE TELA EM MOBILE ===== */
-@media screen and (max-width: 968px) and (orientation: landscape) {
-  /* Ajustes gerais */
-  .hero {
-    min-height: auto !important;
-    padding: 4rem 1rem 2rem !important;
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    gap: 1rem !important;
-  }
-
-  /* Ambos os lados visíveis e centralizados */
-  .hero-left,
-  .hero-right {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    background: rgba(0, 0, 0, 0.2) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border-radius: 20px !important;
-    padding: 1rem !important;
-    width: calc(50% - 1rem) !important;
-    min-width: 280px !important;
-    margin: 0 !important;
-    flex: 1 1 auto !important;
-  }
-
-  /* Ajuste da foto */
-  .foto-container {
-    width: 150px !important;
-    height: 150px !important;
-    margin: 0 auto 1rem !important;
-  }
-
-  .geometric-frame::before,
-  .geometric-frame::after {
-    animation: none !important; /* Desativa animações pesadas */
-  }
-
-  .geometric-frame img {
-    width: 85% !important;
-    height: 85% !important;
-  }
-
-  /* Nome mais compacto */
-  .name-container h1 {
-    font-size: 1.5rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.5rem !important;
-    animation: none !important; /* Desativa animações pesadas */
-  }
-
-  .name-container h1 span {
-    font-size: 0.9rem !important;
-  }
-
-  .name-container::after,
-  .name-container::before,
-  .desktop-glow,
-  .desktop-sparkle-1,
-  .desktop-sparkle-2,
-  .desktop-sparkle-3 {
-    display: none !important; /* Remove elementos decorativos */
-  }
-
-  /* Card premium */
-  .hero-destaque-premium {
-    width: 100% !important;
-    margin-bottom: 0.8rem !important;
-  }
-
-  .premium-card {
-    padding: 8px !important;
-    gap: 6px !important;
-    border-radius: 50px !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    flex-wrap: nowrap !important;
-  }
-
-  .premium-img-container {
-    width: 40px !important;
-    height: 40px !important;
-    flex-shrink: 0 !important;
-  }
-
-  .premium-badge {
-    width: 16px !important;
-    height: 16px !important;
-    font-size: 0.5rem !important;
-    top: -3px !important;
-    right: -3px !important;
-  }
-
-  .premium-info {
-    flex: 1 !important;
-    min-width: 0 !important;
-    text-align: left !important;
-  }
-
-  .premium-tipo {
-    font-size: 0.6rem !important;
-  }
-
-  .premium-nome {
-    font-size: 0.85rem !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    max-width: 100px !important;
-  }
-
-  .premium-local {
-    font-size: 0.6rem !important;
-    white-space: nowrap !important;
-  }
-
-  .premium-local i {
-    font-size: 0.5rem !important;
-  }
-
-  .premium-valor {
-    min-width: 70px !important;
-    text-align: right !important;
-    padding-right: 5px !important;
-  }
-
-  .premium-valor .valor {
-    font-size: 0.9rem !important;
-    white-space: nowrap !important;
-  }
-
-  .premium-valor .label {
-    font-size: 0.5rem !important;
-  }
-
-  /* Badge */
-  .hero-badge {
-    display: inline-block !important;
-    font-size: 0.7rem !important;
-    padding: 0.3rem 1rem !important;
-    margin: 0.5rem 0 !important;
-    background: rgba(201, 162, 61, 0.15) !important;
-    border: 1px solid var(--dourado) !important;
-    border-radius: 50px !important;
-  }
-
-  /* Texto */
-  .hero-right p {
-    font-size: 0.85rem !important;
-    margin: 0.5rem 0 !important;
-    line-height: 1.3 !important;
-  }
-
-  /* Stats */
-  .hero-stats {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
-    margin: 0.5rem 0 !important;
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  .stat-item {
-    flex: 0 1 auto !important;
-    min-width: 80px !important;
-    padding: 0.5rem 0.8rem !important;
-    background: rgba(0, 0, 0, 0.3) !important;
-    border: 1px solid rgba(201, 162, 61, 0.3) !important;
-    border-radius: 30px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 0.2rem !important;
-  }
-
-  .stat-number {
-    font-size: 1.2rem !important;
-    line-height: 1 !important;
-  }
-
-  .stat-label {
-    font-size: 0.6rem !important;
-    white-space: nowrap !important;
-  }
-
-  /* Botão WhatsApp */
-  .btn-whatsapp {
-    padding: 10px 16px !important;
-    font-size: 0.9rem !important;
-    min-height: 44px !important;
-    width: 100% !important;
-    margin-top: 0.5rem !important;
-  }
-
-  .btn-whatsapp i {
-    font-size: 1.2rem !important;
-  }
-
-  /* Fundo mais sutil */
-  .hero-background {
-    opacity: 0.15 !important;
-    background-size: cover !important;
-    animation: none !important;
-    transform: scale(1.1) !important;
-  }
-}
-
-/* Ajuste para telas muito pequenas em landscape */
-@media screen and (max-width: 700px) and (orientation: landscape) {
-  .hero-left,
-  .hero-right {
-    width: 100% !important;
-    max-width: 400px !important;
-    margin: 0 auto !important;
-  }
-  
-  .hero {
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-  
-  .foto-container {
-    width: 120px !important;
-    height: 120px !important;
-  }
-  
-  .name-container h1 {
-    font-size: 1.3rem !important;
-  }
-  
-  .stat-item {
-    min-width: 70px !important;
-    padding: 0.4rem 0.6rem !important;
-  }
-  
-  .stat-number {
-    font-size: 1rem !important;
-  }
-  
-  .stat-label {
-    font-size: 0.55rem !important;
-  }
-  
-  .premium-nome {
-    max-width: 80px !important;
-  }
-}
-
-/* Remover classe no-scroll quando necessário */
-.no-scroll {
-  overflow: auto !important;
-  position: static !important;
-}
-
-/* Correção adicional para o badge em landscape */
-@media screen and (max-width: 968px) and (orientation: landscape) {
-  .hero-left .hero-badge,
-  .hero-right .hero-badge {
-    display: inline-block !important;
-    margin: 0.5rem auto !important;
-    text-align: center !important;
-  }
-}
-/* ===== CORREÇÃO DEFINITIVA PARA ANIMAÇÕES EM LANDSCAPE MOBILE ===== */
-@media screen and (max-width: 968px) and (orientation: landscape) {
-  /* Reativar todas as animações em landscape */
-  .hero-left,
-  .hero-right,
-  .name-container h1,
-  .name-container h1 span,
-  .foto-container,
-  .geometric-frame,
-  .geometric-frame::before,
-  .geometric-frame::after,
-  .hero-destaque-premium,
-  .premium-card,
-  .hero-badge,
-  .hero-right p,
-  .hero-stats,
-  .stat-item,
-  .btn-whatsapp {
-    animation: fadeUp 0.8s ease forwards !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-  }
-
-  /* Animações específicas */
-  .name-container h1 {
-    animation: mobileGlow 3s ease-in-out infinite !important;
-  }
-
-  .name-container::after {
-    display: block !important;
-    animation: mobileLine 3s ease-in-out infinite !important;
-  }
-
-  /* Sparkles em landscape */
-  .name-container::before {
-    display: block !important;
-    animation: mobileSparkle 4s ease-in-out infinite !important;
-  }
-
-  /* Elementos decorativos mobile */
-  .mobile-sparkle,
-  .sparkle-1,
-  .sparkle-2,
-  .sparkle-3 {
-    display: block !important;
-    animation: mobileSparkle 3s ease-in-out infinite !important;
-  }
-
-  .mobile-glow,
-  .glow-1,
-  .glow-2,
-  .glow-3 {
-    display: block !important;
-    animation: mobilePulse 2s ease-in-out infinite !important;
-  }
-
-  /* Animar a moldura geométrica */
-  .geometric-frame::before {
-    animation: rotateFrame 12s linear infinite !important;
-  }
-
-  .geometric-frame::after {
-    animation: rotateFrameReverse 15s linear infinite !important;
-  }
-
-  /* Fundo animado */
-  .hero-background {
-    animation: floatBackgroundMobile 8s ease-in-out infinite !important;
-    opacity: 0.25 !important;
-  }
-
-  /* Animações com delay para elementos sequenciais */
-  .hero-right .hero-destaque-premium {
-    animation-delay: 0.1s !important;
-  }
-
-  .hero-right .hero-badge {
-    animation-delay: 0.2s !important;
-  }
-
-  .hero-right p {
-    animation-delay: 0.3s !important;
-  }
-
-  .hero-stats {
-    animation-delay: 0.4s !important;
-  }
-
-  .hero-stats .stat-item:nth-child(1) {
-    animation-delay: 0.5s !important;
-  }
-
-  .hero-stats .stat-item:nth-child(2) {
-    animation-delay: 0.6s !important;
-  }
-
-  .hero-stats .stat-item:nth-child(3) {
-    animation-delay: 0.7s !important;
-  }
-
-  .btn-whatsapp {
-    animation-delay: 0.8s !important;
-  }
-}
-
-/* Garantir que as animações não sejam interrompidas */
-@media screen and (max-width: 968px) and (orientation: landscape) {
-  .hero-left *,
-  .hero-right * {
-    animation-play-state: running !important;
-  }
-  
-  /* Remover qualquer transform que possa conflitar */
-  .hero-left,
-  .hero-right {
-    transform: none !important;
-  }
-}
   </style>
 </head>
 
@@ -3723,7 +3212,11 @@
           if (heroBackground) {
             heroBackground.style.animation = 'none';
             heroBackground.offsetHeight;
-            heroBackground.style.animation = 'floatBackgroundMobile 8s ease-in-out infinite';
+            if (window.innerHeight < window.innerWidth) {
+              heroBackground.style.animation = 'floatBackground 8s ease-in-out infinite';
+            } else {
+              heroBackground.style.animation = 'floatBackgroundMobile 8s ease-in-out infinite';
+            }
           }
           
           const heroSection = document.getElementById('inicio');
@@ -3892,80 +3385,6 @@ window.addEventListener('resize', function() {
 
 // Chamar na carga inicial
 window.addEventListener('load', handleOrientationChange);
-// CORREÇÃO PARA ANIMAÇÕES EM ROTAÇÃO
-function fixAnimationsOnRotate() {
-  const isLandscape = window.innerWidth > window.innerHeight;
-  const isMobile = window.innerWidth <= 968;
-  
-  if (isMobile && isLandscape) {
-    // Forçar reativação das animações
-    const animatedElements = document.querySelectorAll(
-      '.hero-left, .hero-right, .name-container h1, ' +
-      '.foto-container, .geometric-frame, .hero-destaque-premium, ' +
-      '.hero-badge, .hero-right p, .hero-stats, .stat-item, .btn-whatsapp'
-    );
-    
-    animatedElements.forEach(el => {
-      // Forçar reflow
-      void el.offsetWidth;
-      
-      // Garantir que a animação está rodando
-      el.style.animationPlayState = 'running';
-    });
-    
-    // Recriar sparkles se necessário
-    recreateSparkles();
-  }
-}
-
-function recreateSparkles() {
-  const nameContainer = document.querySelector('.name-container');
-  if (!nameContainer) return;
-  
-  // Verificar se sparkles existem
-  if (!nameContainer.querySelector('.mobile-sparkle')) {
-    // Adicionar sparkles se não existirem
-    const sparkles = [
-      { class: 'sparkle-1', content: '✧', top: '-20px', right: '0' },
-      { class: 'sparkle-2', content: '✦', bottom: '-15px', left: '20%' },
-      { class: 'sparkle-3', content: '✧', top: '20%', right: '-15px' }
-    ];
-    
-    sparkles.forEach(s => {
-      const span = document.createElement('span');
-      span.className = `mobile-sparkle ${s.class}`;
-      span.textContent = s.content;
-      span.style.cssText = `
-        position: absolute;
-        color: var(--dourado);
-        font-size: 1rem;
-        opacity: 0;
-        animation: mobileSparkle 3s ease-in-out infinite;
-        ${s.top ? 'top: ' + s.top + ';' : ''}
-        ${s.bottom ? 'bottom: ' + s.bottom + ';' : ''}
-        ${s.left ? 'left: ' + s.left + ';' : ''}
-        ${s.right ? 'right: ' + s.right + ';' : ''}
-        ${s.animationDelay ? 'animation-delay: ' + s.animationDelay + ';' : ''}
-        pointer-events: none;
-        z-index: 10;
-      `;
-      nameContainer.appendChild(span);
-    });
-  }
-}
-
-// Event listeners para rotação
-window.addEventListener('orientationchange', function() {
-  setTimeout(fixAnimationsOnRotate, 150);
-});
-
-window.addEventListener('resize', function() {
-  // Pequeno delay para garantir que a orientação mudou
-  setTimeout(fixAnimationsOnRotate, 100);
-});
-
-// Chamar na carga inicial
-window.addEventListener('load', fixAnimationsOnRotate);
   </script>
 
 </body>
