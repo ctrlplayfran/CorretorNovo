@@ -4,8 +4,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Josué Afonso | Corretor de Imóveis</title>
+  
+  <!-- SEO BÁSICO -->
+  <title>Josué Afonso | Corretor de Imóveis em Mato Grosso - Fazendas e Chácaras</title>
+  <meta name="description" content="Josué Afonso - Corretor de Imóveis especializado em fazendas, chácaras e propriedades rurais em Mato Grosso. Mais de 12 anos de experiência. CRECI MT 20998.">
+  <meta name="keywords" content="corretor de imóveis, fazendas mato grosso, chácaras, propriedades rurais, imóveis rurais, CRECI MT 20998, Josué Afonso">
+  <meta name="author" content="Josué Afonso">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.seusite.com.br/">
+  
+  <!-- OPEN GRAPH / REDES SOCIAIS -->
+  <meta property="og:title" content="Josué Afonso | Corretor de Imóveis Especializado em Propriedades Rurais">
+  <meta property="og:description" content="Mais de 12 anos de experiência em imóveis rurais em Mato Grosso. CRECI MT 20998.">
+  <meta property="og:image" content="https://www.seusite.com.br/Assets/Imagens/FotoPerfil.png">
+  <meta property="og:url" content="https://www.seusite.com.br/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Josué Afonso Corretor">
+  
+  <!-- TWITTER CARDS -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Josué Afonso | Corretor de Imóveis em MT">
+  <meta name="twitter:description" content="Especialista em fazendas e chácaras em Mato Grosso">
+  <meta name="twitter:image" content="https://www.seusite.com.br/Assets/Imagens/FotoPerfil.png">
+  
+  <!-- SCHEMA.ORG / DADOS ESTRUTURADOS -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Josué Afonso - Corretor de Imóveis",
+    "image": "https://www.seusite.com.br/Assets/Imagens/FotoPerfil.png",
+    "description": "Corretor de imóveis especializado em propriedades rurais em Mato Grosso",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "MT",
+      "addressCountry": "BR"
+    },
+    "priceRange": "$$ - $$$$",
+    "telephone": "+55 66 99670-0226",
+    "email": "josueafonsocorretor@gmail.com",
+    "areaServed": "Mato Grosso",
+    "hasCredential": "CRECI MT 20998",
+    "knowsAbout": ["Fazendas", "Chácaras", "Sítios", "Imóveis Rurais", "Propriedades Agrícolas"],
+    "foundingDate": "2012",
+    "sameAs": [
+      "https://www.instagram.com/josueafonso_corretor/",
+      "https://web.facebook.com/josue.afonso.336"
+    ]
+  }
+  </script>
 
+  <!-- GEO TAGS (IMPORTANTE PARA NEGÓCIOS LOCAIS) -->
+  <meta name="geo.region" content="BR-MT">
+  <meta name="geo.placename" content="Mato Grosso">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -176,6 +233,7 @@
       position: relative;
       overflow: hidden;
       background: linear-gradient(135deg, rgba(26, 53, 40, 0.85), rgba(43, 90, 67, 0.85));
+      z-index: 1;
     }
 
     /* Container da imagem de fundo - DESKTOP */
@@ -1598,19 +1656,20 @@
         height: 100%;
         background-size: contain;
         animation: floatBackgroundMobile 8s ease-in-out infinite;
+        background-attachment: scroll;
+        width: 100%;
+        will-change: transform;
       }
 
       @keyframes floatBackgroundMobile {
         0% {
-          transform: translateY(-3%) scale(1.03);
+          transform: translateY(-2%) scale(1.02);
         }
-
         50% {
-          transform: translateY(3%) scale(1.05);
+          transform: translateY(2%) scale(1.04);
         }
-
         100% {
-          transform: translateY(-3%) scale(1.03);
+          transform: translateY(-2%) scale(1.02);
         }
       }
 
@@ -1786,30 +1845,96 @@
         font-size: 1.8rem;
       }
 
-      /* Premium card em mobile */
+      /* CORREÇÃO CARD PREMIUM */
       .hero-destaque-premium {
         margin-left: 0;
         max-width: 100%;
+        width: 100%;
       }
 
       .premium-card {
         border-radius: 16px;
-        padding: 0.8rem;
-        gap: 0.8rem;
+        padding: 12px;
+        gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        background: rgba(0, 0, 0, 0.4);
       }
 
       .premium-img-container {
         width: 60px;
         height: 60px;
+        flex-shrink: 0;
       }
 
       .premium-info {
-        flex: 2;
+        flex: 1;
+        min-width: 140px;
+        text-align: left;
+      }
+
+      .premium-tipo {
+        font-size: 0.7rem;
+      }
+
+      .premium-nome {
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+      }
+
+      .premium-local {
+        font-size: 0.7rem;
+        white-space: nowrap;
+      }
+
+      .premium-valor {
+        text-align: right;
+        padding-right: 5px;
+        min-width: 80px;
+        flex-shrink: 0;
       }
 
       .premium-valor .valor {
         font-size: 1rem;
-        white-space: normal;
+        white-space: nowrap;
+      }
+
+      .premium-valor .label {
+        font-size: 0.55rem;
+      }
+
+      /* CORREÇÃO CONTATO E E-MAIL */
+      .contato-item {
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .contato-item i {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .contato-item span {
+        font-size: 0.9rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        flex: 1;
+      }
+
+      /* Forçar quebra no e-mail */
+      .contato-item:nth-child(2) span {
+        word-break: break-all !important;
+        font-size: 0.85rem;
       }
 
       /* Formulários em mobile */
@@ -1896,17 +2021,6 @@
         font-size: 1.5rem;
       }
 
-      .contato-item {
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-
-      .contato-item span {
-        font-size: 1rem;
-        word-break: break-word;
-        flex: 1;
-      }
-
       /* Footer em mobile */
       .footer-content {
         grid-template-columns: 1fr;
@@ -1959,6 +2073,173 @@
 
       .vender-container > div:first-of-type div:last-child {
         font-size: 14px !important;
+      }
+    }
+
+    /* ===== CORREÇÕES PARA ROTAÇÃO DE TELA ===== */
+    @media screen and (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        min-height: auto;
+        padding: 4rem 1rem 1rem;
+      }
+      
+      .hero-background {
+        opacity: 0.15;
+        height: 100%;
+        background-size: cover;
+        animation: none;
+        transform: scale(1.1);
+      }
+      
+      .hero-left {
+        display: flex;
+      }
+      
+      .hero-right {
+        width: 100%;
+        padding: 1rem;
+      }
+      
+      .foto-container {
+        width: min(150px, 25vw);
+        height: min(150px, 25vw);
+      }
+      
+      .name-container h1 {
+        font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      }
+      
+      .name-container h1 span {
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+      }
+      
+      .hero-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      
+      .stat-item {
+        flex: 1 1 auto;
+        min-width: 100px;
+        padding: 0.5rem;
+      }
+      
+      .stat-number {
+        font-size: 1.2rem;
+      }
+      
+      .stat-label {
+        font-size: 0.7rem;
+      }
+      
+      .btn-whatsapp {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        min-height: 44px;
+      }
+      
+      .btn-whatsapp i {
+        font-size: 1.2rem;
+      }
+      
+      /* CARD PREMIUM EM LANDSCAPE */
+      .hero-destaque-premium {
+        margin-bottom: 0.8rem;
+      }
+      
+      .premium-card {
+        padding: 6px 10px;
+        gap: 8px;
+        flex-wrap: nowrap;
+        border-radius: 50px;
+      }
+      
+      .premium-img-container {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .premium-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 0.5rem;
+        top: -3px;
+        right: -3px;
+      }
+      
+      .premium-info {
+        min-width: auto;
+      }
+      
+      .premium-tipo {
+        font-size: 0.55rem;
+      }
+      
+      .premium-nome {
+        font-size: 0.8rem;
+        max-width: 120px;
+      }
+      
+      .premium-local {
+        font-size: 0.55rem;
+      }
+      
+      .premium-valor {
+        min-width: 60px;
+      }
+      
+      .premium-valor .valor {
+        font-size: 0.8rem;
+      }
+      
+      .hero-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.8rem;
+        margin: 0.5rem 0;
+      }
+      
+      .hero-right p {
+        font-size: 0.8rem !important;
+        margin: 0.5rem 0 !important;
+      }
+    }
+
+    @media screen and (max-width: 480px) and (orientation: landscape) {
+      .hero-left {
+        display: none;
+      }
+      
+      .hero-right {
+        width: 100%;
+      }
+      
+      .stat-item {
+        min-width: 80px;
+      }
+      
+      .premium-card {
+        padding: 4px 8px;
+      }
+      
+      .premium-img-container {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .premium-nome {
+        max-width: 100px;
+        font-size: 0.7rem;
+      }
+    }
+
+    @media screen and (max-width: 768px) and (orientation: portrait) {
+      .hero-background {
+        opacity: 0.25;
+        height: 100%;
+        background-size: contain;
+        animation: floatBackgroundMobile 8s ease-in-out infinite;
+        transform: translateY(0) scale(1.05);
       }
     }
 
@@ -2015,13 +2296,25 @@
 
       .premium-info {
         text-align: center;
-        width: 100%;
+        min-width: 100%;
+        margin: 5px 0;
+      }
+
+      .premium-nome {
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
+      }
+
+      .premium-local {
+        justify-content: center;
       }
 
       .premium-valor {
         text-align: center;
         width: 100%;
         padding-right: 0;
+        margin-top: 5px;
       }
 
       .vender-container > div:first-of-type {
@@ -2057,6 +2350,18 @@
       .premium-img-container {
         width: 50px;
         height: 50px;
+      }
+      
+      .contato-item {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      }
+      
+      .contato-item span {
+        width: 100%;
+        text-align: center;
+        font-size: 0.75rem;
       }
     }
 
@@ -2131,169 +2436,6 @@
       position: fixed;
       width: 100%;
     }
-    @media (max-width: 768px) {
-  /* ... seu código existente ... */
-
-  /* CORREÇÃO CARD PREMIUM */
-  .hero-destaque-premium {
-    margin-left: 0;
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .premium-card {
-    border-radius: 16px;
-    padding: 12px;
-    gap: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    background: rgba(0, 0, 0, 0.4);
-  }
-
-  .premium-img-container {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-  }
-
-  .premium-info {
-    flex: 1;
-    min-width: 140px;
-    text-align: left;
-  }
-
-  .premium-tipo {
-    font-size: 0.7rem;
-  }
-
-  .premium-nome {
-    font-size: 0.95rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 140px;
-  }
-
-  .premium-local {
-    font-size: 0.7rem;
-    white-space: nowrap;
-  }
-
-  .premium-valor {
-    text-align: right;
-    padding-right: 5px;
-    min-width: 80px;
-    flex-shrink: 0;
-  }
-
-  .premium-valor .valor {
-    font-size: 1rem;
-    white-space: nowrap;
-  }
-
-  .premium-valor .label {
-    font-size: 0.55rem;
-  }
-
-  /* CORREÇÃO CONTATO E E-MAIL */
-  .contato-item {
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .contato-item i {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .contato-item span {
-    font-size: 0.9rem;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-    flex: 1;
-  }
-
-  /* Forçar quebra no e-mail */
-  .contato-item span[href*="mailto"],
-  .contato-item span:contains("@") {
-    word-break: break-all !important;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .premium-card {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .premium-img-container {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 5px;
-  }
-
-  .premium-info {
-    text-align: center;
-    min-width: 100%;
-    margin: 5px 0;
-  }
-
-  .premium-nome {
-    max-width: 100%;
-    white-space: normal;
-    text-align: center;
-  }
-
-  .premium-local {
-    justify-content: center;
-  }
-
-  .premium-valor {
-    text-align: center;
-    width: 100%;
-    padding-right: 0;
-    margin-top: 5px;
-  }
-
-  .premium-valor .valor {
-    font-size: 1.1rem;
-  }
-
-  .contato-item span {
-    font-size: 0.8rem;
-  }
-  
-  .contato-item i {
-    width: 32px;
-    height: 32px;
-  }
-}
-
-@media (max-width: 360px) {
-  .contato-item {
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .contato-item span {
-    width: 100%;
-    text-align: center;
-    font-size: 0.75rem;
-  }
-
-  .premium-nome {
-    font-size: 0.9rem;
-  }
-}
   </style>
 </head>
 
@@ -2951,6 +3093,38 @@
 
     window.addEventListener('resize', updateParallax);
     updateParallax();
+
+    // Detectar rotação da tela e recarregar animações
+    window.addEventListener('orientationchange', function() {
+      setTimeout(function() {
+        if (window.innerWidth <= 768) {
+          const heroBackground = document.getElementById('heroBackground');
+          if (heroBackground) {
+            heroBackground.style.animation = 'none';
+            heroBackground.offsetHeight;
+            heroBackground.style.animation = 'floatBackgroundMobile 8s ease-in-out infinite';
+          }
+          
+          const heroSection = document.getElementById('inicio');
+          if (heroSection) {
+            heroSection.style.minHeight = window.innerHeight + 'px';
+          }
+        }
+      }, 200);
+    });
+
+    // Ajustar altura do hero em mobile
+    function ajustarAlturaHero() {
+      if (window.innerWidth <= 768) {
+        const heroSection = document.getElementById('inicio');
+        if (heroSection) {
+          heroSection.style.minHeight = window.innerHeight + 'px';
+        }
+      }
+    }
+
+    window.addEventListener('load', ajustarAlturaHero);
+    window.addEventListener('resize', ajustarAlturaHero);
 
     // Otimização para iOS
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
