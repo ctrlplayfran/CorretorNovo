@@ -681,6 +681,159 @@
       animation: none;
     }
 
+    /* ===== SEÇÃO IMÓVEIS EM DESTAQUE (AGORA NO INÍCIO) ===== */
+    .imoveis-destaque-section {
+      padding: 5rem 5%;
+      background: linear-gradient(135deg, var(--verde-escuro), var(--verde-medio));
+      position: relative;
+      overflow: hidden;
+      border-top: 2px solid var(--dourado);
+      border-bottom: 2px solid var(--dourado);
+    }
+
+    .imoveis-destaque-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('Assets/Imagens/logosn.png') no-repeat center;
+      background-size: cover;
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-header h2 {
+      color: var(--dourado);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--dourado);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    /* Galeria de Imóveis */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .imovel-card {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--borda-raio);
+      overflow: hidden;
+      border: 1px solid rgba(201, 162, 61, 0.2);
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .imovel-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--dourado);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .imovel-img {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .imovel-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+
+    .imovel-card:hover .imovel-img img {
+      transform: scale(1.1);
+    }
+
+    .imovel-info {
+      padding: 1.5rem;
+    }
+
+    .imovel-info h3 {
+      color: var(--dourado);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .imovel-preco {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dourado-claro);
+      margin: 1rem 0;
+    }
+
+    .imovel-detalhes {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .imovel-detalhes i {
+      color: var(--dourado);
+      margin-right: 0.3rem;
+    }
+
+    /* Botão nos cards */
+    .btn-imovel {
+      background: var(--dourado);
+      border: none;
+      color: var(--verde-escuro);
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+      font-size: 0.95rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+    }
+
+    .imovel-card:hover .btn-imovel {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
     /* ===== SEÇÃO VENDER IMÓVEL ===== */
     .vender-section {
       padding: 5rem 5%;
@@ -817,38 +970,6 @@
       z-index: 1;
     }
 
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 4rem;
-    }
-
-    .section-header h2 {
-      color: var(--dourado);
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .section-header h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background: var(--dourado);
-      border-radius: 2px;
-    }
-
-    .section-header p {
-      opacity: 0.9;
-      font-size: 1.1rem;
-    }
-
     /* Cards de Destaque */
     .highlight-cards {
       display: grid;
@@ -888,100 +1009,6 @@
     .card p {
       opacity: 0.8;
       font-size: 0.95rem;
-    }
-
-    /* Galeria de Imóveis */
-    .galeria-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .imovel-card {
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: var(--borda-raio);
-      overflow: hidden;
-      border: 1px solid rgba(201, 162, 61, 0.2);
-      transition: all 0.3s;
-      text-decoration: none;
-      color: inherit;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-    }
-
-    .imovel-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--dourado);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    .imovel-img {
-      height: 220px;
-      overflow: hidden;
-    }
-
-    .imovel-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s;
-    }
-
-    .imovel-card:hover .imovel-img img {
-      transform: scale(1.1);
-    }
-
-    .imovel-info {
-      padding: 1.5rem;
-    }
-
-    .imovel-info h3 {
-      color: var(--dourado);
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
-    }
-
-    .imovel-preco {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--dourado-claro);
-      margin: 1rem 0;
-    }
-
-    .imovel-detalhes {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    .imovel-detalhes i {
-      color: var(--dourado);
-      margin-right: 0.3rem;
-    }
-
-    /* Botão nos cards */
-    .btn-imovel {
-      background: var(--dourado);
-      border: none;
-      color: var(--verde-escuro);
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-      justify-content: center;
-      font-size: 0.95rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s;
-    }
-
-    .imovel-card:hover .btn-imovel {
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     /* Contato Section */
@@ -1642,8 +1669,8 @@
 
     <nav id="mainNav">
       <a href="#inicio">Início</a>
-      <a href="#sobre">Sobre</a>
       <a href="#imoveis">Imóveis</a>
+      <a href="#sobre">Sobre</a>
       <a href="#vender" class="highlight">💰 Quer vender?</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -1711,7 +1738,101 @@
     </div>
   </section>
 
-  <!-- ===== SEÇÃO VENDER IMÓVEL ===== -->
+  <!-- Imóveis em Destaque Section (PRIMEIRA SEÇÃO APÓS O HERO) -->
+  <section id="imoveis" class="imoveis-destaque-section hidden">
+    <div class="section-header">
+      <h2>Imóveis em Destaque</h2>
+      <p>Selecionamos as melhores oportunidades para você</p>
+    </div>
+
+    <div class="galeria-grid">
+      <a href="fazenda.html" class="imovel-card">
+        <div class="imovel-img">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Fazenda 1.200 Hectares"
+            loading="lazy">
+        </div>
+        <div class="imovel-info">
+          <h3>Fazenda 1.200 Hectares</h3>
+          <div class="imovel-detalhes">
+            <span><i class="fas fa-tachometer-alt"></i> 1.200 ha</span>
+            <span><i class="fas fa-water"></i> 3 nascentes</span>
+          </div>
+          <div class="imovel-preco">R$ 18.500.000</div>
+          <div class="btn-imovel" style="pointer-events: none;">
+            <i class="fas fa-eye"></i>
+            Ver detalhes
+          </div>
+        </div>
+      </a>
+
+      <a href="imovel2.html" class="imovel-card">
+        <div class="imovel-img">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d" alt="Casa Alto Padrão" loading="lazy">
+        </div>
+        <div class="imovel-info">
+          <h3>Casa Alto Padrão</h3>
+          <div class="imovel-detalhes">
+            <span><i class="fas fa-bed"></i> 4 suítes</span>
+            <span><i class="fas fa-car"></i> Garagem 3 vagas</span>
+          </div>
+          <div class="imovel-preco">R$ 2.450.000</div>
+          <div class="btn-imovel" style="pointer-events: none;">
+            <i class="fas fa-eye"></i>
+            Ver detalhes
+          </div>
+        </div>
+      </a>
+
+      <a href="imovel3.html" class="imovel-card">
+        <div class="imovel-img">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Chácara 5 Hectares"
+            loading="lazy">
+        </div>
+        <div class="imovel-info">
+          <h3>Chácara 5 Hectares</h3>
+          <div class="imovel-detalhes">
+            <span><i class="fas fa-tachometer-alt"></i> 5 ha</span>
+            <span><i class="fas fa-home"></i> Casa 3 quartos</span>
+          </div>
+          <div class="imovel-preco">R$ 890.000</div>
+          <div class="btn-imovel" style="pointer-events: none;">
+            <i class="fas fa-eye"></i>
+            Ver detalhes
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Sobre / Destaques Section (AGORA SEGUNDA SEÇÃO) -->
+  <section id="sobre" class="hidden">
+    <div class="section-header">
+      <h2>Por que escolher nosso trabalho?</h2>
+      <p>Experiência, transparência e os melhores negócios do mercado</p>
+    </div>
+
+    <div class="highlight-cards">
+      <div class="card">
+        <i class="fas fa-handshake"></i>
+        <h3>Negociação Estratégica</h3>
+        <p>Mais de uma década fechando negócios vantajosos para compradores e vendedores</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-file-signature"></i>
+        <h3>Segurança Jurídica</h3>
+        <p>Toda documentação analisada por especialistas para sua tranquilidade</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Imóveis Rurais</h3>
+        <p>Especialista em fazendas, chácaras e propriedades agrícolas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO VENDER IMÓVEL -->
   <section id="vender" class="vender-section">
     <div class="vender-container">
       <h2>💰 Quer vender seu imóvel?</h2>
@@ -1816,100 +1937,6 @@
     </div>
   </section>
 
-  <!-- Destaques Section -->
-  <section id="sobre" class="hidden">
-    <div class="section-header">
-      <h2>Por que escolher nosso trabalho?</h2>
-      <p>Experiência, transparência e os melhores negócios do mercado</p>
-    </div>
-
-    <div class="highlight-cards">
-      <div class="card">
-        <i class="fas fa-handshake"></i>
-        <h3>Negociação Estratégica</h3>
-        <p>Mais de uma década fechando negócios vantajosos para compradores e vendedores</p>
-      </div>
-
-      <div class="card">
-        <i class="fas fa-file-signature"></i>
-        <h3>Segurança Jurídica</h3>
-        <p>Toda documentação analisada por especialistas para sua tranquilidade</p>
-      </div>
-
-      <div class="card">
-        <i class="fas fa-map-marked-alt"></i>
-        <h3>Imóveis Rurais</h3>
-        <p>Especialista em fazendas, chácaras e propriedades agrícolas</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Imóveis Section -->
-  <section id="imoveis" class="hidden">
-    <div class="section-header">
-      <h2>Imóveis em Destaque</h2>
-      <p>Selecionamos as melhores oportunidades para você</p>
-    </div>
-
-    <div class="galeria-grid">
-      <a href="fazenda.html" class="imovel-card">
-        <div class="imovel-img">
-          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Fazenda 1.200 Hectares"
-            loading="lazy">
-        </div>
-        <div class="imovel-info">
-          <h3>Fazenda 1.200 Hectares</h3>
-          <div class="imovel-detalhes">
-            <span><i class="fas fa-tachometer-alt"></i> 1.200 ha</span>
-            <span><i class="fas fa-water"></i> 3 nascentes</span>
-          </div>
-          <div class="imovel-preco">R$ 18.500.000</div>
-          <div class="btn-imovel" style="pointer-events: none;">
-            <i class="fas fa-eye"></i>
-            Ver detalhes
-          </div>
-        </div>
-      </a>
-
-      <a href="imovel2.html" class="imovel-card">
-        <div class="imovel-img">
-          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d" alt="Casa Alto Padrão" loading="lazy">
-        </div>
-        <div class="imovel-info">
-          <h3>Casa Alto Padrão</h3>
-          <div class="imovel-detalhes">
-            <span><i class="fas fa-bed"></i> 4 suítes</span>
-            <span><i class="fas fa-car"></i> Garagem 3 vagas</span>
-          </div>
-          <div class="imovel-preco">R$ 2.450.000</div>
-          <div class="btn-imovel" style="pointer-events: none;">
-            <i class="fas fa-eye"></i>
-            Ver detalhes
-          </div>
-        </div>
-      </a>
-
-      <a href="imovel3.html" class="imovel-card">
-        <div class="imovel-img">
-          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Chácara 5 Hectares"
-            loading="lazy">
-        </div>
-        <div class="imovel-info">
-          <h3>Chácara 5 Hectares</h3>
-          <div class="imovel-detalhes">
-            <span><i class="fas fa-tachometer-alt"></i> 5 ha</span>
-            <span><i class="fas fa-home"></i> Casa 3 quartos</span>
-          </div>
-          <div class="imovel-preco">R$ 890.000</div>
-          <div class="btn-imovel" style="pointer-events: none;">
-            <i class="fas fa-eye"></i>
-            Ver detalhes
-          </div>
-        </div>
-      </a>
-    </div>
-  </section>
-
   <!-- Contato Section -->
   <section id="contato" class="contato-section hidden">
     <div class="section-header">
@@ -1996,8 +2023,8 @@
         <h4>Links Rápidos</h4>
         <ul>
           <li><a href="#inicio">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
           <li><a href="#imoveis">Imóveis</a></li>
+          <li><a href="#sobre">Sobre</a></li>
           <li><a href="#vender">Quer vender?</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
