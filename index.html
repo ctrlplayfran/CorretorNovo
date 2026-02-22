@@ -3153,6 +3153,48 @@
         });
       });
     }
+    // Mover o badge para baixo da foto no mobile
+function moverBadgeMobile() {
+  if (window.innerWidth <= 768) {
+    const heroLeft = document.querySelector('.hero-left');
+    const heroRight = document.querySelector('.hero-right');
+    const badge = document.querySelector('.hero-badge');
+    
+    if (heroLeft && heroRight && badge) {
+      // Verificar se o badge já foi movido
+      if (!heroLeft.querySelector('.hero-badge')) {
+        // Clonar o badge para não perder o original
+        const badgeClone = badge.cloneNode(true);
+        badgeClone.style.margin = '1rem auto 0';
+        badgeClone.style.display = 'inline-block';
+        
+        // Adicionar o clone no hero-left
+        heroLeft.appendChild(badgeClone);
+        
+        // Esconder o badge original
+        badge.style.display = 'none';
+      }
+    }
+  } else {
+    // Restaurar em desktop
+    const heroLeft = document.querySelector('.hero-left');
+    const heroRight = document.querySelector('.hero-right');
+    const badgeMobile = heroLeft ? heroLeft.querySelector('.hero-badge') : null;
+    const badgeOriginal = document.querySelector('.hero-badge');
+    
+    if (badgeMobile && badgeOriginal) {
+      badgeMobile.remove();
+      badgeOriginal.style.display = 'inline-block';
+    }
+  }
+}
+
+// Chamar a função no carregamento e redimensionamento
+window.addEventListener('load', moverBadgeMobile);
+window.addEventListener('resize', moverBadgeMobile);
+window.addEventListener('orientationchange', function() {
+  setTimeout(moverBadgeMobile, 200);
+});
   </script>
 
 </body>
