@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Josué Afonso | Corretor de Imóveis</title>
 
   <!-- Font Awesome -->
@@ -40,6 +40,8 @@
       color: var(--texto-claro);
       line-height: 1.5;
       overflow-x: hidden;
+      width: 100%;
+      -webkit-text-size-adjust: 100%;
     }
 
     /* Importação da fonte Inter */
@@ -542,6 +544,59 @@
       max-width: 500px;
     }
 
+    /* ===== IMÓVEL DESTAQUE PREMIUM ===== */
+    .imovel-destaque-premium {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .imovel-destaque-premium .moldura-redonda {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--dourado);
+      box-shadow: 0 10px 30px rgba(201, 162, 61, 0.3);
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .imovel-destaque-premium .moldura-redonda:hover {
+      transform: scale(1.05);
+    }
+
+    .imovel-destaque-premium .moldura-redonda img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .imovel-destaque-premium .info-minima {
+      text-align: right;
+    }
+
+    .imovel-destaque-premium .info-minima h3 {
+      color: var(--dourado-claro);
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .imovel-destaque-premium .info-minima .preco {
+      color: var(--dourado);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .imovel-destaque-premium .info-minima .local {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 0.2rem;
+    }
+
     .hero-badge {
       background: rgba(201, 162, 61, 0.15);
       border: 1px solid var(--dourado);
@@ -574,6 +629,121 @@
     .stat-label {
       font-size: 0.85rem;
       opacity: 0.9;
+    }
+     /* ===== NOVO: DESTAQUE PREMIUM COM IMAGEM REDONDA ===== */
+    .hero-destaque-premium {
+      margin-bottom: 1.5rem;
+      width: 100%;
+      max-width: 450px;
+      margin-left: auto;
+    }
+
+    .premium-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(201, 162, 61, 0.3);
+      border-radius: 100px 16px 16px 100px;
+      padding: 0.5rem;
+      text-decoration: none;
+      color: var(--texto-claro);
+      transition: all 0.3s;
+    }
+
+    .premium-card:hover {
+      border-color: var(--dourado);
+      background: rgba(0, 0, 0, 0.4);
+      transform: translateX(-5px);
+      box-shadow: 0 5px 20px rgba(201, 162, 61, 0.2);
+    }
+
+    .premium-img-container {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0;
+    }
+
+    .premium-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid var(--dourado);
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(201, 162, 61, 0.3);
+    }
+
+    .premium-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--dourado);
+      color: var(--verde-escuro);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      border: 2px solid var(--verde-escuro);
+    }
+
+    .premium-badge i {
+      font-size: 0.6rem;
+    }
+
+    .premium-info {
+      flex: 1;
+      text-align: left;
+    }
+
+    .premium-tipo {
+      font-size: 0.7rem;
+      opacity: 0.7;
+      letter-spacing: 0.5px;
+    }
+
+    .premium-nome {
+      font-weight: 600;
+      color: var(--dourado);
+      font-size: 1rem;
+      margin: 0.1rem 0;
+    }
+
+    .premium-local {
+      font-size: 0.65rem;
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .premium-local i {
+      color: var(--dourado);
+      font-size: 0.55rem;
+    }
+
+    .premium-valor {
+      text-align: right;
+      padding-right: 0.5rem;
+    }
+
+    .premium-valor .label {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      display: block;
+    }
+
+    .premium-valor .valor {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dourado-claro);
+      line-height: 1.2;
+      white-space: nowrap;
     }
 
     /* ===== BOTÃO WHATSAPP ===== */
@@ -1270,7 +1440,7 @@
       }
     }
 
-    /* ===== RESPONSIVIDADE ===== */
+    /* ===== RESPONSIVIDADE - MOBILE OTIMIZADO ===== */
     @media (max-width: 968px) {
       .hero {
         grid-template-columns: 1fr;
@@ -1316,12 +1486,54 @@
       nav a.highlight {
         margin: 0.5rem 0;
       }
+
+      .imovel-destaque-premium {
+        align-items: center;
+      }
+      
+      .imovel-destaque-premium .info-minima {
+        text-align: center;
+      }
     }
 
-    /* ===== VERSÃO MOBILE (até 768px) ===== */
+    /* ===== VERSÃO MOBILE OTIMIZADA (até 768px) ===== */
     @media (max-width: 768px) {
+      /* Garantir que não haja overflow horizontal */
+      html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+      }
+
+      /* Ajuste de toque para todos os elementos interativos */
+      a, button, .menu-btn, .imovel-card, .premium-card, .btn-whatsapp, .btn-vender, .social-links a {
+        -webkit-tap-highlight-color: rgba(201, 162, 61, 0.3);
+        touch-action: manipulation;
+        cursor: pointer;
+      }
+
+      /* Remover delays de hover em mobile */
+      .imovel-card:hover,
+      .premium-card:hover,
+      .btn-whatsapp:hover,
+      .btn-vender:hover {
+        transform: none;
+      }
+
+      .imovel-card:active,
+      .premium-card:active,
+      .btn-whatsapp:active,
+      .btn-vender:active {
+        opacity: 0.8;
+        transform: scale(0.98);
+      }
+
       .menu-btn {
         display: flex;
+        min-height: 44px;
+        min-width: 44px;
+        align-items: center;
+        justify-content: center;
       }
 
       nav {
@@ -1336,14 +1548,15 @@
         padding: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.4s;
+        transition: max-height 0.4s ease;
         border-bottom: 2px solid var(--dourado);
         z-index: 999;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
       }
 
       nav.active {
-        max-height: 400px;
-        padding: 1rem 0;
+        max-height: 500px;
+        padding: 0.5rem 0;
       }
 
       nav a {
@@ -1351,6 +1564,11 @@
         text-align: center;
         padding: 1rem;
         border-bottom: 1px solid rgba(201, 162, 61, 0.1);
+        font-size: 1.1rem;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       nav a::after {
@@ -1364,20 +1582,21 @@
         border-radius: 0;
       }
 
-      nav a.highlight:hover {
+      nav a.highlight:active {
         background: rgba(201, 162, 61, 0.1);
-        color: var(--dourado-claro);
       }
 
       .hero {
         background: linear-gradient(135deg, rgba(26, 53, 40, 0.95), rgba(43, 90, 67, 0.95));
         min-height: auto;
-        padding-bottom: 3rem;
+        padding: 5rem 1rem 2rem;
+        gap: 1rem;
       }
 
       .hero-background {
         opacity: 0.25;
         height: 100%;
+        background-size: contain;
         animation: floatBackgroundMobile 8s ease-in-out infinite;
       }
 
@@ -1395,7 +1614,7 @@
         }
       }
 
-      /* ===== LAYOUT MOBILE ===== */
+      /* Ajuste de padding para todos os containers em mobile */
       .hero-left,
       .hero-right {
         background: rgba(0, 0, 0, 0.2);
@@ -1404,6 +1623,8 @@
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         margin-top: 1rem;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       /* Esconde elementos específicos do desktop no mobile */
@@ -1414,9 +1635,15 @@
         display: none;
       }
 
-      /* ANIMAÇÕES MOBILE - mantidas */
+      /* ANIMAÇÕES MOBILE - otimizadas */
       .name-container h1 {
         animation: mobileGlow 3s ease-in-out infinite;
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        word-break: break-word;
+      }
+
+      .name-container h1 span {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
       }
 
       .name-container::after {
@@ -1435,6 +1662,7 @@
 
       .name-container {
         position: relative;
+        width: 100%;
       }
 
       .name-container::before {
@@ -1518,9 +1746,11 @@
         height: 10px;
       }
 
+      /* Stats em mobile - otimizado */
       .hero-stats {
         flex-direction: column;
         gap: 0.8rem;
+        width: 100%;
       }
 
       .stat-item {
@@ -1528,16 +1758,61 @@
         align-items: center;
         justify-content: space-between;
         background: rgba(0, 0, 0, 0.3);
-        padding: 0.8rem 1.5rem;
+        padding: 1rem 1.5rem;
         border-radius: 50px;
         border: 1px solid rgba(201, 162, 61, 0.3);
+        width: 100%;
+        box-sizing: border-box;
       }
 
+      .stat-number {
+        font-size: 1.8rem;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+      }
+
+      /* Botão WhatsApp em mobile */
       .btn-whatsapp {
         width: 100%;
         justify-content: center;
+        padding: 16px 24px;
+        font-size: 1.2rem;
+        min-height: 60px;
       }
 
+      .btn-whatsapp i {
+        font-size: 1.8rem;
+      }
+
+      /* Premium card em mobile */
+      .hero-destaque-premium {
+        margin-left: 0;
+        max-width: 100%;
+      }
+
+      .premium-card {
+        border-radius: 16px;
+        padding: 0.8rem;
+        gap: 0.8rem;
+      }
+
+      .premium-img-container {
+        width: 60px;
+        height: 60px;
+      }
+
+      .premium-info {
+        flex: 2;
+      }
+
+      .premium-valor .valor {
+        font-size: 1rem;
+        white-space: normal;
+      }
+
+      /* Formulários em mobile */
       .vender-form {
         padding: 1.5rem;
       }
@@ -1547,12 +1822,143 @@
         gap: 1rem;
       }
 
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px; /* Previne zoom em iOS */
+        padding: 1rem;
+        min-height: 50px;
+      }
+
+      /* Botão flutuante WhatsApp em mobile */
       .whatsapp-float {
         width: 55px;
         height: 55px;
         font-size: 2rem;
         bottom: 1rem;
         left: 1rem;
+        z-index: 1001;
+      }
+
+      /* Galeria em mobile */
+      .galeria-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .imovel-img {
+        height: 200px;
+      }
+
+      .imovel-info {
+        padding: 1.2rem;
+      }
+
+      .imovel-preco {
+        font-size: 1.3rem;
+      }
+
+      /* Seções em mobile */
+      section {
+        padding: 3rem 1rem;
+      }
+
+      .section-header h2 {
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
+      }
+
+      .section-header p {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+
+      /* Cards de destaque em mobile */
+      .highlight-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .card i {
+        font-size: 2.5rem;
+      }
+
+      /* Contato em mobile */
+      .contato-container {
+        padding: 1.5rem;
+        gap: 2rem;
+      }
+
+      .contato-info h3 {
+        font-size: 1.5rem;
+      }
+
+      .contato-item {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .contato-item span {
+        font-size: 1rem;
+        word-break: break-word;
+        flex: 1;
+      }
+
+      /* Footer em mobile */
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .footer-col ul li a {
+        font-size: 1rem;
+        min-height: 44px;
+        display: inline-block;
+        padding: 8px 0;
+      }
+
+      .footer-bottom {
+        font-size: 0.8rem;
+      }
+
+      .footer-bottom div {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      /* Ajuste para a imagem de perfil em mobile */
+      .geometric-frame img {
+        width: 80%;
+        height: 80%;
+      }
+
+      /* Ajuste para o destaque premium antigo */
+      .imovel-destaque-premium .moldura-redonda {
+        width: 120px;
+        height: 120px;
+      }
+
+      /* Ajuste para o banner de anúncio */
+      .vender-container > div:first-of-type {
+        margin: 15px 0 !important;
+        transform: scale(0.9) rotate(-2deg) !important;
+      }
+
+      .vender-container > div:first-of-type div {
+        font-size: 36px !important;
+        padding: 20px 30px !important;
+      }
+
+      .vender-container > div:first-of-type div:last-child {
+        font-size: 14px !important;
       }
     }
 
@@ -1561,21 +1967,8 @@
         font-size: 1.5rem;
       }
 
-      .galeria-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contato-container {
-        padding: 1.5rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .social-links {
-        justify-content: center;
+      .stat-item {
+        padding: 0.8rem 1rem;
       }
 
       .hero-left,
@@ -1583,13 +1976,91 @@
         padding: 1rem;
       }
 
-      .geometric-frame img {
-        width: 80%;
-        height: 80%;
+      .foto-container {
+        width: min(250px, 70vw);
+        height: min(250px, 70vw);
+      }
+
+      .logo span {
+        font-size: 1rem;
+      }
+
+      .logo i {
+        font-size: 1.5rem;
+      }
+
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+        bottom: 0.8rem;
+        left: 0.8rem;
+      }
+
+      .btn-whatsapp {
+        padding: 14px 20px;
+        font-size: 1.1rem;
+        min-height: 55px;
+      }
+
+      .btn-whatsapp i {
+        font-size: 1.5rem;
+      }
+
+      .premium-card {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .premium-info {
+        text-align: center;
+        width: 100%;
+      }
+
+      .premium-valor {
+        text-align: center;
+        width: 100%;
+        padding-right: 0;
+      }
+
+      .vender-container > div:first-of-type {
+        transform: scale(0.8) rotate(-2deg) !important;
       }
     }
 
-    /* ===== VERSÃO DESKTOP (acima de 769px) ===== */
+    /* Ajuste para telas muito pequenas */
+    @media (max-width: 360px) {
+      .logo span {
+        display: none;
+      }
+
+      .stat-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.3rem;
+      }
+
+      .hero-left,
+      .hero-right {
+        padding: 0.8rem;
+      }
+
+      .name-container h1 {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+      }
+
+      .premium-card {
+        padding: 0.5rem;
+      }
+
+      .premium-img-container {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    /* ===== VERSÃO DESKTOP (acima de 769px) - INTACTA ===== */
     @media (min-width: 769px) {
       .hero-background {
         opacity: 0.6;
@@ -1615,6 +2086,15 @@
       .desktop-sparkle-3,
       .desktop-glow {
         display: block;
+      }
+
+      /* Garantir que hover só funcione em desktop */
+      .imovel-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .btn-whatsapp:hover {
+        transform: translateY(-3px);
       }
     }
 
@@ -1644,6 +2124,13 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Classe utilitária para prevenir overflow */
+    .no-scroll {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -1661,7 +2148,7 @@
       <span>JOSUÉ AFONSO</span>
     </div>
 
-    <div class="menu-btn" id="menuBtn">
+    <div class="menu-btn" id="menuBtn" aria-label="Menu" role="button" tabindex="0">
       <span></span>
       <span></span>
       <span></span>
@@ -1706,8 +2193,32 @@
       </div>
     </div>
 
-    <!-- Lado Direito - Conteúdo -->
+     <!-- Lado Direito - Conteúdo -->
     <div class="hero-right fade-up">
+      
+      <!-- NOVO: Destaque Premium com Imagem Redonda -->
+      <div class="hero-destaque-premium">
+        <a href="fazenda-destaque.html" class="premium-card">
+          <div class="premium-img-container">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" alt="Fazenda Santa Maria" class="premium-img">
+            <div class="premium-badge">
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="premium-info">
+            <span class="premium-tipo">FAZENDA</span>
+            <span class="premium-nome">Santa Maria</span>
+            <span class="premium-local">
+              <i class="fas fa-map-marker-alt"></i> Mato Grosso
+            </span>
+          </div>
+          <div class="premium-valor">
+            <span class="label">a partir de</span>
+            <span class="valor">R$ 12,5M</span>
+          </div>
+        </a>
+      </div>
+
       <div class="hero-badge">
         <i class="fas fa-check-circle"></i> Técnico em Transações Imobiliárias
       </div>
@@ -1757,7 +2268,7 @@
             <span><i class="fas fa-tachometer-alt"></i> 1.200 ha</span>
             <span><i class="fas fa-water"></i> 3 nascentes</span>
           </div>
-          <div class="imovel-preco">R$ 18.500.000</div>
+          <div class="imovel-preco">R$ 12.500.000</div>
           <div class="btn-imovel" style="pointer-events: none;">
             <i class="fas fa-eye"></i>
             Ver detalhes
@@ -1849,6 +2360,7 @@
         transition: all 0.2s ease;
         cursor: pointer;
         font-family: 'Arial Black', 'Impact', sans-serif;
+        max-width: 100%;
     ">
         <!-- Brilho interno -->
         <div style="
@@ -2080,34 +2592,66 @@
     const menuBtn = document.getElementById('menuBtn');
     const mainNav = document.getElementById('mainNav');
     const header = document.querySelector('header');
+    const body = document.body;
 
-    menuBtn.addEventListener('click', () => {
+    function toggleMenu() {
       menuBtn.classList.toggle('active');
       mainNav.classList.toggle('active');
-    });
+      
+      // Prevenir scroll quando menu está aberto em mobile
+      if (window.innerWidth <= 768) {
+        if (mainNav.classList.contains('active')) {
+          body.classList.add('no-scroll');
+        } else {
+          body.classList.remove('no-scroll');
+        }
+      }
+    }
 
+    menuBtn.addEventListener('click', toggleMenu);
+    
+    // Fechar menu ao clicar em um link
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         menuBtn.classList.remove('active');
         mainNav.classList.remove('active');
+        body.classList.remove('no-scroll');
       });
     });
 
+    // Fechar menu ao rolar em mobile
     window.addEventListener('scroll', () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 768 && mainNav.classList.contains('active')) {
         menuBtn.classList.remove('active');
         mainNav.classList.remove('active');
+        body.classList.remove('no-scroll');
       }
     });
 
-    // Função WhatsApp
+    // Fechar menu ao redimensionar para desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        menuBtn.classList.remove('active');
+        mainNav.classList.remove('active');
+        body.classList.remove('no-scroll');
+      }
+    });
+
+    // Função WhatsApp com detecção mobile melhorada
     function abrirWhatsApp(mensagem) {
       const numero = '5566996700226';
       const texto = encodeURIComponent(mensagem);
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      const url = isMobile
-        ? `https://api.whatsapp.com/send?phone=${numero}&text=${texto}`
-        : `https://web.whatsapp.com/send?phone=${numero}&text=${texto}`;
+      
+      // Detecção mais precisa de mobile
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      let url;
+      if (isMobile) {
+        url = `https://api.whatsapp.com/send?phone=${numero}&text=${texto}`;
+      } else {
+        url = `https://web.whatsapp.com/send?phone=${numero}&text=${texto}`;
+      }
+      
       window.open(url, '_blank');
     }
 
@@ -2202,13 +2746,14 @@
       }
     });
 
-    // EFEITO PARALLAX
+    // EFEITO PARALLAX - DESATIVADO EM MOBILE PARA PERFORMANCE
     const heroBackground = document.getElementById('heroBackground');
     const heroSection = document.getElementById('inicio');
 
     function updateParallax() {
       if (!heroSection || !heroBackground) return;
 
+      // Desativar parallax em mobile
       if (window.innerWidth <= 768) {
         heroBackground.style.transform = '';
         return;
@@ -2251,6 +2796,25 @@
       } else {
         heroBackground.style.opacity = '0.6';
       }
+    }
+
+    // Prevenir zoom em inputs no iOS
+    document.querySelectorAll('input, select, textarea').forEach(element => {
+      element.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    // Adicionar feedback tátil para elementos clicáveis em mobile
+    if ('ontouchstart' in window) {
+      document.querySelectorAll('a, button, .imovel-card, .premium-card, .menu-btn').forEach(el => {
+        el.addEventListener('touchstart', function() {
+          this.style.opacity = '0.8';
+        });
+        el.addEventListener('touchend', function() {
+          this.style.opacity = '1';
+        });
+      });
     }
   </script>
 
